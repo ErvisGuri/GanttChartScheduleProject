@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react"
 
+import Chart from "./components/chart";
+
+import "./chart-styles.scss";
+import "./styles.scss"
+
+import GlobalStateProvider from "./stateManagment/Contexts/GlobalStateProvider"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalStateProvider>
+      <div style={{ marginLeft: '580px' }}><h2>Gantt Chart Timeline Task</h2></div>
+      <div
+        style={{
+          scrollbarWidth: "thin",
+          borderRadius: 32
+        }} >
+        <Chart />
+      </div>
+    </GlobalStateProvider>
   );
 }
 

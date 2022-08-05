@@ -1,0 +1,79 @@
+$line-color: #f5f5f5;
+$line-width: 2px;
+$top-margin: calc(145px + 61px + 30px);
+$labelHeight: 38px;
+
+$backgroundColor: whiteSmoke;
+//backdrop layer 1
+.chart {
+  padding: 32px;
+  margin: 32px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid gray;
+  font-family: "Roboto", serif;
+  background-color: whitesmoke;
+  border-radius: 32px;
+
+  .left {
+    padding-top: $top-margin;
+    min-width: 200px !important;
+    //left side layer 2
+    .labels {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+
+      .label {
+        box-sizing: border-box;
+        height: $labelHeight;
+        border-bottom: 1px solid gray;
+        font-size: 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        // background-color: green;
+
+        &:first-child {
+          border-top: $line-width solid #e9e9e9;
+        }
+        &:last-child {
+          border-bottom: $line-width solid $line-color;
+        }
+        &:nth-child(even) {
+          background-color: $line-color;
+          color: black;
+        }
+      }
+    }
+  }
+  .right {
+    //layer 3 backdrop of gant chart itself
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: scroll;
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    margin: 0px;
+    padding: 0px;
+    max-width: 100%;
+    .left {
+      display: none;
+    }
+    .right {
+      max-width: 100% !important;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+}
