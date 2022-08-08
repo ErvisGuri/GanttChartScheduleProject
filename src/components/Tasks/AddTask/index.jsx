@@ -2,16 +2,16 @@ import * as React from "react";
 import { Button } from "@material-ui/core";
 import AddTaskDialogue from "../AddTaskDialogue";
 import "./add-task.scss";
+import "antd/dist/antd.css";
 import { Add } from "@material-ui/icons";
-const AddTask = ({ handleAddTask }) => {
-  const [state, setState] = React.useState({
-    show: false,
-  });
-
-  const handleClick = () => {
-    setState({ ...state, show: !state.show });
-  };
-
+const AddTask = ({
+  isEdit,
+  setIsEdit,
+  handleAddTask,
+  open,
+  handleClick,
+  onChangeContent,
+}) => {
   return (
     <div className="add-task">
       <Button
@@ -22,9 +22,12 @@ const AddTask = ({ handleAddTask }) => {
       >
         Add Task
       </Button>
-      {state.show === true ? (
+      {open === true ? (
         <AddTaskDialogue
-          open={state.show}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          onChangeContent={onChangeContent}
+          open={open}
           handleClose={handleClick}
           handleAddTask={(taskObj) => handleAddTask(taskObj)}
         />

@@ -24,7 +24,7 @@ const tasks = [
         name: "Task 1",
         start: d1,
         end: d2,
-        progress: 10,
+        progress: 80,
         dependencies: "",
         assignees: [employees[0]]
     },

@@ -14,15 +14,23 @@ const GlobalStateProvider = ({ children }) => {
     React.useEffect(() => {
         const tasks = dummy.tasks;
         const labels = tasks.map((x) => x.name);
+        console.log(labels)
         setState({ ...state, tasks, labels });
     }, [state.mode, state.deleted]);
 
     const handleAddTask = (taskObject) => {
+        console.log(taskObject)
         const labels = [...state.labels, taskObject.name]; //adds a new label
         setState({ ...state, tasks: [...state.tasks, taskObject], labels });
     };
 
+
+    const handleUpdateDate = (taskObject) => {
+
+    };
+
     const updatePosition = (task, start, end) => {
+        console.log(end)
         // alert("update position")
         console.log(task, start, end)
         const temp = state.tasks.filter(x => x.name !== task.name)
@@ -57,7 +65,7 @@ const GlobalStateProvider = ({ children }) => {
 
     return (
         <GlobalContext.Provider
-            value={{ ...state, handleAddTask, handleDeleteTask, updatePosition, setState }}
+            value={{ ...state, handleAddTask, handleDeleteTask, updatePosition, setState, handleUpdateDate }}
         >
             {children}
         </GlobalContext.Provider>

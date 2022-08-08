@@ -67,7 +67,7 @@ export default function CustomSlider() {
       temp = "Month";
     }
 
-    // console.log(temp, newValue);
+    console.log(temp, newValue);
     if (globalCTX !== undefined) {
       globalCTX.setState({ ...globalCTX, mode: temp });
     }

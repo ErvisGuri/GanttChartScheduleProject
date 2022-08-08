@@ -1,11 +1,33 @@
 import React from "react";
 import Modal from "antd/lib/modal/Modal";
 import "antd/dist/antd.css";
-import { Popconfirm, Button, TimePicker, DatePicker, Select } from "antd";
+import { Popconfirm, Button, DatePicker, Select } from "antd";
 import moment from "moment";
+import { GlobalContext } from "../../../stateManagment/Contexts/GlobalStateProvider";
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 
-const Modal1 = ({ handleOk, handleCancel, isModalVisible }) => {
+const Modal1 = ({
+  handleOk,
+  handleCancel,
+  isModalVisible,
+  handleUpdateDate,
+}) => {
+  //   const globalCTX = React.useContext(GlobalContext);
+  const [state, setState] = React.useState("");
+
+  const handleChange = (date, e) => {
+    console.log(moment(date), e[0], "start");
+    console.log(moment(date), e[1], "end");
+    setState({ ...state, [date]: e });
+  };
+
+  const handleSubmmit = () => {
+    setState(state);
+    console.log(state);
+    handleUpdateDate(state);
+  };
+
   return (
     <div>
       <Modal
@@ -15,6 +37,7 @@ const Modal1 = ({ handleOk, handleCancel, isModalVisible }) => {
         onCancel={handleCancel}
         width="480px"
         style={{ height: 350 }}
+        onChange={handleChange}
       >
         <div style={{ display: "flex", flexDirection: "row", gap: "242px" }}>
           <div>
@@ -42,31 +65,16 @@ const Modal1 = ({ handleOk, handleCancel, isModalVisible }) => {
             marginTop: "15px",
           }}
         >
-          <h3>Start</h3>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
-            <span>
-              <DatePicker />
-            </span>
-            <span>
-              <TimePicker.RangePicker
-                defaultValue={moment("13:30:56", "HH:mm:ss")}
-              />
-            </span>
-          </div>
+          <RangePicker
+            showTime={{
+              format: "HH:mm",
+            }}
+            format="YYYY-MM-DD HH:mm"
+            onChange={handleChange}
+            onOk={handleSubmmit}
+          />
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <h3>End</h3>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
-            <span>
-              <DatePicker />
-            </span>
-            <span>
-              <TimePicker.RangePicker
-                defaultValue={moment("13:30:56", "HH:mm:ss")}
-              />
-            </span>
-          </div>
-        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}></div>
       </Modal>
     </div>
   );

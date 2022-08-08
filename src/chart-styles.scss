@@ -144,6 +144,7 @@ $arrowWidth: 2px;
   font-size: 12px;
 
   .popup-wrapper {
+    display: none !important;
     position: absolute;
     top: 0;
     left: 0;

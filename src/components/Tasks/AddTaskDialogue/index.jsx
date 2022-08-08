@@ -4,7 +4,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import * as React from "react";
 
 function AddTaskDialogue(props) {
-  const { open, handleClose, handleAddTask } = props;
+  const {
+    open,
+    handleClose,
+    handleAddTask,
+    onChangeContent,
+    isEdit,
+    setIsEdit,
+  } = props;
   const [state, setState] = React.useState({
     id: "",
     name: "",
@@ -18,11 +25,19 @@ function AddTaskDialogue(props) {
     handleClose();
   };
 
+  const handleUpdateDate = () => {
+    const id = Math.random() * 1000;
+    setIsEdit(false);
+    onChangeContent(id);
+  };
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     console.log(value);
     setState({ ...state, [name]: value });
   };
+
+  console.log(state);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +48,11 @@ function AddTaskDialogue(props) {
 
   return (
     <Dialog onClose={close} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Add Item</DialogTitle>
+      {isEdit ? (
+        <DialogTitle id="simple-dialog-title">Change Date</DialogTitle>
+      ) : (
+        <DialogTitle id="simple-dialog-title">Add Item</DialogTitle>
+      )}
       <form
         style={{
           padding: 32,
@@ -72,7 +91,13 @@ function AddTaskDialogue(props) {
           type="text"
           onChange={handleChange}
         />
-        <Button type="submit">Submit</Button>
+        {isEdit ? (
+          <Button onClick={handleUpdateDate} type="submit">
+            Submit1
+          </Button>
+        ) : (
+          <Button type="submit">Submit</Button>
+        )}
       </form>
       <Button onClick={handleClose} className="space-around">
         Cancel
