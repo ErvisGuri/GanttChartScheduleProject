@@ -5,7 +5,7 @@ import { GlobalContext } from "../../stateManagment/Contexts/GlobalStateProvider
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // bavwgroundColor:"black",
+    // backgroundColor: "black",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -67,7 +67,7 @@ export default function CustomSlider() {
       temp = "Month";
     }
 
-    console.log(temp, newValue);
+    // console.log(temp, newValue);
     if (globalCTX !== undefined) {
       globalCTX.setState({ ...globalCTX, mode: temp });
     }

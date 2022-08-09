@@ -1,7 +1,10 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
 import DeleteTaskDialogue from "../DeleteTaskDialogue";
-import { Delete } from "@material-ui/icons";
+
+//Antd Components
+import { Button } from "antd";
+import { DeleteFilled } from "@ant-design/icons";
+
 
 const DeleteTask = ({ handleDeleteTask }) => {
     const [state, setState] = React.useState({
@@ -14,8 +17,8 @@ const DeleteTask = ({ handleDeleteTask }) => {
 
     return (
         <div className="add-task">
-            <Button startIcon={<Delete />} onClick={handleClick} variant="text">
-                <Delete />
+            <Button startIcon={<DeleteFilled />} onClick={handleClick} variant="text">
+                <DeleteFilled />
             </Button>
             {state.show === true ? (
                 <DeleteTaskDialogue

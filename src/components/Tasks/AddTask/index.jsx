@@ -1,24 +1,28 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
 import AddTaskDialogue from "../AddTaskDialogue";
 import "./add-task.scss";
+//importing antd components
 import "antd/dist/antd.css";
-import { Add } from "@material-ui/icons";
+
+import { PlusOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+
 const AddTask = ({
   isEdit,
   setIsEdit,
   handleAddTask,
+  selectedTask,
   open,
-  handleClick,
+  handleModalState,
   onChangeContent,
 }) => {
   return (
     <div className="add-task">
       <Button
-        onClick={handleClick}
-        variant="contained"
-        startIcon={<Add />}
-        color="primary"
+        onClick={handleModalState}
+        shape="round"
+        icon={<PlusOutlined />}
+        type="primary"
       >
         Add Task
       </Button>
@@ -26,9 +30,10 @@ const AddTask = ({
         <AddTaskDialogue
           isEdit={isEdit}
           setIsEdit={setIsEdit}
+          selectedTask={selectedTask}
           onChangeContent={onChangeContent}
           open={open}
-          handleClose={handleClick}
+          handleClose={handleModalState}
           handleAddTask={(taskObj) => handleAddTask(taskObj)}
         />
       ) : null}

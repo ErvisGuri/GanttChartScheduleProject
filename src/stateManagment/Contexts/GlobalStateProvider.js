@@ -1,17 +1,32 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import dummy from "../../dummy-data";
 
 export const GlobalContext = createContext({});
 
 const GlobalStateProvider = ({ children }) => {
-    const [state, setState] = useState({
+    const [state, setState] = useState(() => JSON.parse(localStorage.getItem('Chart')) || JSON.stringify({
         tasks: [],
         mode: "Week",
         labels: [],
         deleted: []
-    });
+    }));
 
-    React.useEffect(() => {
+
+    //Getting data from LocalStorage
+    useEffect(() => {
+        const charts = JSON.parse(localStorage.getItem('chart'));
+        if (charts) {
+            setState(state);
+        }
+    }, [])
+
+    //Saving data to localStorage
+    useEffect(() => {
+        localStorage.setItem('chart', JSON.stringify(state));
+    }, [state]);
+
+
+    useEffect(() => {
         const tasks = dummy.tasks;
         const labels = tasks.map((x) => x.name);
         console.log(labels)
@@ -19,14 +34,14 @@ const GlobalStateProvider = ({ children }) => {
     }, [state.mode, state.deleted]);
 
     const handleAddTask = (taskObject) => {
-        console.log(taskObject)
         const labels = [...state.labels, taskObject.name]; //adds a new label
         setState({ ...state, tasks: [...state.tasks, taskObject], labels });
     };
 
 
-    const handleUpdateDate = (taskObject) => {
-
+    const handleUpdate = (taskObject) => {
+        state.tasks[state.tasks.findIndex(el => el.id === taskObject.id)] = taskObject;
+        setState(state);
     };
 
     const updatePosition = (task, start, end) => {
@@ -65,7 +80,7 @@ const GlobalStateProvider = ({ children }) => {
 
     return (
         <GlobalContext.Provider
-            value={{ ...state, handleAddTask, handleDeleteTask, updatePosition, setState, handleUpdateDate }}
+            value={{ ...state, handleAddTask, handleDeleteTask, updatePosition, setState, handleUpdate }}
         >
             {children}
         </GlobalContext.Provider>

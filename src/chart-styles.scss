@@ -3,7 +3,7 @@
 //
 $bar-color: rgb(134, 198, 247) !default;
 $bar-stroke: #0078db !default;
-$border-color: #e0e0e0 !default;
+$border-color: #f5f7fb !default;
 $light-bg: #f5f5f5 !default;
 $light-border-color: #ebeff2 !default;
 $light-yellow: #3ff390 !default;
@@ -19,7 +19,7 @@ $arrowWidth: 2px;
     fill: none;
   }
   .grid-header {
-    fill: whitesmoke;
+    fill: #f1f7fb;
     stroke: $border-color;
     stroke-width: 1.4;
   }
@@ -28,7 +28,7 @@ $arrowWidth: 2px;
   }
   .grid-row:nth-child(even) {
     // fill: $light-bg;
-    fill: whitesmoke;
+    fill: #f1f7fb;
   }
   .row-line {
     stroke: $light-border-color;

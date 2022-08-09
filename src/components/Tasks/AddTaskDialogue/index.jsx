@@ -1,7 +1,16 @@
-import { TextField, Button } from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import * as React from "react";
+
+//importing antd components
+import { Button, Input, Modal } from "antd";
+
+const initials = {
+  id: "",
+  name: "",
+  start: new Date(),
+  end: new Date(),
+  progress: 10,
+  dependencies: "",
+};
 
 function AddTaskDialogue(props) {
   const {
@@ -9,50 +18,47 @@ function AddTaskDialogue(props) {
     handleClose,
     handleAddTask,
     onChangeContent,
+    selectedTask,
     isEdit,
     setIsEdit,
   } = props;
-  const [state, setState] = React.useState({
-    id: "",
-    name: "",
-    start: new Date(),
-    end: new Date(),
-    progress: 10,
-    dependencies: "",
-  });
+
+  const [state, setState] = React.useState(isEdit ? selectedTask : initials);
 
   const close = () => {
     handleClose();
   };
 
-  const handleUpdateDate = () => {
-    const id = Math.random() * 1000;
+  const handleUpdate = (e) => {
+    e.preventDefault();
     setIsEdit(false);
-    onChangeContent(id);
+    close();
+    onChangeContent(state);
   };
 
   const handleChange = (e) => {
-    const { value, name } = e.target;
-    console.log(value);
+    var { value, name } = e.target;
+    if (name === "start" || name === "end") {
+      value = new Date(value);
+    }
     setState({ ...state, [name]: value });
   };
 
-  console.log(state);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
     handleAddTask(state);
     handleClose();
   };
 
   return (
-    <Dialog onClose={close} aria-labelledby="simple-dialog-title" open={open}>
-      {isEdit ? (
-        <DialogTitle id="simple-dialog-title">Change Date</DialogTitle>
-      ) : (
-        <DialogTitle id="simple-dialog-title">Add Item</DialogTitle>
-      )}
+    <Modal
+      onCancel={close}
+      aria-labelledby="simple-dialog-title"
+      visible={open}
+      title={isEdit ? "Change Date" : "Add Item"}
+      footer={null}
+      closable={false}
+    >
       <form
         style={{
           padding: 32,
@@ -60,49 +66,68 @@ function AddTaskDialogue(props) {
           flexDirection: "column",
           rowGap: 32,
         }}
-        onSubmit={handleSubmit}
       >
-        <TextField
+        <Input
           placeholder="name"
           type="name"
           name="name"
+          value={state.name}
           onChange={handleChange}
         />
-        <TextField
+        <Input
           placeholder="start"
           name="start"
           type="date"
+          value={state.start.toISOString().slice(0, 10)}
           onChange={handleChange}
         />
-        <TextField
+        <Input
           placeholder="end"
           name="end"
           type="date"
+          value={state.end.toISOString().slice(0, 10)}
           onChange={handleChange}
         />
-        <TextField
+        <Input
           placeholder="progress"
           type="number"
           name="progress"
+          value={state.progress}
           onChange={handleChange}
         />
-        <TextField
+        <Input
           placeholder="dependencies"
           type="text"
+          name="dependencies"
+          value={state.dependencies}
           onChange={handleChange}
         />
         {isEdit ? (
-          <Button onClick={handleUpdateDate} type="submit">
-            Submit1
+          <Button
+            style={{ border: "none" }}
+            onClick={handleUpdate}
+            type="submit"
+          >
+            Submit
           </Button>
         ) : (
-          <Button type="submit">Submit</Button>
+          <Button
+            style={{ border: "none" }}
+            onClick={handleSubmit}
+            type="submit"
+          >
+            Submit
+          </Button>
         )}
       </form>
-      <Button onClick={handleClose} className="space-around">
+      <Button
+        style={{ border: "none", fontSize: "16px" }}
+        onClick={handleClose}
+        className="space-around"
+      >
         Cancel
       </Button>
-    </Dialog>
+    </Modal>
   );
 }
 

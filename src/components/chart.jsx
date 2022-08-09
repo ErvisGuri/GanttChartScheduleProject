@@ -1,12 +1,13 @@
-import { IconButton, Paper } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
 import { FrappeGantt } from "frappe-gantt-react";
 import * as React from "react";
 import { GlobalContext } from "../stateManagment/Contexts/GlobalStateProvider";
 import "./chart.scss";
 import Slider from "./CustomSlider";
 import AddTask from "./Tasks/AddTask";
-import { Tooltip } from "antd";
+
+// importing antd components
+import { DeleteFilled } from "@ant-design/icons";
+import { Card } from "antd";
 
 function Chart() {
   const globalCTX = React.useContext(GlobalContext);
@@ -15,62 +16,54 @@ function Chart() {
     show: false,
   });
   const [selectedBtn, setSelectedBtn] = React.useState(0);
-  const noderef = React.useRef(null);
+  const [selectedTask, setSelectedTask] = React.useState(null);
 
-  const onChangeContent = (id) => {
-    setSelectedBtn(id);
-  };
-
-  console.log(selectedBtn);
-
-  const handleClick = () => {
+  const handleModalState = () => {
     setState({ ...state, show: !state.show });
   };
 
-  const click = (event) => {
-    console.log("3", event);
-    // if (event.detail === 2) {
-    handleClick();
-    // }
+  const click = (task) => {
+    setSelectedTask(task);
+    setIsEdit(true);
+    handleModalState();
   };
 
   return (
     <div className="chart">
-      <div noderef={noderef} className="left">
+      <div className="left">
         {globalCTX.labels?.length ? (
           <div className="labels">
             {globalCTX.labels.map((x, i) => {
               return (
-                <div noderef={noderef} key={x + i} className="label">
+                <div key={x + i} className="label">
                   <div>
                     <span className="tiny-circle">{i}</span>
                     <span className="bold space-around capitalize">{x}</span>
                   </div>
-                  <IconButton
+                  <DeleteFilled
                     className="bold space-around capitalize"
                     onClick={() =>
                       globalCTX.handleDeleteTask(globalCTX.tasks[i])
                     }
-                  >
-                    <Delete />
-                  </IconButton>
+                  ></DeleteFilled>
                 </div>
               );
             })}
           </div>
         ) : null}
         <AddTask
-          idEdit={isEdit}
+          isEdit={isEdit}
           setIsEdit={setIsEdit}
+          selectedTask={selectedTask}
           date={globalCTX?.tasks?.find((item) => item.id === selectedBtn)}
-          onChangeContent={onChangeContent}
-          handleClick={handleClick}
+          onChangeContent={globalCTX.handleUpdate}
+          handleModalState={handleModalState}
           open={state.show}
           handleAddTask={(taskObj) => globalCTX.handleAddTask(taskObj)}
         />
       </div>
-      <Paper
-        elevation={0}
+      <Card
+        bordered={false}
         className="right"
         style={{ scrollbarWidth: "thin", overflow: "hidden" }}
       >
@@ -81,7 +74,7 @@ function Chart() {
             <FrappeGantt
               tasks={globalCTX.tasks}
               viewMode={globalCTX.mode}
-              onClick={() => click()}
+              onClick={(task) => click(task)}
               onDateChange={globalCTX.updatePosition} //aka on drag bar
               onProgressChange={(task, progress) =>
                 console.log(task, progress, "progress")
@@ -92,7 +85,7 @@ function Chart() {
             />
           </>
         ) : null}
-      </Paper>
+      </Card>
       {/* <Modal1
         isModalVisible={isModalVisible}
         handleCancel={handleCancel}

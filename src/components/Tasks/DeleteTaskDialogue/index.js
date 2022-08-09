@@ -1,6 +1,4 @@
-import { TextField, Button } from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import { Input, Button, Modal } from "antd";
 import * as React from "react";
 
 function DeleteTaskDialogue({ open, handleClose, handleDeleteTask }) {
@@ -25,8 +23,7 @@ function DeleteTaskDialogue({ open, handleClose, handleDeleteTask }) {
     };
 
     return (
-        <Dialog onClose={close} aria-labelledby="simple-dialog-title" open={open}>
-            <DialogTitle id="simple-dialog-title">Add Item</DialogTitle>
+        <Modal onCancel={close} title="Add Item" visible={open} footer={null} closable={false}>
             <form
                 style={{
                     padding: 32,
@@ -36,19 +33,18 @@ function DeleteTaskDialogue({ open, handleClose, handleDeleteTask }) {
                 }}
                 onSubmit={handleSubmit}
             >
-                <TextField
+                <Input
                     placeholder="name"
                     type="name"
                     name="name"
                     onChange={handleChange}
                 />
-
                 <Button type="submit">Submit</Button>
             </form>
             <Button onClick={handleClose} className="space-around">
                 Cancel
             </Button>
-        </Dialog>
+        </Modal>
     );
 }
 

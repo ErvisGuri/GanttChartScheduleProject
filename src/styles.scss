@@ -19,6 +19,25 @@ html {
   text-align: center;
 }
 
+.chart .right ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chart .right ::-webkit-scrollbar-track {
+  background-color: #f5f7fb;
+}
+
+.chart .right ::-webkit-scrollbar-thumb {
+  background: #d6ddeb !important;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.chart .right ::-webkit-scrollbar-thumb:hover {
+  background: #aec4f0 !important;
+  border-radius: 4px;
+}
+
 .tiny-circle {
   // width:40px !important;
   // height:40px !important;
@@ -44,6 +63,15 @@ html {
 }
 .bold {
   font-weight: bold;
+}
+
+span.anticon.anticon-delete.bold.space-around.capitalize {
+  color: #0b84f5 !important;
+  margin-left: 10px;
+}
+
+span.anticon.anticon-delete.bold.space-around.capitalize:hover {
+  color: #becfdb !important;
 }
 
 .MuiSlider-colorPrimary {
