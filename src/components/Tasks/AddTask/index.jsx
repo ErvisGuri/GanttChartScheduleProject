@@ -2,8 +2,6 @@ import * as React from "react";
 import AddTaskDialogue from "../AddTaskDialogue";
 import "./add-task.scss";
 //importing antd components
-import "antd/dist/antd.css";
-
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 

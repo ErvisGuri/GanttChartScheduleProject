@@ -4,13 +4,12 @@ import dummy from "../../dummy-data";
 export const GlobalContext = createContext({});
 
 const GlobalStateProvider = ({ children }) => {
-    const [state, setState] = useState(() => JSON.parse(localStorage.getItem('Chart')) || JSON.stringify({
-        tasks: [],
+    const [state, setState] = useState(JSON.parse(localStorage.getItem('chart')) || {
+        tasks: dummy.tasks,
         mode: "Week",
         labels: [],
         deleted: []
-    }));
-
+    });
 
     //Getting data from LocalStorage
     useEffect(() => {
@@ -18,7 +17,7 @@ const GlobalStateProvider = ({ children }) => {
         if (charts) {
             setState(state);
         }
-    }, [])
+    }, [state])
 
     //Saving data to localStorage
     useEffect(() => {
@@ -26,11 +25,10 @@ const GlobalStateProvider = ({ children }) => {
     }, [state]);
 
 
+
     useEffect(() => {
-        const tasks = dummy.tasks;
-        const labels = tasks.map((x) => x.name);
-        console.log(labels)
-        setState({ ...state, tasks, labels });
+        const labels = state?.tasks?.map((x) => x.name);
+        setState({ ...state, labels });
     }, [state.mode, state.deleted]);
 
     const handleAddTask = (taskObject) => {
@@ -45,13 +43,13 @@ const GlobalStateProvider = ({ children }) => {
     };
 
     const updatePosition = (task, start, end) => {
-        console.log(end)
+        // console.log(end)
         // alert("update position")
-        console.log(task, start, end)
-        const temp = state.tasks.filter(x => x.name !== task.name)
-        console.log("this is task")
-        console.log(task)
-        const t = { ...task, start, end }
+        // console.log(task, start, end)
+        // const temp = state.tasks.filter(x => x.name !== task.name)
+        // console.log("this is task")
+        // console.log(task)
+        // const t = { ...task, start, end }
         // save t to api
         // console.log(t)
         // setState({ ...state, tasks: [...temp, t] })
@@ -68,8 +66,6 @@ const GlobalStateProvider = ({ children }) => {
         if (Array.isArray(state.tasks)) {
             const filter = state.tasks.filter((x) => x.name !== taskObject.name);
             const labels = state.labels.filter((x) => {
-                console.log("thi sis x");
-                console.log(x);
                 return x !== taskObject.name;
             });
             console.log(labels);

@@ -19,6 +19,22 @@ html {
   text-align: center;
 }
 
+.ant-card-body {
+  padding: 25px !important;
+}
+.ant-slider-mark {
+  left: 8px;
+}
+
+.ant-slider-track {
+  background-color: #1890ff !important;
+}
+
+.ant-slider-handle {
+  background-color: #1890ff;
+  border: 2px solid #86c6f7;
+}
+
 .chart .right ::-webkit-scrollbar {
   width: 10px;
 }
@@ -72,14 +88,4 @@ span.anticon.anticon-delete.bold.space-around.capitalize {
 
 span.anticon.anticon-delete.bold.space-around.capitalize:hover {
   color: #becfdb !important;
-}
-
-.MuiSlider-colorPrimary {
-  color: $primary;
-}
-
-.MuiPaper-elevation0 {
-  border-radius: 50px;
-  // background: #e0e0e0;
-  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }

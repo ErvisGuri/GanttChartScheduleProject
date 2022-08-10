@@ -1,13 +1,14 @@
 import { FrappeGantt } from "frappe-gantt-react";
 import * as React from "react";
 import { GlobalContext } from "../stateManagment/Contexts/GlobalStateProvider";
-import "./chart.scss";
-import Slider from "./CustomSlider";
 import AddTask from "./Tasks/AddTask";
+
+import "./chart.scss";
 
 // importing antd components
 import { DeleteFilled } from "@ant-design/icons";
 import { Card } from "antd";
+import Slider from "./CustomSliderAntd/Slider";
 
 function Chart() {
   const globalCTX = React.useContext(GlobalContext);
@@ -70,27 +71,23 @@ function Chart() {
         {globalCTX.tasks?.length ? (
           <>
             <Slider />
-
-            <FrappeGantt
-              tasks={globalCTX.tasks}
-              viewMode={globalCTX.mode}
-              onClick={(task) => click(task)}
-              onDateChange={globalCTX.updatePosition} //aka on drag bar
-              onProgressChange={(task, progress) =>
-                console.log(task, progress, "progress")
-              }
-              // onTasksChange={(tasks) => {
-              // //
-              // }}
-            />
+            <div className="gantFrappe_container">
+              <FrappeGantt
+                tasks={globalCTX.tasks}
+                viewMode={globalCTX.mode}
+                onClick={(task) => click(task)}
+                onDateChange={globalCTX.updatePosition} //aka on drag bar
+                onProgressChange={(task, progress) =>
+                  console.log(task, progress, "progress")
+                }
+                // onTasksChange={(tasks) => {
+                // //
+                // }}
+              />
+            </div>
           </>
         ) : null}
       </Card>
-      {/* <Modal1
-        isModalVisible={isModalVisible}
-        handleCancel={handleCancel}
-        handleOk={handleOk}
-      /> */}
     </div>
   );
 }
