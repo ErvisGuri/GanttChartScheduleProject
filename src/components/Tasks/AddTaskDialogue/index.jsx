@@ -33,6 +33,8 @@ function AddTaskDialogue(props) {
     handleClose();
   };
 
+  console.log(state);
+
   console.log(initials);
 
   const handleUpdate = (e) => {
@@ -42,21 +44,28 @@ function AddTaskDialogue(props) {
     onChangeContent(state);
   };
 
-  const disabledDate = (current) => {
-    // Can not select days before today and today
-    const sunday = moment(current).day() === 0;
-    const saturday = moment(current).day() === 6;
-    return saturday || sunday;
-  };
+  // const styleDate = (current) => {
+  //   const style = {};
+  //   if (current.day() === 6 || current.day() === 0) {
+  //     style.background = "#c1bfbfb8";
+  //     style.borderRadius = "50%";
+  //   }
+  //   return (
+  //     <div className="ant-picker-cell-inner" style={style}>
+  //       {current.date()}
+  //     </div>
+  //   );
+  // };
 
-  const handleChange = (e) => {
-    var { value, name } = e.target;
-    if (name === "start" || name === "end") {
-      value = new Date(value).valueOf();
+  const handleChange = (obj, e) => {
+    if (obj === "start" || obj === "end") {
+      let name = obj;
+      setState((prev) => ({ ...prev, [name]: e.toISOString().slice(0, 10) }));
+    } else {
+      let name = obj;
+      setState((prev) => ({ ...prev, [name]: e }));
     }
-    setState({ ...state, [name]: value });
   };
-
   const handleSubmit = () => {
     handleAddTask(state);
     close();
@@ -121,25 +130,25 @@ function AddTaskDialogue(props) {
         </div>
         <div className="startModal">
           <DatePicker
-            disabledDate={disabledDate}
             bordered={false}
             placeholder="start"
             name="start"
-            value={state.start.isValid}
+            defaultValue={state.start}
             format={format}
             onChange={handleChange}
+            // dateRender={styleDate}
+            showToday={true}
           />
         </div>
         <div className="endModal">
           <DatePicker
-            disabledDate={disabledDate}
+            // dateRender={styleDate}
             format={format}
             bordered={false}
             placeholder="end"
             name="end"
-            value={state.end.isValid}
+            defaultValue={state.end}
             onChange={handleChange}
-            showToday={true}
           />
         </div>
         <div className="prgModal">

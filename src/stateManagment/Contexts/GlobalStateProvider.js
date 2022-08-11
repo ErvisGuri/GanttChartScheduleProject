@@ -11,13 +11,15 @@ const GlobalStateProvider = ({ children }) => {
         deleted: []
     });
 
+    console.log(state)
+
     //Getting data from LocalStorage
     useEffect(() => {
         const charts = JSON.parse(localStorage.getItem('chart'));
         if (charts) {
             setState(state);
         }
-    }, [state])
+    }, [])
 
     //Saving data to localStorage
     useEffect(() => {

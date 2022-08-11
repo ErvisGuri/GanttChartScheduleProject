@@ -16,7 +16,6 @@ function Chart() {
   const [state, setState] = React.useState({
     show: false,
   });
-  const [selectedBtn, setSelectedBtn] = React.useState(0);
   const [selectedTask, setSelectedTask] = React.useState(null);
 
   const handleModalState = () => {
@@ -56,7 +55,6 @@ function Chart() {
           isEdit={isEdit}
           setIsEdit={setIsEdit}
           selectedTask={selectedTask}
-          date={globalCTX?.tasks?.find((item) => item.id === selectedBtn)}
           onChangeContent={globalCTX.handleUpdate}
           handleModalState={handleModalState}
           open={state.show}
