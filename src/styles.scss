@@ -30,6 +30,11 @@ html {
   background-color: #1890ff !important;
 }
 
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner:before {
+  border-radius: 50% !important;
+  border-color: gray;
+}
+
 .ant-slider-handle {
   background-color: #1890ff;
   border: 2px solid #86c6f7;

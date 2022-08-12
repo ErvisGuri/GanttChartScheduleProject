@@ -11,7 +11,6 @@ const GlobalStateProvider = ({ children }) => {
         deleted: []
     });
 
-    console.log(state)
 
     //Getting data from LocalStorage
     useEffect(() => {

@@ -4,13 +4,14 @@ import "./modal.scss";
 //importing antd components
 import { Button, Input, Modal, DatePicker } from "antd";
 import moment from "moment";
+
 const format = "DD-MM-YYYY";
 
 const initials = {
   id: "",
   name: "",
-  start: "",
-  end: "",
+  start: null,
+  end: null,
   progress: "",
   dependencies: "",
 };
@@ -29,13 +30,10 @@ function AddTaskDialogue(props) {
   const [state, setState] = React.useState(isEdit ? selectedTask : initials);
 
   const close = () => {
+    setIsEdit(false);
     setState(initials);
     handleClose();
   };
-
-  console.log(state);
-
-  console.log(initials);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -44,36 +42,41 @@ function AddTaskDialogue(props) {
     onChangeContent(state);
   };
 
-  // const styleDate = (current) => {
-  //   const style = {};
-  //   if (current.day() === 6 || current.day() === 0) {
-  //     style.background = "#c1bfbfb8";
-  //     style.borderRadius = "50%";
-  //   }
-  //   return (
-  //     <div className="ant-picker-cell-inner" style={style}>
-  //       {current.date()}
-  //     </div>
-  //   );
-  // };
+  const styleDate = (current) => {
+    const style = {};
+    if (current.day() === 6 || current.day() === 0) {
+      style.background = "#c1bfbfb8";
+      style.borderRadius = "50%";
+    }
+    return (
+      <div className="ant-picker-cell-inner" style={style}>
+        {current.date()}
+      </div>
+    );
+  };
 
-  const handleChange = (obj, e) => {
-    if (obj === "start" || obj === "end") {
-      let name = obj;
-      setState((prev) => ({ ...prev, [name]: e.toISOString().slice(0, 10) }));
-    } else {
-      let name = obj;
-      setState((prev) => ({ ...prev, [name]: e }));
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const handleEndChange = (value) => {
+    if (value !== null) {
+      setState({ ...state, end: value.toDate() });
     }
   };
+
+  const handleStartChange = (value) => {
+    console.log(value);
+    if (value !== null) {
+      setState({ ...state, start: value.toDate() });
+    }
+  };
+
   const handleSubmit = () => {
     handleAddTask(state);
     close();
   };
-
-  // const localTime = moment().format("DD-MM-YYYY");
-  // const proposedDate = localTime + "T00:00:00.000Z";
-  // const isValidDate = moment(proposedDate).isValid();
 
   return (
     <Modal
@@ -101,7 +104,7 @@ function AddTaskDialogue(props) {
               placeholder="id"
               type="text"
               name="id"
-              readOnly
+              readOnly={isEdit}
               value={state.id}
               onChange={handleChange}
             />
@@ -133,22 +136,22 @@ function AddTaskDialogue(props) {
             bordered={false}
             placeholder="start"
             name="start"
-            defaultValue={state.start}
+            defaultValue={isEdit ? moment(state.start) : null}
             format={format}
-            onChange={handleChange}
-            // dateRender={styleDate}
+            onChange={handleStartChange}
+            dateRender={styleDate}
             showToday={true}
           />
         </div>
         <div className="endModal">
           <DatePicker
-            // dateRender={styleDate}
+            dateRender={styleDate}
             format={format}
             bordered={false}
             placeholder="end"
             name="end"
-            defaultValue={state.end}
-            onChange={handleChange}
+            defaultValue={isEdit ? moment(state.end) : null}
+            onChange={handleEndChange}
           />
         </div>
         <div className="prgModal">

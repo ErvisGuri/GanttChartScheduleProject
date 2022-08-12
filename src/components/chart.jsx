@@ -28,6 +28,16 @@ function Chart() {
     handleModalState();
   };
 
+  // React.useEffect(() => {
+  //   const temp = (document.getElementsByClassName("tick")[15].style[
+  //     "background-color"
+  //   ] = "#3ff390");
+  //   document.getElementsByClassName("tick")[15].style["background-color"] =
+  //     "#3ff390";
+  //   console.log("tick", temp);
+  //   return;
+  // }, []);
+
   return (
     <div className="chart">
       <div className="left">
