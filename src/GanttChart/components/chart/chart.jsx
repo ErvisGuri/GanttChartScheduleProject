@@ -1,14 +1,15 @@
-import { FrappeGantt } from "frappe-gantt-react";
 import * as React from "react";
-import { GlobalContext } from "../stateManagment/Contexts/GlobalStateProvider";
-import AddTask from "./Tasks/AddTask";
+import { GlobalContext } from "../../stateManagement/Contexts/GlobalStateProvider";
+import AddTask from "../Tasks/AddTask";
+import { FrappeGantt } from "frappe-gantt-react";
 
 import "./chart.scss";
+import "antd/dist/antd.min.css";
 
 // importing antd components
 import { DeleteFilled } from "@ant-design/icons";
 import { Card } from "antd";
-import Slider from "./CustomSliderAntd/Slider";
+import Slider from "../CustomSliderAntd/Slider";
 
 function Chart() {
   const globalCTX = React.useContext(GlobalContext);
@@ -28,19 +29,10 @@ function Chart() {
     handleModalState();
   };
 
-  // React.useEffect(() => {
-  //   const temp = (document.getElementsByClassName("tick")[15].style[
-  //     "background-color"
-  //   ] = "#3ff390");
-  //   document.getElementsByClassName("tick")[15].style["background-color"] =
-  //     "#3ff390";
-  //   console.log("tick", temp);
-  //   return;
-  // }, []);
-
   return (
     <div className="chart">
       <div className="left">
+        <h2 className="labelsHeader">Timeline Schedule</h2>
         {globalCTX.labels?.length ? (
           <div className="labels">
             {globalCTX.labels.map((x, i) => {

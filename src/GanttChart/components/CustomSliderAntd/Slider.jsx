@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Slider } from "antd";
-import { GlobalContext } from "../../stateManagment/Contexts/GlobalStateProvider";
+import { GlobalContext } from "../../stateManagement/Contexts/GlobalStateProvider";
 
 const marks = {
   0: {

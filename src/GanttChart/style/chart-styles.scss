@@ -40,10 +40,12 @@ $arrowWidth: 2px;
       stroke-width: 0.4;
     }
   }
+
   .today-highlight {
     fill: $light-yellow !important;
     opacity: 0.5;
   }
+
   .arrow {
     fill: none;
     stroke: $text-muted;

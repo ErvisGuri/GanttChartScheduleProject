@@ -1,11 +1,12 @@
 $line-color: #f1f7fb;
 $line-width: 1px;
-$top-margin: calc(145px + 61px + 30px);
+$top-margin: calc(-50px + 61px + 30px);
 $labelHeight: 38px;
 
 $backgroundColor: whiteSmoke;
 //backdrop layer 1
 .chart {
+  // max-height: 490px;
   padding: 32px;
   margin: 32px;
   display: flex;
@@ -23,7 +24,8 @@ $backgroundColor: whiteSmoke;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-top: -102px;
+      // max-height: 210px;
+      // overflow-y: auto;
       .label {
         box-sizing: border-box;
         height: $labelHeight;
@@ -48,6 +50,11 @@ $backgroundColor: whiteSmoke;
       }
     }
   }
+
+  .labelsHeader {
+    margin-bottom: 61px !important;
+  }
+
   .right {
     //layer 3 backdrop of gant chart itself
     font-weight: bold;

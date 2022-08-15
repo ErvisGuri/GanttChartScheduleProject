@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Gantt from './Gantt';
 
 // css importing
 import "antd/dist/antd.min.css";
-import "./chart-styles.scss";
-import "./styles.scss"
+import "./GanttChart/style/chart-styles.scss";
+import "./GanttChart/style/styles.scss"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Gantt />
   </React.StrictMode>
 );
 
