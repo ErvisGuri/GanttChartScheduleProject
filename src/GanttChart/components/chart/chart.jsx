@@ -28,7 +28,7 @@ function Chart() {
     setIsEdit(true);
     handleModalState();
   };
-
+  console.log();
   return (
     <div className="chart">
       <div className="left">
@@ -44,9 +44,7 @@ function Chart() {
                   </div>
                   <DeleteFilled
                     className="bold space-around capitalize"
-                    onClick={() =>
-                      globalCTX.handleDeleteTask(globalCTX.tasks[i])
-                    }
+                    onClick={() => globalCTX.handleDeleteTask(i)}
                   ></DeleteFilled>
                 </div>
               );

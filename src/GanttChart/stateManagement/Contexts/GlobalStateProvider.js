@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useMemo } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { dummyData } from '../../dummy-data'
 
 export const GlobalContext = createContext({});
@@ -8,7 +8,7 @@ const GlobalStateProvider = ({ children }) => {
         tasks: [],
         mode: "Day",
         labels: [],
-        deleted: []
+        deleted: [],
     });
 
     //Getting data from LocalStorage
@@ -19,35 +19,48 @@ const GlobalStateProvider = ({ children }) => {
         }
     }, [state])
 
+    console.log(state)
+
     //Saving data to localStorage
     useEffect(() => {
         localStorage.setItem('chart', JSON.stringify(state));
     }, [state]);
 
+    const dataSchedule = function () {
+        var tasksTemp = [];
+        dummyData?.map((el) => {
+            let scheduleDays = [];
+            el?.scheduleDays?.map((x) => {
+                scheduleDays.push(x);
+            });
+            tasksTemp.push({
+                start: scheduleDays[0].start,
+                end: scheduleDays[scheduleDays.length - 1].end,
+                id: el.scheduleId,
+                scheduleAddress: el.scheduleAddress,
+                progress: el.scheduleTotalProgressPercentage ?? 0,
+                weather: el.scheduleDays.map(el => el.weather.map(el => el.temperature)),
+                color: el.scheduleDays.map(el => el.color),
+                crews: el.scheduleDays.map(el => el.crews),
+                image: el.scheduleDays.map(el => el.image),
+                notes: el.scheduleDays.map(el => el.notes),
+                fleet: el.scheduleDays.map(el => el.fleet),
+                linkedDays: el.scheduleDays.map(el => el.linkedDays),
+                day: el.scheduleDays.map(el => el.day),
+                status: el.scheduleDays.map(el => el.status),
+            })
+        });
+        // console.log(tasksTemp)
+        return tasksTemp;
+    };
 
+    dataSchedule()
 
-
-    const scheduleLabels = (id) => {
-        const schId = dummyData?.map(id => id.scheduleId)
-        const data = dummyData?.map((el) => el.scheduleDays)?.filter(el => console.log(el));
-        console.log(data)
-    }
-    scheduleLabels()
 
     useEffect(() => {
-        const dataSchedule = function () {
-            let data = [];
-            dummyData?.map((el) => {
-                el?.scheduleDays?.map((x) => {
-                    data.push(x);
-                });
-            });
-            return data;
-        };
-        const tasks = dataSchedule()
-        // console.log(tasks)
-        const labels = tasks?.map((x => x.day))
-        // console.log(labels)
+        const tasks = dataSchedule();
+        // console.log(tasks);
+        const labels = dummyData?.map(id => id.scheduleAddress)
         setState({ ...state, tasks, labels });
     }, [state.mode, state.deleted]);
 
@@ -61,39 +74,35 @@ const GlobalStateProvider = ({ children }) => {
         setState(state);
     };
 
-    const updatePosition = (task, startDate, endDate) => {
-        console.log(endDate)
+    const updatePosition = (task, start, end) => {
+        console.log(end)
         // alert("update position")
-        console.log(task, startDate, endDate)
-        const temp = state.tasks.filter(x => x.day !== task.day)
+        console.log(task, start, end)
+        const temp = state.tasks.filter(x => x.scheduleAddress !== task.scheduleAddress)
         // console.log("this is task")
         console.log(task)
-        const t = { ...task, startDate, endDate }
+        const t = { ...task, start, end }
         // save t to api
         console.log(t)
         setState({ ...state, tasks: [...temp, t] })
         const tasks = [...state.tasks];
         const index = tasks.findIndex((x) => x.id === task.id);
-        tasks[index].startDate = startDate;
-        tasks[index].endDate = endDate;
+        tasks[index].start = start;
+        tasks[index].end = end;
         setState({ ...state, tasks });
         console.log(state)
     };
 
     // console.log(new Date().toUTCSring());
 
-    const handleDeleteTask = (taskObject) => {
+    const handleDeleteTask = (index) => {
         // console.log("this is the task object")
         // console.log(taskObject)
-        if (Array.isArray(state.tasks)) {
-            const filter = state.tasks.filter((x) => x.day !== taskObject.day);
-            const labels = state.labels.filter((x) => {
-                return x !== taskObject.day;
-            });
-            console.log(labels);
-            console.log(filter);
-            setState({ ...state, tasks: filter, labels });
-        }
+        setState(prev => {
+            prev.labels.splice(index, 1)
+            prev.tasks.splice(index, 1)
+            return { ...prev }
+        })
     };
 
     return (
