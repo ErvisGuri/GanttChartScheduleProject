@@ -1,0 +1,34 @@
+.details-modal {
+  .ant-modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    background: #f8f8fa !important;
+    height: 40px;
+  }
+  .ant-modal-content {
+    border-radius: 10px !important;
+  }
+
+  .ant-modal-body {
+    height: 150px;
+  }
+
+  .ant-modal-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+
+    .detailsCloseBtn {
+      width: 100px;
+      height: 32px;
+      background: #fe4c4a 0% 0% no-repeat padding-box;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}

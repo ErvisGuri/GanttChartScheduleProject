@@ -9,7 +9,10 @@ import "antd/dist/antd.min.css";
 // importing antd components
 import { DeleteFilled } from "@ant-design/icons";
 import { Card } from "antd";
-import Slider from "../CustomSliderAntd/Slider";
+import { Stepper } from "../Stepper";
+import { statusTitle } from "../Stepper/utils/statusTitle";
+
+const initials = statusTitle;
 
 function Chart() {
   const globalCTX = React.useContext(GlobalContext);
@@ -18,6 +21,8 @@ function Chart() {
     show: false,
   });
   const [selectedTask, setSelectedTask] = React.useState(null);
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [stepperTitle, setStepperTitle] = React.useState(initials);
 
   const handleModalState = () => {
     setState({ ...state, show: !state.show });
@@ -28,7 +33,32 @@ function Chart() {
     setIsEdit(true);
     handleModalState();
   };
-  console.log();
+
+  const handleChange = (value) => {
+    let temp;
+
+    if (value === 0) {
+      temp = "Quarter Day";
+    }
+    if (value === 1) {
+      temp = "Half Day";
+    }
+    if (value === 2) {
+      temp = "Day";
+    }
+    if (value === 3) {
+      temp = "Week";
+    }
+    if (value === 4) {
+      temp = "Month";
+    }
+
+    // console.log(temp, value);
+    if (globalCTX !== undefined) {
+      globalCTX.setState({ ...globalCTX, mode: temp });
+    }
+  };
+
   return (
     <div className="chart">
       <div className="left">
@@ -38,14 +68,12 @@ function Chart() {
             {globalCTX.labels.map((x, i) => {
               return (
                 <div key={x + i} className="label">
-                  <div>
-                    <span className="tiny-circle">{i}</span>
-                    <span className="bold space-around capitalize">{x}</span>
-                  </div>
                   <DeleteFilled
                     className="bold space-around capitalize"
                     onClick={() => globalCTX.handleDeleteTask(i)}
-                  ></DeleteFilled>
+                  />
+                  <span className="tiny-circle">{i}</span>
+                  <span className="bold space-around capitalize">{x}</span>
                 </div>
               );
             })}
@@ -61,14 +89,20 @@ function Chart() {
           handleAddTask={(taskObj) => globalCTX.handleAddTask(taskObj)}
         />
       </div>
-      <Card
-        bordered={false}
-        className="right"
-        style={{ scrollbarWidth: "thin", overflow: "hidden" }}
-      >
+      <Card bordered={false} className="right">
         {globalCTX.tasks?.length ? (
           <>
-            <Slider />
+            <div className="stepper-div">
+              <Stepper
+                stepRenderer={false}
+                setCurrentStep={setCurrentStep}
+                onChange={(e) => handleChange(e)}
+                currentStep={currentStep}
+                stepperClassName="formStepper"
+                steps={stepperTitle}
+              />
+            </div>
+
             <div className="gantFrappe_container">
               <FrappeGantt
                 tasks={globalCTX.tasks}
@@ -83,6 +117,7 @@ function Chart() {
                 // }}
               />
             </div>
+            <div className="ganttFooter"></div>
           </>
         ) : null}
       </Card>

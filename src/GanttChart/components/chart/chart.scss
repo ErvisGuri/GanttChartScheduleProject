@@ -1,58 +1,76 @@
 $line-color: #f1f7fb;
 $line-width: 1px;
-$top-margin: calc(-20px + 60px + 1px);
-$labelHeight: 38px;
-
+$top-margin: calc(-48.5px + 60px + 1px);
+$labelHeight: 36px;
 $backgroundColor: whiteSmoke;
 //backdrop layer 1
 .chart {
-  // max-height: 490px;
-  padding: 32px;
-  margin: 32px;
+  width: 1648px;
+  height: 873px;
+  padding: 20px;
+  margin: 40px;
   display: flex;
   flex-direction: row;
-  border: 1px solid #becfdb;
-  font-family: "Roboto", serif;
-  background-color: #f1f7fb;
-  border-radius: 32px;
+  background-color: #ffff;
+  box-shadow: 0px 1px 4px #00000029;
+  border-radius: 10px;
+  gap: 5px;
 
   .left {
-    padding-top: $top-margin;
-    min-width: 200px !important;
     //left side layer 2
     .labels {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // max-height: 210px;
-      // overflow-y: auto;
+      gap: 2px;
       .label {
-        box-sizing: border-box;
-        height: $labelHeight;
-        border-bottom: 1px solid #bfc8cf;
-        font-size: 12px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        align-items: center;
+        width: 348px;
+        box-sizing: border-box;
+        height: $labelHeight;
+        font-size: 16px;
+        gap: 10px;
 
-        // background-color: green;
-
-        &:first-child {
-          border-top: $line-width solid #bfc8cf;
+        .bold.space-around.capitalize {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }
-        &:last-child {
-          border-bottom: $line-width solid $line-color;
+
+        &:nth-child(odd) {
+          background-color: #f8f8fa !important;
         }
         &:nth-child(even) {
-          background-color: $line-color;
-          color: black;
+          background-color: #f5f7fb !important;
         }
       }
     }
   }
 
   .labelsHeader {
-    margin-bottom: 61px !important;
+    width: 281px;
+    height: 72px;
+    font-size: 32px;
+    margin: 6px -6px 36px 53px !important;
+  }
+
+  .labelsRow {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .add-task .ant-btn-round {
+    width: 150px;
+    height: 32px;
+    background: #71cf48 0% 0% no-repeat;
+    border-radius: 5px;
+    opacity: 1;
+  }
+  .ant-btn-primary {
+    border: none !important;
+    box-shadow: transparent !important;
   }
 
   .right {
@@ -60,13 +78,27 @@ $backgroundColor: whiteSmoke;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    overflow: scroll;
+    scrollbar-width: "thin";
 
     .actions {
       display: flex;
       flex-direction: row;
     }
+
+    .ant-card-body {
+      padding: 0px !important;
+      width: 1219px;
+    }
+  }
+  span.anticon.anticon-delete.bold.space-around.capitalize {
+    padding: 9px;
+    font-size: 18px;
+    color: white !important;
+    background: #fe4c4a;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    height: 36px;
+    min-width: 36px;
   }
 
   @media only screen and (max-width: 600px) {

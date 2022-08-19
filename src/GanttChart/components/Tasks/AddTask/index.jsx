@@ -16,16 +16,14 @@ const AddTask = ({
 }) => {
   return (
     <div className="add-task">
-      <Button
-        onClick={handleModalState}
-        shape="round"
-        icon={<PlusOutlined />}
-        type="primary"
-      >
-        Add Task
+      <Button onClick={handleModalState} shape="round" type="primary">
+        <span style={{ fontFamily: "Open Sans, Regular" }}> Add Task</span>
+        <span style={{ textAlign: "left", marginLeft: "13px" }}>|</span>
+        <PlusOutlined />
       </Button>
       {open === true ? (
         <AddTaskDialogue
+          handleModalState
           isEdit={isEdit}
           setIsEdit={setIsEdit}
           selectedTask={selectedTask}

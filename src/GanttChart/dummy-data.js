@@ -31,13 +31,13 @@ export const dummyData =
                     "color": "#178524",
                     "crews": [],
                     "day": 1,
-                    "end": "2022-06-30T20:00:00.492Z",
+                    "endDate": "2022-06-30T20:00:00.492Z",
                     "fleet": [],
                     "id": "afa47d6b-0b40-438b-8dd9-a0a2b5e8491b",
                     "image": "/static/media/Sunny.525f1d81ef9e107bea26.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-06-30T11:00:00.492Z",
+                    "startDate": "2022-06-30T11:00:00.492Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -76,13 +76,13 @@ export const dummyData =
                     "color": "#0344A2",
                     "crews": [],
                     "day": 2,
-                    "end": "2022-07-01T20:00:00.492Z",
+                    "endDate": "2022-07-01T20:00:00.492Z",
                     "fleet": [],
                     "id": "ef105ad7-377e-4dd8-b89f-3d152dc6af27",
                     "image": "/static/media/Sunny.525f1d81ef9e107bea26.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-01T11:00:00.492Z",
+                    "startDate": "2022-07-01T11:00:00.492Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -121,13 +121,13 @@ export const dummyData =
                     "color": "#0306A0",
                     "crews": [],
                     "day": 3,
-                    "end": "2022-07-02T20:00:00.492Z",
+                    "endDate": "2022-07-02T20:00:00.492Z",
                     "fleet": [],
                     "id": "54fb3fc7-7067-4a6c-bdbf-26ca7a2814a4",
                     "image": "https://api.weather.gov/icons/land/day/tsra,60/tsra,80?size=medium",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-02T11:00:00.492Z",
+                    "startDate": "2022-07-02T11:00:00.492Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -166,13 +166,13 @@ export const dummyData =
                     "color": "#97BC4A",
                     "crews": [],
                     "day": 4,
-                    "end": "2022-07-03T20:00:00.492Z",
+                    "endDate": "2022-07-03T20:00:00.492Z",
                     "fleet": [],
                     "id": "4303609f-dae9-4c44-bf40-e1df06545f8a",
                     "image": "https://api.weather.gov/icons/land/day/tsra_hi,40/tsra_hi,30?size=medium",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-03T11:00:00.492Z",
+                    "startDate": "2022-07-03T11:00:00.492Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -236,7 +236,7 @@ export const dummyData =
                                             "breakdownValue": [
                                                 {
                                                     "breakdown_dimension": 100,
-                                                    "days": [],
+                                                    "days": ["afa47d6b-0b40-438b-8dd9-a0a2b5e8491b"],
                                                     "name": "test shed 1",
                                                     "progressByDay": [],
                                                     "rate": "25",
@@ -3931,13 +3931,13 @@ export const dummyData =
                     "color": "#504416",
                     "crews": [],
                     "day": 1,
-                    "end": "2022-07-05T20:00:00.554Z",
+                    "endDate": "2022-07-05T20:00:00.554Z",
                     "fleet": [],
                     "id": "6543a821-cfe2-4de9-809e-06f78d312c9a",
                     "image": "/static/media/PartlyCloudy.74c9c322315923093177.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-05T11:00:00.554Z",
+                    "startDate": "2022-07-05T11:00:00.554Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -3976,13 +3976,13 @@ export const dummyData =
                     "color": "#7770A5",
                     "crews": [],
                     "day": 2,
-                    "end": "2022-07-06T20:00:00.554Z",
+                    "endDate": "2022-07-06T20:00:00.554Z",
                     "fleet": [],
                     "id": "5cfcb31d-7c9a-4e1c-8f22-defccd78193c",
                     "image": "/static/media/Rainy.b5f6fb8799c0b52ec711.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-06T11:00:00.554Z",
+                    "startDate": "2022-07-06T11:00:00.554Z",
                     "status": "Reconfirmed",
                     "weather": [
                         {
@@ -9079,13 +9079,13 @@ export const dummyData =
                     "color": "#B25A1B",
                     "crews": [],
                     "day": 1,
-                    "end": "2022-07-29T20:00:00.441Z",
+                    "endDate": "2022-07-29T20:00:00.441Z",
                     "fleet": [],
                     "id": "c27ffd4b-d5a6-4708-9e9a-68af0fc2239d",
                     "image": "/static/media/PartlyCloudy.74c9c322315923093177.webp",
                     "linkedDays": {},
-                    "notes": [],
-                    "start": "2022-07-29T11:00:00.441Z",
+                    "notes": [` This is a note, probably this long or I don't know. Can also be longer, why not?`],
+                    "startDate": "2022-07-29T11:00:00.441Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -9124,13 +9124,13 @@ export const dummyData =
                     "color": "#270063",
                     "crews": [],
                     "day": 2,
-                    "end": "2022-07-30T20:00:00.441Z",
+                    "endDate": "2022-07-30T20:00:00.441Z",
                     "fleet": [],
                     "id": "867e0545-47a5-4924-8f94-5d373ee80c02",
                     "image": "/static/media/Sunny.525f1d81ef9e107bea26.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-30T11:00:00.441Z",
+                    "startDate": "2022-07-30T11:00:00.441Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -9169,13 +9169,13 @@ export const dummyData =
                     "color": "#883900",
                     "crews": [],
                     "day": 3,
-                    "end": "2022-07-31T20:00:00.441Z",
+                    "endDate": "2022-07-31T20:00:00.441Z",
                     "fleet": [],
                     "id": "b883630a-c35c-44c1-bafe-5c419e0382eb",
                     "image": "/static/media/Sunny.525f1d81ef9e107bea26.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-07-31T11:00:00.441Z",
+                    "startDate": "2022-07-31T11:00:00.441Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -9214,13 +9214,13 @@ export const dummyData =
                     "color": "#577700",
                     "crews": [],
                     "day": 4,
-                    "end": "2022-08-01T20:00:00.441Z",
+                    "endDate": "2022-08-01T20:00:00.441Z",
                     "fleet": [],
                     "id": "d9f5896a-b1d3-4bb6-9042-cf0e6516afdf",
                     "image": "/static/media/PartlyCloudy.74c9c322315923093177.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-08-01T11:00:00.441Z",
+                    "startDate": "2022-08-01T11:00:00.441Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -9259,13 +9259,13 @@ export const dummyData =
                     "color": "#B83379",
                     "crews": [],
                     "day": 5,
-                    "end": "2022-08-02T20:00:00.441Z",
+                    "endDate": "2022-08-02T20:00:00.441Z",
                     "fleet": [],
                     "id": "04a8b036-1f6f-40f6-88d1-4c04682ba96a",
                     "image": "https://api.weather.gov/icons/land/day/tsra_sct?size=medium",
                     "linkedDays": {},
                     "notes": [],
-                    "start": "2022-08-02T11:00:00.441Z",
+                    "startDate": "2022-08-02T11:00:00.441Z",
                     "status": "Confirmed",
                     "weather": [
                         {
@@ -9299,7 +9299,7 @@ export const dummyData =
                             "windSpeed": "6 to 9 mph"
                         }
                     ]
-                }
+                },
             ],
             "scheduleName": "1st Schedule",
             "scheduleNotes": [],

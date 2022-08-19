@@ -1,17 +1,16 @@
 @import "./styles.scss";
-
 //
-$bar-color: rgb(134, 198, 247) !default;
-$bar-stroke: #0078db !default;
-$border-color: #f5f7fb !default;
-$light-bg: #f5f5f5 !default;
-$light-border-color: #ebeff2 !default;
+$bar-color: #c0eaae !default;
+$bar-stroke: #71cf48 !default;
+$border-color: #f8fafa !default;
+$light-bg: #f8fafa !default;
+$light-border-color: white !default;
 $light-yellow: #3ff390 !default;
 $text-muted: #666 !default;
 $text-light: #555 !default;
 $text-color: #333 !default;
-$primary-dark: #0078db !default;
-$handle-color: #ddd !default;
+$primary-dark: #71cf48 !default;
+$handle-color: #f8fafa !default;
 $arrowWidth: 2px;
 
 .gantt {
@@ -19,12 +18,12 @@ $arrowWidth: 2px;
     fill: none;
   }
   .grid-header {
-    fill: #f1f7fb;
+    fill: #f8f8fa;
     stroke: $border-color;
     stroke-width: 1.4;
   }
   .grid-row {
-    fill: $light;
+    fill: #ffffff;
   }
   .grid-row:nth-child(even) {
     // fill: $light-bg;
@@ -96,13 +95,16 @@ $arrowWidth: 2px;
     cursor: pointer;
     outline: none;
 
+    .bar-group {
+      border-radius: 2px;
+    }
+
     &:hover {
       .bar {
         fill: darken($bar-color, 5);
       }
-
       .bar-progress {
-        fill: darken($primary-dark, 5);
+        fill: darken($bar-stroke, 5);
       }
 
       .handle {
@@ -142,8 +144,8 @@ $arrowWidth: 2px;
 
 .gantt-container {
   position: relative;
-  overflow: initial;
-  font-size: 12px;
+  overflow: auto;
+  font-size: 16px;
 
   .popup-wrapper {
     display: none !important;

@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Zilla+Slab:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 $normal: 4px;
 $primary: #0078db;
 $primary-tint: #e5f2e5;
@@ -10,18 +7,13 @@ $light: #fff;
 $white-darker: whiteSmoke;
 $dark: #000;
 
-html {
-  font-family: "Spectral", serif !important;
-  scrollbar-width: thin !important;
-}
-.App {
-  font-family: sans-serif;
-  text-align: center;
+body {
+  font-family: "Open Sans" sans-serif !important;
 }
 
 /// Ants Component
-.ant-card-body {
-  padding: 25px !important;
+span.ant-modal-close-x {
+  color: #323338;
 }
 
 button.ant-btn.ant-btn-default.space-around {
@@ -34,11 +26,6 @@ button.ant-btn.ant-btn-default.space-around {
 
 button.ant-btn.ant-btn-submit {
   width: 150px !important;
-}
-
-.ant-card-body {
-  overflow-y: scroll !important;
-  overflow-x: scroll !important;
 }
 
 .ant-slider-mark {
@@ -63,27 +50,20 @@ button.ant-btn.ant-btn-submit {
   border: 2px solid #86c6f7;
 }
 
-/// Chart
+/// Chart Scrollbar
 .chart .right ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px !important;
+  height: 7px;
+  cursor: pointer;
 }
 
 .chart .right ::-webkit-scrollbar-track {
-  background-color: #f1f7fb;
-}
-
-.chart .left .labels ::-webkit-scrollbar {
-  background: #f1f7fb !important;
+  background-color: transparent;
 }
 
 .chart .right ::-webkit-scrollbar-thumb {
-  background: #a4d1ef !important;
+  background: #142735 !important;
   border-radius: 4px;
-}
-
-.chart .right ::-webkit-scrollbar-corner {
-  background: #f1f7fb !important;
-  border-bottom-right-radius: 10px;
 }
 
 /* Handle on hover */
@@ -91,35 +71,7 @@ button.ant-btn.ant-btn-submit {
   cursor: pointer !important;
 }
 
+//Row Index Display
 .tiny-circle {
   display: none !important;
-  width: 40px !important;
-  height: 40px !important;
-  font-size: 12px;
-  font-weight: 400;
-  padding-right: 2px;
-  border-radius: 50%;
-  color: black;
-}
-
-.space-around {
-  margin: $normal;
-}
-.margin-top-auto {
-  margin-top: auto !important;
-}
-.capitalize {
-  text-transform: capitalize !important;
-}
-.bold {
-  font-weight: bold;
-}
-
-span.anticon.anticon-delete.bold.space-around.capitalize {
-  color: #0b84f5 !important;
-  margin-left: 10px;
-}
-
-span.anticon.anticon-delete.bold.space-around.capitalize:hover {
-  color: #becfdb !important;
 }

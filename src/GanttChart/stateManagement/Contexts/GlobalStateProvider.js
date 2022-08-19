@@ -19,43 +19,28 @@ const GlobalStateProvider = ({ children }) => {
         }
     }, [state])
 
-    console.log(state)
+    // console.log(state)
 
     //Saving data to localStorage
     useEffect(() => {
         localStorage.setItem('chart', JSON.stringify(state));
     }, [state]);
 
+
     const dataSchedule = function () {
-        var tasksTemp = [];
+        let tasksTemp = [];
         dummyData?.map((el) => {
-            let scheduleDays = [];
-            el?.scheduleDays?.map((x) => {
-                scheduleDays.push(x);
-            });
             tasksTemp.push({
-                start: scheduleDays[0].start,
-                end: scheduleDays[scheduleDays.length - 1].end,
+                start: el?.scheduleDays[0].startDate,
+                end: el?.scheduleDays[el?.scheduleDays.length - 1].endDate,
                 id: el.scheduleId,
                 scheduleAddress: el.scheduleAddress,
                 progress: el.scheduleTotalProgressPercentage ?? 0,
-                weather: el.scheduleDays.map(el => el.weather.map(el => el.temperature)),
-                color: el.scheduleDays.map(el => el.color),
-                crews: el.scheduleDays.map(el => el.crews),
-                image: el.scheduleDays.map(el => el.image),
-                notes: el.scheduleDays.map(el => el.notes),
-                fleet: el.scheduleDays.map(el => el.fleet),
-                linkedDays: el.scheduleDays.map(el => el.linkedDays),
-                day: el.scheduleDays.map(el => el.day),
-                status: el.scheduleDays.map(el => el.status),
+                scheduleDays: el.scheduleDays
             })
         });
-        // console.log(tasksTemp)
         return tasksTemp;
     };
-
-    dataSchedule()
-
 
     useEffect(() => {
         const tasks = dataSchedule();

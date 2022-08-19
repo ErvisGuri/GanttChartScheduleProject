@@ -6,7 +6,7 @@ import { Button, Input, Modal, DatePicker } from "antd";
 import moment from "moment";
 import ScheduleInfo from "./ScheduleInfo";
 
-const format = "DD-MM-YYYY";
+const format = "MM-DD-YYYY";
 
 const initials = {
   color: "",
@@ -80,7 +80,7 @@ function AddTaskDialogue(props) {
 
   const handleStartChange = (value) => {
     if (value !== null) {
-      setState({ ...state, startDate: value.toDate() });
+      setState({ ...state, start: value.toDate() });
     }
   };
 
@@ -91,145 +91,157 @@ function AddTaskDialogue(props) {
   };
 
   return (
-    <Modal
-      onCancel={close}
-      className="task-modal"
-      aria-labelledby="simple-dialog-title"
-      visible={open}
-      title={isEdit ? "Schedule Information" : "Add Item"}
-      footer={null}
-      closable={false}
-      width={isEdit ? "1050px" : "300px"}
-    >
-      {isEdit ? (
-        <div>
-          <ScheduleInfo state={state} selectedTask={selectedTask} />
-        </div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "row" }}>
+    <div className="modalll">
+      <Modal
+        onCancel={close}
+        centered
+        className="task-modal"
+        aria-labelledby="simple-dialog-title"
+        visible={open}
+        title={isEdit ? "Schedule Information" : "Add Item"}
+        footer={null}
+        width={isEdit ? "1187px" : "300px"}
+        destroyOnClose={true}
+      >
+        {isEdit ? (
           <div>
-            <form
-              className="UpdateForm"
-              style={{
-                padding: 32,
-                display: "flex",
-                flexDirection: "column",
-                rowGap: 32,
-              }}
-            >
-              {isEdit ? (
-                <div className="modalName" style={{ border: "none" }}>
-                  <Input
-                    bordered={false}
-                    placeholder="id"
-                    type="text"
-                    name="id"
-                    readOnly={isEdit}
-                    value={state.id}
-                    onChange={handleChange}
-                  />
-                </div>
-              ) : (
+            <ScheduleInfo
+              handleModalState
+              handleClose
+              open
+              state={state}
+              selectedTask={selectedTask}
+              handleUpdate={handleUpdate}
+              handleChange={handleChange}
+              handleEndChange={handleEndChange}
+              handleStartChange={handleStartChange}
+            />
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div>
+              <form
+                style={{
+                  padding: 32,
+                  display: "flex",
+                  flexDirection: "column",
+                  rowGap: 32,
+                }}
+              >
+                {isEdit ? (
+                  <div className="modalName" style={{ border: "none" }}>
+                    <Input
+                      bordered={false}
+                      placeholder="id"
+                      type="text"
+                      name="id"
+                      readOnly={isEdit}
+                      value={state.id}
+                      onChange={handleChange}
+                    />
+                  </div>
+                ) : (
+                  <div className="modalName">
+                    <Input
+                      bordered={false}
+                      placeholder="id"
+                      type="text"
+                      name="id"
+                      value={state.id}
+                      onChange={handleChange}
+                    />
+                  </div>
+                )}
                 <div className="modalName">
                   <Input
                     bordered={false}
-                    placeholder="id"
-                    type="text"
-                    name="id"
-                    value={state.id}
+                    placeholder="day"
+                    type="day"
+                    name="day"
+                    value={state.day}
                     onChange={handleChange}
                   />
                 </div>
-              )}
-              <div className="modalName">
-                <Input
-                  bordered={false}
-                  placeholder="day"
-                  type="day"
-                  name="day"
-                  value={state.day}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="startModal">
-                <DatePicker
-                  bordered={false}
-                  placeholder="start"
-                  name="start"
-                  defaultValue={isEdit ? moment(state.startDate) : null}
-                  format={format}
-                  onChange={handleStartChange}
-                  dateRender={styleDate}
-                  showToday={true}
-                />
-              </div>
-              <div className="endModal">
-                <DatePicker
-                  dateRender={styleDate}
-                  format={format}
-                  bordered={false}
-                  placeholder="end"
-                  name="end"
-                  defaultValue={isEdit ? moment(state.endDate) : null}
-                  onChange={handleEndChange}
-                />
-              </div>
-              <div className="prgModal">
-                <Input
-                  bordered={false}
-                  placeholder="progress"
-                  type="number"
-                  name="progress"
-                  value={state.progress}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="depModal">
-                <Input
-                  bordered={false}
-                  placeholder="dependencies"
-                  type="text"
-                  name="dependencies"
-                  value={state.dependencies}
-                  onChange={handleChange}
-                />
-              </div>
-              {isEdit ? (
-                <Button
-                  style={{ border: "none" }}
-                  onClick={handleUpdate}
-                  type="submit"
-                >
-                  SUBMIT
-                </Button>
-              ) : (
-                <Button
-                  style={{ border: "none" }}
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                  type="submit"
-                >
-                  SUBMIT
-                </Button>
-              )}
-            </form>
-            <Button
-              style={{
-                border: "none",
-                fontSize: "16px",
-                marginLeft: "113px",
-                width: "50px",
-              }}
-              onClick={close}
-              className="space-around"
-            >
-              CANCEL
-            </Button>
+                <div className="startModal">
+                  <DatePicker
+                    bordered={false}
+                    placeholder="start"
+                    name="start"
+                    defaultValue={isEdit ? moment(state.start) : null}
+                    format={format}
+                    onChange={handleStartChange}
+                    dateRender={styleDate}
+                    showToday={true}
+                  />
+                </div>
+                <div className="endModal">
+                  <DatePicker
+                    dateRender={styleDate}
+                    format={format}
+                    bordered={false}
+                    placeholder="end"
+                    name="end"
+                    defaultValue={isEdit ? moment(state.end) : null}
+                    onChange={handleEndChange}
+                  />
+                </div>
+                <div className="prgModal">
+                  <Input
+                    bordered={false}
+                    placeholder="progress"
+                    type="number"
+                    name="progress"
+                    value={state.progress}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="depModal">
+                  <Input
+                    bordered={false}
+                    placeholder="dependencies"
+                    type="text"
+                    name="dependencies"
+                    value={state.dependencies}
+                    onChange={handleChange}
+                  />
+                </div>
+                {isEdit ? (
+                  <Button
+                    style={{ border: "none" }}
+                    onClick={handleUpdate}
+                    type="submit"
+                  >
+                    SUBMIT
+                  </Button>
+                ) : (
+                  <Button
+                    style={{ border: "none" }}
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                    type="submit"
+                  >
+                    SUBMIT
+                  </Button>
+                )}
+              </form>
+              <Button
+                style={{
+                  border: "none",
+                  fontSize: "16px",
+                  marginLeft: "113px",
+                  width: "50px",
+                }}
+                onClick={close}
+                className="space-around"
+              >
+                CANCEL
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
-    </Modal>
+        )}
+      </Modal>
+    </div>
   );
 }
 
