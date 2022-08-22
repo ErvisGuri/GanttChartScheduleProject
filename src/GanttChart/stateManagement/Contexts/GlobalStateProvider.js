@@ -6,7 +6,7 @@ export const GlobalContext = createContext({});
 const GlobalStateProvider = ({ children }) => {
     const [state, setState] = useState(JSON.parse(localStorage.getItem('chart')) || {
         tasks: [],
-        mode: "Day",
+        mode: "Week",
         labels: [],
         deleted: [],
     });

@@ -5,11 +5,7 @@ import GlobalStateProvider from "./GanttChart/stateManagement/Contexts/GlobalSta
 function Gantt({ handleAddTask, handleChange, handleClose, handleDeleteTask, handleSubmit, handleUpdate }) {
   return (
     <GlobalStateProvider>
-      <div
-        style={{
-          scrollbarWidth: "thin",
-          borderRadius: 32
-        }} >
+      <div>
         <Chart />
       </div>
     </GlobalStateProvider>

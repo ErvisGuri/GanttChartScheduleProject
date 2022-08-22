@@ -1,13 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
+import DayInfo from "../DayInfo/DayInfo";
 //importing antd components
 import { Button, Input, DatePicker } from "antd";
-import { CopyOutlined, CheckOutlined } from "@ant-design/icons";
+import { CopyOutlined } from "@ant-design/icons";
 import moment from "moment";
-
-import DayInfo from "./DayInfo";
-
 const format = "DD-MM-YYYY";
+
 const ScheduleInfo = ({
   handleEndChange,
   state,

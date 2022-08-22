@@ -5,7 +5,7 @@ $labelHeight: 36px;
 $backgroundColor: whiteSmoke;
 //backdrop layer 1
 .chart {
-  width: 1648px;
+  width: 1593px;
   height: 873px;
   padding: 20px;
   margin: 40px;
@@ -37,6 +37,7 @@ $backgroundColor: whiteSmoke;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          font-family: "Open Sans";
         }
 
         &:nth-child(odd) {
@@ -54,6 +55,7 @@ $backgroundColor: whiteSmoke;
     height: 72px;
     font-size: 32px;
     margin: 6px -6px 36px 53px !important;
+    font-family: "Open Sans";
   }
 
   .labelsRow {
@@ -67,6 +69,7 @@ $backgroundColor: whiteSmoke;
     background: #71cf48 0% 0% no-repeat;
     border-radius: 5px;
     opacity: 1;
+    font-family: "Open Sans";
   }
   .ant-btn-primary {
     border: none !important;

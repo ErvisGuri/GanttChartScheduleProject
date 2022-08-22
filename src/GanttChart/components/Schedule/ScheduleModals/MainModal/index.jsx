@@ -1,10 +1,12 @@
 import * as React from "react";
+import { useState } from "react";
+
 import "./modal.scss";
 
 //importing antd components
 import { Button, Input, Modal, DatePicker } from "antd";
 import moment from "moment";
-import ScheduleInfo from "./ScheduleInfo";
+import ScheduleInfo from "../ScheduleInfo/ScheduleInfo";
 
 const format = "MM-DD-YYYY";
 
@@ -34,7 +36,7 @@ function AddTaskDialogue(props) {
     setIsEdit,
   } = props;
 
-  const [state, setState] = React.useState(isEdit ? selectedTask : initials);
+  const [state, setState] = useState(isEdit ? selectedTask : initials);
 
   const close = () => {
     setIsEdit(false);
@@ -118,18 +120,11 @@ function AddTaskDialogue(props) {
             />
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div>
             <div>
-              <form
-                style={{
-                  padding: 32,
-                  display: "flex",
-                  flexDirection: "column",
-                  rowGap: 32,
-                }}
-              >
+              <form className="addTaskForm">
                 {isEdit ? (
-                  <div className="modalName" style={{ border: "none" }}>
+                  <div className="modalName">
                     <Input
                       bordered={false}
                       placeholder="id"
@@ -207,7 +202,7 @@ function AddTaskDialogue(props) {
                 </div>
                 {isEdit ? (
                   <Button
-                    style={{ border: "none" }}
+                    className="addTaskBtn"
                     onClick={handleUpdate}
                     type="submit"
                   >
@@ -215,7 +210,7 @@ function AddTaskDialogue(props) {
                   </Button>
                 ) : (
                   <Button
-                    style={{ border: "none" }}
+                    className="addTaskBtn"
                     onClick={() => {
                       handleSubmit();
                     }}
@@ -225,16 +220,7 @@ function AddTaskDialogue(props) {
                   </Button>
                 )}
               </form>
-              <Button
-                style={{
-                  border: "none",
-                  fontSize: "16px",
-                  marginLeft: "113px",
-                  width: "50px",
-                }}
-                onClick={close}
-                className="space-around"
-              >
+              <Button className="cancelAddTaskBtn" onClick={close}>
                 CANCEL
               </Button>
             </div>

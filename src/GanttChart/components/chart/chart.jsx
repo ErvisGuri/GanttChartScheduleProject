@@ -1,6 +1,7 @@
 import * as React from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../stateManagement/Contexts/GlobalStateProvider";
-import AddTask from "../Tasks/AddTask";
+import AddTask from "../Schedule/AddTask";
 import { FrappeGantt } from "frappe-gantt-react";
 
 import "./chart.scss";
@@ -15,14 +16,14 @@ import { statusTitle } from "../Stepper/utils/statusTitle";
 const initials = statusTitle;
 
 function Chart() {
-  const globalCTX = React.useContext(GlobalContext);
-  const [isEdit, setIsEdit] = React.useState(false);
-  const [state, setState] = React.useState({
+  const globalCTX = useContext(GlobalContext);
+  const [isEdit, setIsEdit] = useState(false);
+  const [state, setState] = useState({
     show: false,
   });
-  const [selectedTask, setSelectedTask] = React.useState(null);
-  const [currentStep, setCurrentStep] = React.useState(0);
-  const [stepperTitle, setStepperTitle] = React.useState(initials);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [currentStep, setCurrentStep] = useState(3);
+  const [stepperTitle, setStepperTitle] = useState(initials);
 
   const handleModalState = () => {
     setState({ ...state, show: !state.show });

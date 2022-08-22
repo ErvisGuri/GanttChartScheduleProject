@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./modal.scss";
+import "../MainModal/modal.scss";
 import moment from "moment";
 import { Card, Badge } from "antd";
 import {
@@ -11,9 +11,9 @@ import {
   SlightCloudy,
   Snow,
   Sunny,
-} from "../../../../assets/weatherIcons";
+} from "../../../../../assets/weatherIcons";
 import { Button } from "antd/lib/radio";
-import DetailsModal from "./DetailsModal/DetailsModal";
+import DetailsModal from "../DetailsModal/DetailsModal";
 
 const DayInfo = ({ selectedTask }) => {
   const [visible, setVisible] = useState(false);
@@ -28,7 +28,7 @@ const DayInfo = ({ selectedTask }) => {
       case "Posponded":
         return "#6BBED1";
       default:
-        return "white";
+        return "#f5f5f7";
     }
   };
 
@@ -88,11 +88,7 @@ const DayInfo = ({ selectedTask }) => {
                     {e.status}
                     {
                       <span className="statusBadge">
-                        <Badge
-                          color={styleBadge(e.status)}
-                          size="large"
-                          count={1}
-                        />
+                        <Badge color={styleBadge(e.status)} size="large" />
                       </span>
                     }
                   </span>
@@ -101,15 +97,15 @@ const DayInfo = ({ selectedTask }) => {
             >
               <div className="dayCardBody">
                 <div className="dayDate">
-                  {moment(e.startDate).format("MM/DD/YYYY")} -{" "}
-                  {moment(e.endDate).format("MM/DD/YYYY")}
+                  {moment(e.startDate).format("MM/DD/YYYY hh:mm")} -{" "}
+                  {moment(e.endDate).format("MM/DD/YYYY hh:mm")}
                 </div>
                 <div className="dayNotes">
                   <b>Notes: </b>
                   {e.notes}
                 </div>
                 <div className="dayCardTime">
-                  New York:
+                  New York: {""}
                   <time className="dayTime">
                     {moment(e.weather[1].endTime).format("HH:mm")}
                   </time>
@@ -118,7 +114,9 @@ const DayInfo = ({ selectedTask }) => {
                   <div className="weatherIcon">
                     {weatherIcon(e.weather[1].shortForecast)}
                   </div>
-                  <span className="weatherTemp">{`${e.weather[1].temperature} F `}</span>
+                  <span className="weatherTemp">{`${
+                    e.weather[1].temperature
+                  } F ${""} `}</span>
                   <span> {` Wind Speed: ${e.weather[1].windSpeed}`}</span>
                 </div>
               </div>

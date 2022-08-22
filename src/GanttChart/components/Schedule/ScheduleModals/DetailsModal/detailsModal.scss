@@ -9,6 +9,13 @@
     background: #f8f8fa !important;
     height: 40px;
   }
+
+  button.ant-modal-close {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
   .ant-modal-content {
     border-radius: 10px !important;
   }

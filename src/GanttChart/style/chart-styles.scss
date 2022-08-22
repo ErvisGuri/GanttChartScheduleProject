@@ -21,6 +21,7 @@ $arrowWidth: 2px;
     fill: #f8f8fa;
     stroke: $border-color;
     stroke-width: 1.4;
+    // font-family: sans-serif !important;
   }
   .grid-row {
     fill: #ffffff;
@@ -128,6 +129,7 @@ $arrowWidth: 2px;
   .lower-text,
   .upper-text {
     font-size: 12px;
+    font-family: "Open Sans";
     text-anchor: middle;
   }
   .upper-text {
