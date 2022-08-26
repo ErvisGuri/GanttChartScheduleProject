@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 
 import DayInfo from "../DayInfo/DayInfo";
 //importing antd components
-import { Button, Input, DatePicker } from "antd";
-import { CopyOutlined } from "@ant-design/icons";
-import moment from "moment";
-const format = "DD-MM-YYYY";
+// import { Button, Input, DatePicker } from "antd";
+// import { CopyOutlined } from "@ant-design/icons";
+// import moment from "moment";
+// const format = "DD-MM-YYYY";
 
 const ScheduleInfo = ({
+  handleModalState,
   handleEndChange,
   state,
   handleChange,
@@ -16,18 +17,18 @@ const ScheduleInfo = ({
   handleUpdate,
   selectedTask,
 }) => {
-  const textAreaRef = useRef(null);
+  // const textAreaRef = useRef(null);
 
-  const copyIdInput = (e) => {
-    textAreaRef.current?.select();
-    document.execCommand("copy");
-    e.target.focus();
-  };
+  // const copyIdInput = (e) => {
+  //   textAreaRef.current?.select();
+  //   document.execCommand("copy");
+  //   e.target.focus();
+  // };
 
   return (
     <>
-      <DayInfo selectedTask={selectedTask} state={state} />
-      <div className="scheduleInfo">
+      <DayInfo handleModalState selectedTask={selectedTask} state={state} />
+      {/* <div className="scheduleInfo">
         <div className="idModal">
           <Input
             ref={textAreaRef}
@@ -36,7 +37,7 @@ const ScheduleInfo = ({
             type="text"
             name="id"
             readOnly={true}
-            value={state.id}
+            value={state.ids}
             onChange={handleChange}
           />
         </div>
@@ -83,7 +84,7 @@ const ScheduleInfo = ({
             SUBMIT
           </Button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

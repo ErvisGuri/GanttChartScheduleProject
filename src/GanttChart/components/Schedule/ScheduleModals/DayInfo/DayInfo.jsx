@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../MainModal/modal.scss";
 import moment from "moment";
 import { Card, Badge } from "antd";
@@ -12,11 +12,15 @@ import {
   Snow,
   Sunny,
 } from "../../../../../assets/weatherIcons";
-import { Button } from "antd/lib/radio";
 import DetailsModal from "../DetailsModal/DetailsModal";
+import { GlobalContext } from "../../../../stateManagement/Contexts/GlobalStateProvider";
 
-const DayInfo = ({ selectedTask }) => {
+const DayInfo = ({ selectedTask, handleModalState }) => {
+  const [detailData, setDetailsData] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [modalState, setModalState] = useState(null);
+  const globalCTX = useContext(GlobalContext);
+
   const styleBadge = (e) => {
     switch (e) {
       case "Confirmed":
@@ -67,67 +71,79 @@ const DayInfo = ({ selectedTask }) => {
     }
   };
 
+  // const openModal = (e) => {
+  //   setModalState(e);
+  //   setVisible(true);
+  // };
+
   return (
     <div className="dayInfo-container">
-      {selectedTask.scheduleDays.map((e, i) => {
-        return (
-          <div className="cardContent" key={i}>
-            <Card
-              title={
-                <div className="dayCardTitle">
-                  <b className="dayTitle">Day {e.day}</b>
-                  <div className="dayDetails">
-                    <Button
-                      onClick={() => setVisible(true)}
-                      className="detailsBtn"
-                    >
+      {selectedTask?.scheduleDays
+        ?.filter((fl) => {
+          return selectedTask?.ids?.some((sm) => {
+            return fl?.id === sm;
+          });
+        })
+        ?.map?.((el, i) => {
+          return (
+            <div className="cardContent" key={i}>
+              <Card
+                title={
+                  <div className="dayCardTitle">
+                    <b className="dayTitle">{`Day ${el?.day} in Schedule`} </b>
+                    {/* <div className="dayDetails">
+                    <div onClick={() => openModal(el)} className="detailsBtn">
                       Details
-                    </Button>
+                    </div>
+                  </div> */}
+                    <span className="dayStatus">
+                      {el.status}
+                      {
+                        <span className="statusBadge">
+                          <Badge color={styleBadge(el.status)} size="large" />
+                        </span>
+                      }
+                    </span>
                   </div>
-                  <span className="dayStatus">
-                    {e.status}
-                    {
-                      <span className="statusBadge">
-                        <Badge color={styleBadge(e.status)} size="large" />
-                      </span>
-                    }
-                  </span>
-                </div>
-              }
-            >
-              <div className="dayCardBody">
-                <div className="dayDate">
-                  {moment(e.startDate).format("MM/DD/YYYY hh:mm")} -{" "}
-                  {moment(e.endDate).format("MM/DD/YYYY hh:mm")}
-                </div>
-                <div className="dayNotes">
-                  <b>Notes: </b>
-                  {e.notes}
-                </div>
-                <div className="dayCardTime">
-                  New York: {""}
-                  <time className="dayTime">
-                    {moment(e.weather[1].endTime).format("HH:mm")}
-                  </time>
-                </div>
-                <div className="dayCardWeather">
-                  <div className="weatherIcon">
-                    {weatherIcon(e.weather[1].shortForecast)}
+                }
+              >
+                <div className="dayCardBody">
+                  <div className="dayDate">
+                    {moment(el.startDate).format("MM/DD/YYYY hh:mm")} -{" "}
+                    {moment(el.endDate).format("MM/DD/YYYY hh:mm")}
                   </div>
-                  <span className="weatherTemp">{`${
-                    e.weather[1].temperature
-                  } F ${""} `}</span>
-                  <span> {` Wind Speed: ${e.weather[1].windSpeed}`}</span>
+                  <div className="dayNotes">
+                    <b>Notes: </b>
+                    {el.notes}
+                  </div>
+                  <div className="dayCardTime">
+                    New York: {""}
+                    <time className="dayTime">
+                      {moment(el.weather[1].endTime).format("HH:mm")}
+                    </time>
+                  </div>
+                  <div className="dayCardWeather">
+                    <div className="weatherIcon">
+                      {weatherIcon(el.weather[1].shortForecast)}
+                    </div>
+                    <span className="weatherTemp">{`${
+                      el.weather[1].temperature
+                    } ℉ ${""} `}</span>
+                    <span> {` Wind Speed: ${el.weather[1].windSpeed}`}</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </div>
-        );
-      })}
+              </Card>
+            </div>
+          );
+        })}
       <DetailsModal
+        detailData={detailData}
+        setDetailsData={setDetailsData}
+        handleModalState={handleModalState}
         selectedTask={selectedTask}
         setVisible={setVisible}
         visible={visible}
+        modalState={modalState}
       />
     </div>
   );

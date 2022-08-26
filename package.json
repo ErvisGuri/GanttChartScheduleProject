@@ -7,6 +7,7 @@
     "antd": "^4.19.0",
     "frappe-gantt-react": "^0.2.2",
     "install": "^0.13.0",
+    "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
     "npm": "^8.16.0",
     "react": "^18.2.0",

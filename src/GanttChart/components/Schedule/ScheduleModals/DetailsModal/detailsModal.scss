@@ -1,4 +1,5 @@
 .details-modal {
+  height: 150px;
   .ant-modal-header {
     display: flex;
     flex-direction: row;
@@ -7,7 +8,7 @@
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
     background: #f8f8fa !important;
-    height: 40px;
+    height: 45px;
   }
 
   button.ant-modal-close {
@@ -20,8 +21,28 @@
     border-radius: 10px !important;
   }
 
+  .detailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .detailsBody {
+      flex-direction: column;
+      .detailsContent {
+        .detailsLabel {
+        }
+        .detailsElevationLabel {
+        }
+        .detailsId {
+        }
+        .detailsTotProgress {
+        }
+      }
+    }
+  }
+
   .ant-modal-body {
-    height: 150px;
+    height: 300px;
   }
 
   .ant-modal-footer {

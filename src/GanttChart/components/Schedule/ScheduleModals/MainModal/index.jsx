@@ -3,26 +3,23 @@ import { useState } from "react";
 
 import "./modal.scss";
 
-//importing antd components
+/*importing AntComponents*/
 import { Button, Input, Modal, DatePicker } from "antd";
-import moment from "moment";
+// import moment from "moment";
 import ScheduleInfo from "../ScheduleInfo/ScheduleInfo";
 
-const format = "MM-DD-YYYY";
+// const format = "MM-DD-YYYY";
 
 const initials = {
-  color: "",
-  crews: [],
   end: null,
-  fleet: [],
   id: "",
   image: "",
-  linkedDays: {},
   notes: [],
   start: null,
   status: "",
   scheduleAddress: "",
   progress: "",
+  dependencies: "",
 };
 
 function AddTaskDialogue(props) {
@@ -50,24 +47,24 @@ function AddTaskDialogue(props) {
     onChangeContent(state);
   };
 
-  const valid = () => {
-    if (state.start === null) {
-      alert("!!Date Empty!!");
-    }
-  };
+  // const valid = () => {
+  //   if (state.start === null) {
+  //     alert("!!Date Empty!!");
+  //   }
+  // };
 
-  const styleDate = (current) => {
-    const style = {};
-    if (current.day() === 6 || current.day() === 0) {
-      style.background = "#c1bfbf4d";
-      style.borderRadius = "50%";
-    }
-    return (
-      <div className="ant-picker-cell-inner" style={style}>
-        {current.date()}
-      </div>
-    );
-  };
+  // const styleDate = (current) => {
+  //   const style = {};
+  //   if (current.day() === 6 || current.day() === 0) {
+  //     style.background = "#c1bfbf4d";
+  //     style.borderRadius = "50%";
+  //   }
+  //   return (
+  //     <div className="ant-picker-cell-inner" style={style}>
+  //       {current.date()}
+  //     </div>
+  //   );
+  // };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -86,26 +83,43 @@ function AddTaskDialogue(props) {
     }
   };
 
-  const handleSubmit = () => {
-    handleAddTask(state);
-    valid();
-    close();
-  };
+  // const handleSubmit = () => {
+  //   handleAddTask(state);
+  //   valid();
+  //   close();
+  // };
 
   return (
-    <div className="modalll">
+    <div className="modal">
       <Modal
         onCancel={close}
         centered
         className="task-modal"
         aria-labelledby="simple-dialog-title"
         visible={open}
-        title={isEdit ? "Schedule Information" : "Add Item"}
+        // title={selectedTask?.scheduleDays.map((e) => e.name)}
         footer={null}
-        width={isEdit ? "1187px" : "300px"}
+        width={isEdit ? "1165px" : "410px"}
         destroyOnClose={true}
       >
         {isEdit ? (
+          <div>
+            <ScheduleInfo
+              handleModalState
+              handleClose
+              open
+              state={state}
+              selectedTask={selectedTask}
+              handleUpdate={handleUpdate}
+              handleChange={handleChange}
+              handleEndChange={handleEndChange}
+              handleStartChange={handleStartChange}
+            />
+          </div>
+        ) : (
+          ""
+        )}
+        {/* {isEdit ? (
           <div>
             <ScheduleInfo
               handleModalState
@@ -225,7 +239,7 @@ function AddTaskDialogue(props) {
               </Button>
             </div>
           </div>
-        )}
+        )} */}
       </Modal>
     </div>
   );

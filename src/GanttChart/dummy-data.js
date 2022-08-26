@@ -268,7 +268,7 @@ export const dummyData =
                                                 }
                                             ],
                                             "days": [
-                                                "ef105ad7-377e-4dd8-b89f-3d152dc6af27"
+                                                "ef105ad7-377e-4dd8-b89f-3d152dc6af27", "54fb3fc7-7067-4a6c-bdbf-26ca7a2814a4", "4303609f-dae9-4c44-bf40-e1df06545f8a", 'c27ffd4b-d5a6-4708-9e9a-68af0fc2239d'
                                             ],
                                             "estimationId": "6035f560-f7ab-11ec-b1f1-4faa37a5f911",
                                             "id": 1,
@@ -1592,14 +1592,14 @@ export const dummyData =
                                                     "day": "4303609f-dae9-4c44-bf40-e1df06545f8a",
                                                     "height": 33,
                                                     "length": 23,
-                                                    "progress": 759
+                                                    "progress": 100
                                                 }
                                             ],
                                             "progressHeight": 0,
                                             "progressLength": 0,
                                             "subPli": [],
                                             "surface": 759,
-                                            "totalProgress": 759,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -1718,14 +1718,14 @@ export const dummyData =
                                                     "day": "4303609f-dae9-4c44-bf40-e1df06545f8a",
                                                     "height": 30,
                                                     "length": 20,
-                                                    "progress": 600
+                                                    "progress": 100
                                                 }
                                             ],
                                             "progressHeight": 0,
                                             "progressLength": 0,
                                             "subPli": [],
                                             "surface": 1200,
-                                            "totalProgress": 600,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]
@@ -2074,14 +2074,14 @@ export const dummyData =
                                                     "day": "afa47d6b-0b40-438b-8dd9-a0a2b5e8491b",
                                                     "height": 22,
                                                     "length": 23,
-                                                    "progress": 506
+                                                    "progress": 100
                                                 }
                                             ],
                                             "progressHeight": 0,
                                             "progressLength": 0,
                                             "subPli": [],
                                             "surface": 506,
-                                            "totalProgress": 506,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -2202,14 +2202,14 @@ export const dummyData =
                                                     "day": "afa47d6b-0b40-438b-8dd9-a0a2b5e8491b",
                                                     "height": 22,
                                                     "length": 23,
-                                                    "progress": 506
+                                                    "progress": 100
                                                 }
                                             ],
                                             "progressHeight": 0,
                                             "progressLength": 0,
                                             "subPli": [],
-                                            "surface": 506,
-                                            "totalProgress": 506,
+                                            "surface": 100,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]
@@ -9857,12 +9857,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 42,
                                                     "length": 6,
-                                                    "progress": 252
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 504,
-                                            "totalProgress": 252,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -9925,12 +9925,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 96,
                                                     "length": 7,
-                                                    "progress": 672
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 672,
-                                            "totalProgress": 672,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -9993,12 +9993,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 96,
                                                     "length": 9,
-                                                    "progress": 864
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 864,
-                                            "totalProgress": 864,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -10061,12 +10061,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 48,
                                                     "length": 7,
-                                                    "progress": 336
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 672,
-                                            "totalProgress": 336,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -10129,12 +10129,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 45,
                                                     "length": 54,
-                                                    "progress": 2430
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 4860,
-                                            "totalProgress": 2430,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -10197,12 +10197,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 103,
                                                     "length": 15,
-                                                    "progress": 1545
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 1545,
-                                            "totalProgress": 1545,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]
@@ -10272,12 +10272,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 90,
                                                     "length": 39,
-                                                    "progress": 3510
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 3510,
-                                            "totalProgress": 3510,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]
@@ -10347,12 +10347,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 71,
                                                     "length": 15,
-                                                    "progress": 1065
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 1065,
-                                            "totalProgress": 1065,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         },
                                         {
@@ -10547,12 +10547,12 @@ export const dummyData =
                                                     "day": "867e0545-47a5-4924-8f94-5d373ee80c02",
                                                     "height": 84,
                                                     "length": 45,
-                                                    "progress": 3780
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 3780,
-                                            "totalProgress": 3780,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]
@@ -10692,12 +10692,12 @@ export const dummyData =
                                                     "day": "b883630a-c35c-44c1-bafe-5c419e0382eb",
                                                     "height": 77,
                                                     "length": 26,
-                                                    "progress": 2002
+                                                    "progress": 100
                                                 }
                                             ],
                                             "subPli": [],
                                             "surface": 2002,
-                                            "totalProgress": 2002,
+                                            "totalProgress": 100,
                                             "totalProgressDefinedByBreakdowns": false
                                         }
                                     ]

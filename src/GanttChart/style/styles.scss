@@ -50,7 +50,7 @@ button.ant-btn.ant-btn-submit {
   border: 2px solid #86c6f7;
 }
 
-/// Chart Scrollbar
+///Card Chart Scrollbar
 .chart .right ::-webkit-scrollbar {
   width: 10px !important;
   height: 7px;
@@ -61,6 +61,7 @@ button.ant-btn.ant-btn-submit {
   background-color: transparent;
 }
 
+///Chart Scrollbar
 .chart .right ::-webkit-scrollbar-thumb {
   background: #142735 !important;
   border-radius: 4px;

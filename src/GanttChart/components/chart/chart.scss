@@ -5,16 +5,49 @@ $labelHeight: 36px;
 $backgroundColor: whiteSmoke;
 //backdrop layer 1
 .chart {
-  width: 1593px;
+  width: 1634px;
   height: 873px;
   padding: 20px;
   margin: 40px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #ffff;
   box-shadow: 0px 1px 4px #00000029;
   border-radius: 10px;
-  gap: 5px;
+
+  .chartLabel {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    column-gap: 5px;
+
+    .chartLabel ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    .chartLabel ::-webkit-scrollbar-thumb {
+      background: #142735 !important;
+      border-radius: 4px;
+    }
+  }
+  .header-div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    .labelsHeader {
+      width: 281px;
+      height: 16px;
+      font-size: 32px;
+      margin: 6px -6px 36px 53px !important;
+      font-family: "Open Sans";
+    }
+    .stepperDiv {
+      background: #f8f8fa;
+      width: 75.85%;
+      margin-left: 25px;
+    }
+  }
 
   .left {
     //left side layer 2
@@ -23,6 +56,7 @@ $backgroundColor: whiteSmoke;
       flex-direction: column;
       justify-content: center;
       gap: 2px;
+      margin-top: 60px;
       .label {
         display: flex;
         flex-direction: row;
@@ -38,8 +72,8 @@ $backgroundColor: whiteSmoke;
           overflow: hidden;
           white-space: nowrap;
           font-family: "Open Sans";
+          margin-left: 10px;
         }
-
         &:nth-child(odd) {
           background-color: #f8f8fa !important;
         }
@@ -48,14 +82,6 @@ $backgroundColor: whiteSmoke;
         }
       }
     }
-  }
-
-  .labelsHeader {
-    width: 281px;
-    height: 72px;
-    font-size: 32px;
-    margin: 6px -6px 36px 53px !important;
-    font-family: "Open Sans";
   }
 
   .labelsRow {

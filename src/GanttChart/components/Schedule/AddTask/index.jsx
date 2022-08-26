@@ -2,8 +2,8 @@ import * as React from "react";
 import AddTaskDialogue from "../ScheduleModals/MainModal";
 import "./add-task.scss";
 //importing antd components
-import { PlusOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+// import { PlusOutlined } from "@ant-design/icons";
+// import { Button } from "antd";
 
 const AddTask = ({
   isEdit,
@@ -16,10 +16,10 @@ const AddTask = ({
 }) => {
   return (
     <div className="add-task">
-      <Button onClick={handleModalState} shape="round" type="primary">
+      {/* <Button onClick={handleModalState} shape="round" type="primary">
         <span>Add Task</span>
         <PlusOutlined />
-      </Button>
+      </Button> */}
       {open === true ? (
         <AddTaskDialogue
           handleModalState
