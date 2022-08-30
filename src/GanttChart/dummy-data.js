@@ -1,3 +1,20 @@
+export const crews =
+{
+    "crewId": "00f37745-8234-4b97-b039-17627c8f5ef7",
+    "crewName": "",
+    "foreman": "Geovany Didmount",
+    "lastModifiedBy": {
+        "date": 1634546970511,
+        "id": "2df4f3bb-2ea3-4412-8165-adf303a2c523",
+        "name": "Endri Mataj"
+    },
+    "members": [
+        "Jose Garcia",
+        "Alemany",
+        "Victor Hezejo"
+    ]
+}
+
 export const dummyData =
     [
         {
@@ -5,8 +22,187 @@ export const dummyData =
             "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
             "createdAt": 1656510504688,
             "createdBy": "Lona Marku",
-            "crews": [],
-            "dispatches": [],
+            "crews": [{
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "00f37745-8234-4b97-b039-17627c8f5ef7",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "9cb18df0-6bf0-4c4b-9ac2-75225979c6be",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "be50ffe6-505d-4847-8c24-50d08868f0e0",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "48235188-b737-4771-a29f-55b8060db674",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "06672b4f-0d9f-4aa5-9433-bee69ccecdf3",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "2bc04d35-4a0f-471c-81b5-f85488df67fc",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "4fc06a27-d587-411f-9341-5716ac742948",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "0aa8a75a-48d4-43cf-9147-377d36693cd0",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "ebdb85c2-4adf-4c58-b185-182a2deb5cc8",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "4014440c-3a0b-47c5-99f2-7eab0aa4e887",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "0aa8a75a-48d4-43cf-9147-377d36693cd0",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "eae57fc0-3c97-11ec-85c8-5bd359196ac2",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "0aa8a75a-48d4-43cf-9147-377d36693cd0",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            },
+            {
+                "scheduleId": "5ad491d0-2311-11ed-a637-ff88bd11e633",
+                "crewId": "06672b4f-0d9f-4aa5-9433-bee69ccecdf3",
+                "endDate": "2022-08-29T14:00:00.000Z",
+                "lastModifiedBy": "",
+                "notes": "",
+                "startDate": "2022-08-29T05:00:00.000Z"
+            }],
+            "dispatches": [{
+                "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
+                "dispatchDate": 1661749200000,
+                "driverId": "47a081f0-174f-11ed-ae73-55fa3280f089",
+                "driverName": "MATTHEW CHADHA",
+                "fleetId": "08838610-17ff-11ed-a268-bf71c53aa781",
+                "fleetName": "Truck-106",
+                "routes": [
+                    {
+                        "arriveBy": 1661781600000,
+                        "cargo": "Loaded",
+                        "departAt": 1661749200000,
+                        "dropOffLocation": "80 Adams St, Brooklyn, NY, USA",
+                        "pickUpLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA"
+                    },
+                    {
+                        "cargo": "Loaded",
+                        "departAt": 1661781600000,
+                        "dropOffLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA",
+                        "pickUpLocation": "80 Adams St, Brooklyn, NY, USA"
+                    }
+                ]
+            },
+            {
+                "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
+                "dispatchDate": 1661749200000,
+                "driverId": "2f5c17a0-17d9-11ed-85af-a1ff9e51a50b",
+                "driverName": "ELDRIDGE T. MITCHELL",
+                "fleetId": "08e0db90-17ef-11ed-bfa7-63371644bf2e",
+                "fleetName": "0110604114",
+                "routes": [
+                    {
+                        "arriveBy": 1661781600000,
+                        "cargo": "Loaded",
+                        "departAt": 1661749200000,
+                        "dropOffLocation": "80 Adams St, Brooklyn, NY, USA",
+                        "pickUpLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA"
+                    },
+                    {
+                        "cargo": "Loaded",
+                        "departAt": 1661781600000,
+                        "dropOffLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA",
+                        "pickUpLocation": "80 Adams St, Brooklyn, NY, USA"
+                    }
+                ]
+            },
+            {
+                "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
+                "dispatchDate": 1661749200000,
+                "driverId": "60805a80-17d9-11ed-85af-a1ff9e51a50b",
+                "driverName": "SAUL E. TINOCO",
+                "fleetId": "0b857940-17f0-11ed-bfa7-63371644bf2e",
+                "fleetName": "9101886068",
+                "routes": [
+                    {
+                        "arriveBy": 1661781600000,
+                        "cargo": "Loaded",
+                        "departAt": 1661749200000,
+                        "dropOffLocation": "80 Adams St, Brooklyn, NY, USA",
+                        "pickUpLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA"
+                    },
+                    {
+                        "cargo": "Loaded",
+                        "departAt": 1661781600000,
+                        "dropOffLocation": "2899-2701, Arthur Kill Rd, New York, NY, 10309, USA",
+                        "pickUpLocation": "80 Adams St, Brooklyn, NY, USA"
+                    }
+                ]
+            }],
             "googleDriveFolderIds": {
                 "docObject": "1tCLC9HPV23McMgPbgqXTby5zHublJih3",
                 "scheduleObject": "1LtkleYM3EoNj5ebZjiqw3YJdpHsFoCcu"
@@ -212,7 +408,9 @@ export const dummyData =
             "scheduleNotes": [],
             "scheduleStatus": "Draft",
             "scheduleTotalProgressPercentage": 80,
-            "services": {},
+            "services": {
+
+            },
             "teamsConfiguration": [],
             "toBeScheduled": {
                 "6035f560-f7ab-11ec-b1f1-4faa37a5f911": [
@@ -230,6 +428,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(SS-1-02)",
                                     "elevationLabel": "Along East",
+                                    "type": "Repair",
                                     "items": [
                                         {
                                             "addons": [],
@@ -501,7 +700,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "estimationId": "6035f560-f7ab-11ec-b1f1-4faa37a5f911",
                                             "id": 3,
                                             "length": 70,
@@ -610,7 +809,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "estimationId": "6035f560-f7ab-11ec-b1f1-4faa37a5f911",
                                             "id": 4,
                                             "length": 80,
@@ -688,6 +887,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(SS-1-03)",
                                     "elevationLabel": "Along West",
+                                    "type": "Removal",
                                     "items": [
                                         {
                                             "addons": [],
@@ -842,7 +1042,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "estimationId": "6035f560-f7ab-11ec-b1f1-4faa37a5f911",
                                             "id": 2,
                                             "length": 67,
@@ -951,7 +1151,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "estimationId": "6035f560-f7ab-11ec-b1f1-4faa37a5f911",
                                             "id": 3,
                                             "length": 70,
@@ -1046,6 +1246,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(ST-1-02)",
                                     "elevationLabel": "Along East",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -1465,6 +1666,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(PE-1-02)",
                                     "elevationLabel": "Along North",
+                                    "type": "Repair",
                                     "items": [
                                         {
                                             "addons": [],
@@ -1750,6 +1952,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(DC-1-02)",
                                     "elevationLabel": "Along East",
+                                    "type": "Repair",
                                     "items": [
                                         {
                                             "addons": [],
@@ -1955,6 +2158,7 @@ export const dummyData =
                                 {
                                     "elevationId": "(SF-1-02)",
                                     "elevationLabel": "Along South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -2235,6 +2439,7 @@ export const dummyData =
                                     "building_height": "130",
                                     "elevationId": "(HO-1-02)",
                                     "elevationLabel": "Along West",
+                                    "type": "Installation",
                                     "from": 1,
                                     "height": "12",
                                     "items": [
@@ -3907,6 +4112,7 @@ export const dummyData =
             "scheduleId": "c5fb0980-fba2-11ec-b5a8-d9a9a006c473",
             "createdAt": 1656943706648,
             "createdBy": "Lona Marku",
+            "dispatches": [],
             "googleDriveFolderIds": {
                 "docObject": "1qbd7HbxhfXeVuSdo3kfFaGXrHkBJEKzC",
                 "scheduleObject": "1hX4mRktUCtEbdfDX9jGX7nIVrYekDNGF"
@@ -4040,6 +4246,7 @@ export const dummyData =
                                     "desiredPrice": 18000,
                                     "elevationId": "(BA-1-02)",
                                     "elevationLabel": "Along West 29th Street (South)",
+                                    "type": "Repair",
                                     "items": [
                                         {
                                             "addons": [],
@@ -4069,7 +4276,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 17,
                                             "note": "",
@@ -4148,7 +4355,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 2,
                                             "length": 17,
                                             "note": "",
@@ -4227,7 +4434,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 3,
                                             "length": 110,
                                             "note": "",
@@ -4301,6 +4508,7 @@ export const dummyData =
                                     "building_height": "90",
                                     "elevationId": "(HO-1-02)",
                                     "elevationLabel": "Along Weeks Avenue (Front Elevation -West)",
+                                    "type": "Installation",
                                     "from": 1,
                                     "height": "12.75",
                                     "items": [
@@ -4340,7 +4548,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 1,
                                             "hoist_dimension": 100,
                                             "id": 1,
@@ -4431,7 +4639,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 2,
                                             "hoist_dimension": 100,
                                             "id": 2,
@@ -4522,7 +4730,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 3,
                                             "hoist_dimension": 100,
                                             "id": 3,
@@ -4613,7 +4821,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 4,
                                             "hoist_dimension": 100,
                                             "id": 4,
@@ -4704,7 +4912,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 5,
                                             "hoist_dimension": 100,
                                             "id": 5,
@@ -4795,7 +5003,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 6,
                                             "hoist_dimension": 100,
                                             "id": 6,
@@ -4886,7 +5094,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 7,
                                             "hoist_dimension": 100,
                                             "id": 7,
@@ -4977,7 +5185,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 8,
                                             "hoist_dimension": 100,
                                             "id": 8,
@@ -5068,7 +5276,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "floor": 9,
                                             "hoist_dimension": 100,
                                             "id": 9,
@@ -5525,6 +5733,7 @@ export const dummyData =
                                     "desiredPrice": 9000,
                                     "elevationId": "(SS-1-02)",
                                     "elevationLabel": "Along Weeks Avenue - West",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -5562,7 +5771,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 81,
                                             "note": "",
@@ -5638,6 +5847,7 @@ export const dummyData =
                                     "desiredPrice": 5000,
                                     "elevationId": "(SS-1-03)",
                                     "elevationLabel": "Along Right Elevation – South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -5675,7 +5885,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 20,
                                             "note": "",
@@ -5751,6 +5961,7 @@ export const dummyData =
                                     "desiredPrice": 5500,
                                     "elevationId": "(SS-1-04)",
                                     "elevationLabel": "Along Left Elevation - North",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -5788,7 +5999,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 24,
                                             "note": "",
@@ -5859,6 +6070,7 @@ export const dummyData =
                                     "desiredPrice": 7000,
                                     "elevationId": "(SS-1-05)",
                                     "elevationLabel": "Along Left Elevation - North",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -5896,7 +6108,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 73,
                                             "note": "",
@@ -5983,6 +6195,7 @@ export const dummyData =
                                     "desiredPrice": 21000,
                                     "elevationId": "(SF-1-02)",
                                     "elevationLabel": "Along Weeks Avenue - West",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -6028,7 +6241,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 84,
                                             "id": 1,
                                             "length": 60,
@@ -6109,6 +6322,7 @@ export const dummyData =
                                     "desiredPrice": 6000,
                                     "elevationId": "(SF-1-03)",
                                     "elevationLabel": "Along Right Elevation - South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -6154,7 +6368,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 1,
                                             "length": 21,
@@ -6272,7 +6486,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 2,
                                             "length": 36,
@@ -6352,6 +6566,7 @@ export const dummyData =
                                     "desiredPrice": 40000,
                                     "elevationId": "(SF-1-04)",
                                     "elevationLabel": "Along Rear Elevation - East",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -6397,7 +6612,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 96,
                                             "id": 1,
                                             "length": 20,
@@ -6515,7 +6730,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 96,
                                             "id": 2,
                                             "length": 14,
@@ -6633,7 +6848,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 96,
                                             "id": 3,
                                             "length": 8,
@@ -6751,7 +6966,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 96,
                                             "id": 4,
                                             "length": 14,
@@ -6869,7 +7084,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 96,
                                             "id": 5,
                                             "length": 11,
@@ -6987,7 +7202,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 90,
                                             "id": 6,
                                             "length": 5,
@@ -7067,6 +7282,7 @@ export const dummyData =
                                     "desiredPrice": 40000,
                                     "elevationId": "(SF-1-05)",
                                     "elevationLabel": "Along Left Elevation - North",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -7112,7 +7328,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 90,
                                             "id": 1,
                                             "length": 81,
@@ -7192,6 +7408,7 @@ export const dummyData =
                                     "desiredPrice": 20000,
                                     "elevationId": "(SF-1-06)",
                                     "elevationLabel": "Around Bulkhead",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -7237,7 +7454,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 1,
                                             "length": 8,
@@ -7356,7 +7573,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 2,
                                             "length": 14,
@@ -7475,7 +7692,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 3,
                                             "length": 25,
@@ -7593,7 +7810,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 4,
                                             "length": 24,
@@ -7711,7 +7928,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 5,
                                             "length": 10,
@@ -7829,7 +8046,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 6,
                                             "length": 14,
@@ -7947,7 +8164,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 7,
                                             "length": 10,
@@ -8065,7 +8282,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "height": 19,
                                             "id": 8,
                                             "length": 21,
@@ -8161,6 +8378,7 @@ export const dummyData =
                                     "desiredPrice": 8500,
                                     "elevationId": "(OP-1-02)",
                                     "elevationLabel": "Along Right Elevation - South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -8198,7 +8416,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 7,
                                             "note": "",
@@ -8299,7 +8517,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 2,
                                             "length": 7,
                                             "note": "",
@@ -8391,6 +8609,7 @@ export const dummyData =
                                     "desiredPrice": 15500,
                                     "elevationId": "(NB-1-02)",
                                     "elevationLabel": "Along Right Elevation - South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -8428,7 +8647,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 13,
                                             "note": "",
@@ -8523,7 +8742,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 2,
                                             "length": 28,
                                             "note": "",
@@ -8609,6 +8828,7 @@ export const dummyData =
                                     "desiredPrice": 20000,
                                     "elevationId": "(RP-1-02)",
                                     "elevationLabel": "Along Right Elevation - South",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -8646,7 +8866,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 20,
                                             "note": "",
@@ -8741,7 +8961,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 2,
                                             "length": 24,
                                             "note": "",
@@ -8839,7 +9059,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 3,
                                             "length": 28,
                                             "note": "",
@@ -8909,6 +9129,7 @@ export const dummyData =
                                     "desiredPrice": 12900,
                                     "elevationId": "(RP-1-03)",
                                     "elevationLabel": "Along Left Elevation - North",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -8946,7 +9167,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["ef105ad7-377e-4dd8-b89f-3d152dc6af27"],
                                             "id": 1,
                                             "length": 72,
                                             "note": "",
@@ -9396,6 +9617,7 @@ export const dummyData =
                                     "desiredPrice": 5000,
                                     "elevationId": "(SS-1-02)",
                                     "elevationLabel": "Along Grand Concourse (East)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -9527,6 +9749,7 @@ export const dummyData =
                                     "desiredPrice": 13000,
                                     "elevationId": "(SS-1-03)",
                                     "elevationLabel": "Along Bush Street (South)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -9653,6 +9876,7 @@ export const dummyData =
                                     "desiredPrice": 7000,
                                     "elevationId": "(SS-1-04)",
                                     "elevationLabel": "Along West Elevation (165 Bush Street)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -9796,6 +10020,7 @@ export const dummyData =
                                     "desiredPrice": 62509.09,
                                     "elevationId": "(SF-1-01)",
                                     "elevationLabel": "Along Right-Side Façade (East)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -10211,6 +10436,7 @@ export const dummyData =
                                     "desiredPrice": 10418.18,
                                     "elevationId": "(SF-1-02)",
                                     "elevationLabel": "Along West Elevation",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -10286,6 +10512,7 @@ export const dummyData =
                                     "desiredPrice": 31254.54,
                                     "elevationId": "(SF-1-03)",
                                     "elevationLabel": "Along North Elevation",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -10492,6 +10719,7 @@ export const dummyData =
                                     "desiredPrice": 10418.18,
                                     "elevationId": "(SF-1-05)",
                                     "elevationLabel": "Along Grand Concourse (East)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -10578,6 +10806,7 @@ export const dummyData =
                                     "desiredPrice": 12100,
                                     "elevationId": "(PE-1-02)",
                                     "elevationLabel": "Along North Elevation (2021 Grand Concourse)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -10723,6 +10952,7 @@ export const dummyData =
                                     "desiredPrice": 13866.66,
                                     "elevationId": "(RP-1-01)",
                                     "elevationLabel": "Along West Elevation (165 Bush Street)",
+                                    "type": "Installation",
                                     "items": [
                                         {
                                             "addons": [],
@@ -11022,7 +11252,6 @@ export const dummyData =
                                                     },
                                                     {
                                                         "breakdown_dimension": 100,
-                                                        "days": [],
                                                         "id": "16590109421",
                                                         "name": "Installation",
                                                         "progressByDay": [],
@@ -11192,6 +11421,7 @@ export const dummyData =
                                     "desiredPrice": 6933.33,
                                     "elevationId": "(RP-1-03)",
                                     "elevationLabel": "Along North Elevation (2021 Grand Concourse)",
+                                    "type": "Repair",
                                     "items": [
                                         {
                                             "addons": [],
@@ -11351,7 +11581,7 @@ export const dummyData =
                                                     "totalProgress": 0
                                                 }
                                             ],
-                                            "days": [],
+                                            "days": ["54fb3fc7-7067-4a6c-bdbf-26ca7a2814a4"],
                                             "estimationId": "932329b0-0daa-11ed-bf3e-4537d2de55c4",
                                             "id": 2,
                                             "length": 20,
@@ -11438,6 +11668,7 @@ export const dummyData =
                                     "building_height": "90",
                                     "elevationId": "(HO-1-02)",
                                     "elevationLabel": "Along Test",
+                                    "type": "Installation",
                                     "from": 1,
                                     "height": "7.5",
                                     "items": [
@@ -12857,6 +13088,8 @@ export const dummyData =
                                                 {
                                                     "label": "ppu",
                                                     "value": 4000
+
+
                                                 },
                                                 {
                                                     "label": "price",

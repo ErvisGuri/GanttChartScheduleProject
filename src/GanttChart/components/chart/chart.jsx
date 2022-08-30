@@ -1,17 +1,17 @@
 import * as React from "react";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../stateManagement/Contexts/GlobalStateProvider";
-import AddTask from "../Schedule/AddTask";
 import { FrappeGantt } from "frappe-gantt-react";
 
 import "./chart.scss";
 import "antd/dist/antd.min.css";
 
 // importing antd components
-import { DeleteFilled } from "@ant-design/icons";
+// import { DeleteFilled } from "@ant-design/icons";
 import { Card } from "antd";
 import { Stepper } from "../Stepper";
 import { statusTitle } from "../Stepper/utils/statusTitle";
+import ScheduleDetailsModal from "../Schedule/MainModal";
 
 const initials = statusTitle;
 
@@ -31,7 +31,6 @@ function Chart() {
 
   const click = (task) => {
     setSelectedTask(task);
-    setIsEdit(true);
     handleModalState();
   };
 
@@ -81,10 +80,6 @@ function Chart() {
               {globalCTX.labels.map((x, i) => {
                 return (
                   <div key={x + i} className="label">
-                    {/* <DeleteFilled
-                      className="bold space-around capitalize"
-                      onClick={() => globalCTX.handleDeleteTask(i)}
-                    /> */}
                     <span className="tiny-circle">{i}</span>
                     <span className="bold space-around capitalize">{x}</span>
                   </div>
@@ -92,35 +87,32 @@ function Chart() {
               })}
             </div>
           ) : null}
-          <AddTask
+          <ScheduleDetailsModal
             isEdit={isEdit}
             setIsEdit={setIsEdit}
             selectedTask={selectedTask}
             onChangeContent={globalCTX.handleUpdate}
-            handleModalState={handleModalState}
+            handleClose={handleModalState}
             open={state.show}
             handleAddTask={(taskObj) => globalCTX.handleAddTask(taskObj)}
           />
         </div>
         <Card bordered={false} className="right">
           {globalCTX.tasks?.length ? (
-            <>
-              <div className="gantFrappe_container">
-                <FrappeGantt
-                  tasks={globalCTX.tasks}
-                  viewMode={globalCTX.mode}
-                  onClick={(task) => click(task)}
-                  // onDateChange={globalCTX.updatePosition} //aka on drag bar
-                  onProgressChange={(task, progress) =>
-                    console.log(task, progress, "progress")
-                  }
-                  // onTasksChange={(tasks) => {
-                  // //
-                  // }}
-                />
-              </div>
-              <div className="ganttFooter"></div>
-            </>
+            <div className="gantFrappe_container">
+              <FrappeGantt
+                tasks={globalCTX.tasks}
+                viewMode={globalCTX.mode}
+                onClick={(task) => click(task)}
+                onDateChange={(task, start, end) =>
+                  console.log(task, start, end)
+                } //aka on drag bar
+                onProgressChange={(task, progress) =>
+                  console.log(task, progress, "progress")
+                }
+                onTasksChange={(task) => console.log(task, "tasks")}
+              />
+            </div>
           ) : null}
         </Card>
       </div>

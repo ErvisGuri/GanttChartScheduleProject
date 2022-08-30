@@ -22,18 +22,22 @@ const GlobalStateProvider = ({ children }) => {
 
     const dataSchedule = function () {
         let allDays = daysInfo();
-        let test = dataLabel();
-        console.log(test)
+        let objTask = dataLabel();
         let tasksTemp = [];
-        test.map((el) => {
+        objTask?.map((el) => {
             tasksTemp.push({
-                start: allDays[el?.ids?.[0]]?.startDate,
-                end: allDays[el?.ids?.[el?.ids?.length - 1]]?.endDate,
+                start: allDays[el?.dayId?.[0]]?.startDate,
+                end: allDays[el?.dayId?.[el?.dayId?.length - 1]]?.endDate,
                 progress: el.progress,
                 scheduleDays: el.scheduleDays,
-                name: el.id,
+                name: el.label,
                 dependencies: el.dependencies,
-                ids: el.ids
+                dayId: el.dayId,
+                id: el.id,
+                custom_class: el?.customClass,
+                dispatches: el?.dispatches,
+                scheduleId: el?.scheduleId,
+                crews: el?.crews
             })
         });
         return tasksTemp;
@@ -48,12 +52,16 @@ const GlobalStateProvider = ({ children }) => {
                         e?.map(s => {
                             s?.items?.map(item => {
                                 obj.push({
-                                    id: `${x?.label}${s?.elevationLabel} PLI ${item.id === 1 ? '' : item.id}`,
-                                    dependencies: `${x?.label}${s?.elevationLabel}  ${item.id} `,
-                                    label: `${x?.label} - ${s?.elevationLabel} - PLI${item?.id}`,
-                                    ids: item?.days,
+                                    id: `${x?.label} ${s?.elevationLabel} PLI ${item.id}`,
+                                    dependencies: item.id === 1 ? "" : `${x?.label} ${s?.elevationLabel} PLI ${item.id - 1},`,
+                                    label: `${x?.label} - ${s?.elevationLabel} - PLI ${item?.id}`,
+                                    dayId: item?.days,
                                     scheduleDays: v?.scheduleDays,
                                     progress: item?.totalProgress,
+                                    customClass: s?.type,
+                                    dispatches: v?.dispatches,
+                                    scheduleId: v.scheduleId,
+                                    crews: v?.crews
                                 })
                             })
                         })
@@ -79,50 +87,33 @@ const GlobalStateProvider = ({ children }) => {
         setState(state);
     };
 
-
-
-    // const updatePosition = (task, startDate, endDate) => {
-    //     console.log("afefawfawfaw", task, endDate, startDate)
-    //     // alert("update position")
-    //     console.log(task, startDate, endDate)
-    //     const temp = state?.tasks?.filter?.(x => x.id !== task.id)
+    // const updatePosition = (task, start, end) => {
+    //     alert("update position")
+    //     console.log("130", state?.tasks?.map?.((x) => x?.filter((fl) => fl.name !== task.name)))
+    //     console.log(task, start, end)
+    //     const temp = state?.tasks?.filter?.(x => x.name !== task.name)
     //     console.log(temp)
     //     console.log(task)
-    //     const t = { ...task, startDate, endDate }
-    //     // save t to api
+    //     const t = { ...task, start, end }
     //     console.log(t)
     //     setState({ ...state, tasks: [...temp, t] })
     //     const tasks = [...state.tasks];
     //     const index = tasks.findIndex((x) => x.id === task.id);
-    //     tasks[index].startDate = startDate;
-    //     tasks[index].endDate = endDate;
+    //     tasks[index].start = start;
+    //     tasks[index].end = end;
     //     setState({ ...state, tasks });
     //     console.log(state)
     // };
 
     // const handleDeleteTask = (index) => {
-    //     // console.log("this is the task object")
-    //     // console.log(taskObject)
+    //      console.log("this is the task object")
+    //      console.log(taskObject)
     //     setState(prev => {
     //         prev.labels.splice(index, 1)
     //         prev.tasks.splice(index, 1)
     //         return { ...prev }
     //     })
     // };
-
-    //Getting data from LocalStorage
-    useEffect(() => {
-        const charts = JSON.parse(localStorage.getItem('chart'));
-        if (charts) {
-            setState(state);
-        }
-    }, [state])
-
-    // Saving data to localStorage
-    // useEffect(() => {
-    //     localStorage.setItem('chart', JSON.stringify(state));
-    // }, [state]);
-
 
     useEffect(() => {
         if (!!state) {
@@ -134,12 +125,13 @@ const GlobalStateProvider = ({ children }) => {
         }
     }, [state.mode, state.deleted]);
 
-    // console.log(state)
+    console.log("ERVIS", state)
+
 
 
     return (
         <GlobalContext.Provider
-            value={{ ...state, state, handleAddTask, setState, handleUpdate }}
+            value={{ ...state, handleAddTask, setState, handleUpdate }}
         >
             {children}
         </GlobalContext.Provider>

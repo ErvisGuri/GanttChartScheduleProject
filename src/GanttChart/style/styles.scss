@@ -7,10 +7,6 @@ $light: #fff;
 $white-darker: whiteSmoke;
 $dark: #000;
 
-body {
-  font-family: "Open Sans" sans-serif !important;
-}
-
 /// Ants Component
 span.ant-modal-close-x {
   color: #323338;
@@ -50,29 +46,23 @@ button.ant-btn.ant-btn-submit {
   border: 2px solid #86c6f7;
 }
 
-///Card Chart Scrollbar
-.chart .right ::-webkit-scrollbar {
-  width: 10px !important;
-  height: 7px;
-  cursor: pointer;
-}
-
-.chart .right ::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-///Chart Scrollbar
-.chart .right ::-webkit-scrollbar-thumb {
-  background: #142735 !important;
-  border-radius: 4px;
-}
-
-/* Handle on hover */
-.chart .right ::-webkit-scrollbar-thumb:hover {
-  cursor: pointer !important;
-}
-
 //Row Index Display
 .tiny-circle {
   display: none !important;
+}
+
+*::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+*::-webkit-scrollbar-thumb {
+  background: #142735 !important;
+  border-radius: 4px !important;
+}
+*::-webkit-scrollbar-thumb:hover {
+  cursor: pointer !important;
 }

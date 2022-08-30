@@ -1,7 +1,7 @@
 @import "./styles.scss";
 //
-$bar-color: #c0eaae !default;
-$bar-stroke: #71cf48 !default;
+$bar-color: #c0eaae;
+$bar-stroke: #71cf48;
 $border-color: #f8fafa !default;
 $light-bg: #f8fafa !default;
 $light-border-color: white !default;
@@ -21,7 +21,7 @@ $arrowWidth: 2px;
     fill: #f8f8fa;
     stroke: $border-color;
     stroke-width: 1.4;
-    // font-family: sans-serif !important;
+    font-family: "Open Sans";
   }
   .grid-row {
     fill: #ffffff;
@@ -99,31 +99,6 @@ $arrowWidth: 2px;
     .bar-group {
       border-radius: 2px;
     }
-
-    &:hover {
-      .bar {
-        fill: darken($bar-color, 5);
-      }
-      .bar-progress {
-        fill: darken($bar-stroke, 5);
-      }
-
-      .handle {
-        width: 10px;
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-
-    &.active {
-      .bar {
-        fill: darken($bar-color, 5);
-      }
-
-      .bar-progress {
-        fill: darken($primary-dark, 5);
-      }
-    }
   }
 
   .lower-text,
@@ -176,5 +151,52 @@ $arrowWidth: 2px;
       border: 5px solid transparent;
       border-top-color: rgba(0, 0, 0, 0.1);
     }
+  }
+}
+
+// Custom_class
+.Installation .bar {
+  fill: #c1ebaf !important;
+  &:hover {
+    fill: #c1ebaf !important;
+  }
+}
+
+.Installation .bar-progress {
+  fill: #71cf48 !important;
+
+  &:hover {
+    fill: #71cf48 !important;
+  }
+}
+
+.Repair .bar {
+  fill: #fce6ad !important;
+
+  &:hover {
+    fill: #fce6ad !important;
+  }
+}
+
+.Repair .bar-progress {
+  fill: #fcc94a !important;
+
+  &:hover {
+    fill: #fcc94a !important;
+  }
+}
+.Removal .bar {
+  fill: #ff9f9e !important;
+
+  &:hover {
+    fill: #ff9f9e !important;
+  }
+}
+
+.Removal .bar-progress {
+  fill: #fe4c4a !important;
+
+  &:hover {
+    fill: #fe4c4a !important;
   }
 }

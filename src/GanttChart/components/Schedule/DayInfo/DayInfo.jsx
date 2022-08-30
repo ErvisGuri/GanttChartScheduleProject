@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "../MainModal/modal.scss";
 import moment from "moment";
 import { Card, Badge } from "antd";
@@ -11,16 +11,13 @@ import {
   SlightCloudy,
   Snow,
   Sunny,
-} from "../../../../../assets/weatherIcons";
-import DetailsModal from "../DetailsModal/DetailsModal";
-import { GlobalContext } from "../../../../stateManagement/Contexts/GlobalStateProvider";
+} from "../../../../assets/weatherIcons";
+import _ from "lodash";
+import { crews } from "../../../dummy-data";
+import { dummyData } from "../../../dummy-data";
 
-const DayInfo = ({ selectedTask, handleModalState }) => {
-  const [detailData, setDetailsData] = useState(null);
-  const [visible, setVisible] = useState(false);
-  const [modalState, setModalState] = useState(null);
-  const globalCTX = useContext(GlobalContext);
-
+const DayInfo = ({ selectedTask }) => {
+  const [data, setData] = useState("");
   const styleBadge = (e) => {
     switch (e) {
       case "Confirmed":
@@ -71,31 +68,51 @@ const DayInfo = ({ selectedTask, handleModalState }) => {
     }
   };
 
-  // const openModal = (e) => {
-  //   setModalState(e);
-  //   setVisible(true);
-  // };
+  const dataMerge = () => {
+    let sr = [];
+    dummyData.map((el) => {
+      el?.crews?.map((td) => {
+        if (td.crewId === crews?.crewId) {
+          console.log("td", td);
+          sr.push({
+            ...td,
+            members: crews.members,
+            foreman: crews.foreman,
+          });
+        } else {
+          sr.push({
+            ...td,
+          });
+        }
+      });
+    });
+    console.log(sr);
+    return sr;
+  };
+
+  useEffect(() => {
+    const crew = dataMerge();
+    setData(crew);
+  }, [selectedTask]);
+
+  console.log(data);
 
   return (
     <div className="dayInfo-container">
       {selectedTask?.scheduleDays
         ?.filter((fl) => {
-          return selectedTask?.ids?.some((sm) => {
+          return selectedTask?.dayId?.some((sm) => {
             return fl?.id === sm;
           });
         })
         ?.map?.((el, i) => {
+          console.log(el);
           return (
             <div className="cardContent" key={i}>
               <Card
                 title={
                   <div className="dayCardTitle">
                     <b className="dayTitle">{`Day ${el?.day} in Schedule`} </b>
-                    {/* <div className="dayDetails">
-                    <div onClick={() => openModal(el)} className="detailsBtn">
-                      Details
-                    </div>
-                  </div> */}
                     <span className="dayStatus">
                       {el.status}
                       {
@@ -108,6 +125,7 @@ const DayInfo = ({ selectedTask, handleModalState }) => {
                 }
               >
                 <div className="dayCardBody">
+                  <div></div>
                   <div className="dayDate">
                     {moment(el.startDate).format("MM/DD/YYYY hh:mm")} -{" "}
                     {moment(el.endDate).format("MM/DD/YYYY hh:mm")}
@@ -131,23 +149,30 @@ const DayInfo = ({ selectedTask, handleModalState }) => {
                     } ℉ ${""} `}</span>
                     <span> {` Wind Speed: ${el.weather[1].windSpeed}`}</span>
                   </div>
+                  {selectedTask?.dispatches?.map?.((el, i) => {
+                    console.log(el);
+                    return (
+                      <div key={i}>
+                        <div className="driverName">{el.driverName}</div>
+                        <div className="fleetName">{el.fleetName}</div>
+                      </div>
+                    );
+                  })}
+                  {data.map?.((el, i) => {
+                    return (
+                      <div key={i}>
+                        <div>{el?.foreman}</div>
+                        <div>{el?.members}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
             </div>
           );
         })}
-      <DetailsModal
-        detailData={detailData}
-        setDetailsData={setDetailsData}
-        handleModalState={handleModalState}
-        selectedTask={selectedTask}
-        setVisible={setVisible}
-        visible={visible}
-        modalState={modalState}
-      />
     </div>
   );
-  // });
 };
 
 export default DayInfo;
