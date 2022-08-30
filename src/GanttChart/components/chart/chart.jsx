@@ -7,12 +7,12 @@ import "./chart.scss";
 import "antd/dist/antd.min.css";
 
 // importing antd components
-// import { DeleteFilled } from "@ant-design/icons";
-import { Card } from "antd";
+import { FilterFilled } from "@ant-design/icons";
+import { Card, Input } from "antd";
 import { Stepper } from "../Stepper";
 import { statusTitle } from "../Stepper/utils/statusTitle";
 import ScheduleDetailsModal from "../Schedule/MainModal";
-
+const { Search } = Input;
 const initials = statusTitle;
 
 function Chart() {
@@ -24,6 +24,12 @@ function Chart() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [currentStep, setCurrentStep] = useState(3);
   const [stepperTitle, setStepperTitle] = useState(initials);
+  const [searchField, setSearchField] = useState("");
+
+  const handleChangeSearch = (e) => {
+    const input = e.targe.value;
+    setSearchField(input);
+  };
 
   const handleModalState = () => {
     setState({ ...state, show: !state.show });
@@ -60,8 +66,16 @@ function Chart() {
 
   return (
     <div className="chart">
-      <div className="header-div">
-        <h2 className="labelsHeader">Timeline Schedule</h2>
+      <div className="headerChart">
+        <div className="header-div">
+          <div className="labelsHeader">
+            <h2 className="labalHeaderText">Timeline Schedule</h2>
+          </div>
+          <div className="searchBar">
+            <Search onChange={handleChangeSearch} />
+            <FilterFilled onClick={handleModalState} />
+          </div>
+        </div>
         <div className="stepperDiv">
           <Stepper
             stepRenderer={false}

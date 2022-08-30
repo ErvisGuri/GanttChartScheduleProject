@@ -68,7 +68,6 @@ const GlobalStateProvider = ({ children }) => {
                     })
                 })
             })
-
         })
         console.log(obj)
         return obj;
@@ -124,10 +123,6 @@ const GlobalStateProvider = ({ children }) => {
             setState({ ...state, tasks, labels });
         }
     }, [state.mode, state.deleted]);
-
-    console.log("ERVIS", state)
-
-
 
     return (
         <GlobalContext.Provider

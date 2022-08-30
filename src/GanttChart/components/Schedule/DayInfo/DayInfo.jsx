@@ -95,7 +95,7 @@ const DayInfo = ({ selectedTask }) => {
     setData(crew);
   }, [selectedTask]);
 
-  console.log(data);
+  console.log(selectedTask);
 
   return (
     <div className="dayInfo-container">
@@ -133,6 +133,10 @@ const DayInfo = ({ selectedTask }) => {
                   <div className="dayNotes">
                     <b>Notes: </b>
                     {el.notes}
+                  </div>
+                  <div>
+                    <b>Progress: </b>
+                    {`${selectedTask?.progress}%`}
                   </div>
                   <div className="dayCardTime">
                     New York: {""}

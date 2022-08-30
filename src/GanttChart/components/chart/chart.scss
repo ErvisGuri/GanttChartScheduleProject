@@ -29,23 +29,50 @@ $backgroundColor: whiteSmoke;
       border-radius: 4px;
     }
   }
-  .header-div {
+  .headerChart {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    .labelsHeader {
-      width: 281px;
-      height: 16px;
-      font-size: 32px;
-      margin: 6px -6px 36px 53px !important;
-      font-family: "Open Sans";
+    height: 80px;
+    .header-div {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      .labelsHeader {
+        width: 283px;
+        height: 21px;
+        font-size: 19px;
+        margin: 1px 16px 24px 51px !important;
+        font-family: "Open Sans";
+
+        .labalHeaderText {
+          width: 283px;
+          height: 43px;
+        }
+      }
+
+      .ant-input-group-wrapper {
+        width: 50% !important;
+      }
+    }
+
+    span.anticon.anticon-filter {
+      font-size: 23px;
+      padding: 5px;
+      border-radius: 5px;
+      background: red;
+      color: rgb(146, 139, 139);
+    }
+
+    .searchBar {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 10px;
+      cursor: pointer;
+      margin-left: 80px;
     }
     .stepperDiv {
       background: #f8f8fa;
-      width: 1212px;
-      margin-left: 25px;
+      width: 1212px !important;
+      margin-left: 3px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }
