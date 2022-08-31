@@ -30,14 +30,19 @@ const GlobalStateProvider = ({ children }) => {
                 end: allDays[el?.dayId?.[el?.dayId?.length - 1]]?.endDate,
                 progress: el.progress,
                 scheduleDays: el.scheduleDays,
-                name: el.label,
+                name: el.mergeLabel,
+                label: el.label,
                 dependencies: el.dependencies,
                 dayId: el.dayId,
                 id: el.id,
                 custom_class: el?.customClass,
                 dispatches: el?.dispatches,
                 scheduleId: el?.scheduleId,
-                crews: el?.crews
+                crews: el?.crews,
+                pliId: el.pliId,
+                type: el.type,
+                elevationLabel: el.elevationLabel,
+
             })
         });
         return tasksTemp;
@@ -54,14 +59,18 @@ const GlobalStateProvider = ({ children }) => {
                                 obj.push({
                                     id: `${x?.label} ${s?.elevationLabel} PLI ${item.id}`,
                                     dependencies: item.id === 1 ? "" : `${x?.label} ${s?.elevationLabel} PLI ${item.id - 1},`,
-                                    label: `${x?.label} - ${s?.elevationLabel} - PLI ${item?.id}`,
+                                    mergeLabel: `${x?.label} - ${s?.elevationLabel} - PLI ${item?.id}`,
                                     dayId: item?.days,
                                     scheduleDays: v?.scheduleDays,
+                                    label: x.label,
+                                    elevationLabel: s.elevationLabel,
                                     progress: item?.totalProgress,
                                     customClass: s?.type,
                                     dispatches: v?.dispatches,
                                     scheduleId: v.scheduleId,
-                                    crews: v?.crews
+                                    crews: v?.crews,
+                                    pliId: item.id,
+                                    type: s.type
                                 })
                             })
                         })
@@ -75,50 +84,11 @@ const GlobalStateProvider = ({ children }) => {
 
     console.log(state)
 
-    const handleAddTask = (taskObject) => {
-        const labels = [...state.labels, taskObject.day]; //adds a new label
-        setState({ ...state, tasks: [...state.tasks, taskObject], labels });
-    };
-
-    const handleUpdate = (taskObject) => {
-        console.log(taskObject)
-        state.tasks[state.tasks.findIndex(el => el.id === taskObject.id)] = taskObject;
-        setState(state);
-    };
-
-    // const updatePosition = (task, start, end) => {
-    //     alert("update position")
-    //     console.log("130", state?.tasks?.map?.((x) => x?.filter((fl) => fl.name !== task.name)))
-    //     console.log(task, start, end)
-    //     const temp = state?.tasks?.filter?.(x => x.name !== task.name)
-    //     console.log(temp)
-    //     console.log(task)
-    //     const t = { ...task, start, end }
-    //     console.log(t)
-    //     setState({ ...state, tasks: [...temp, t] })
-    //     const tasks = [...state.tasks];
-    //     const index = tasks.findIndex((x) => x.id === task.id);
-    //     tasks[index].start = start;
-    //     tasks[index].end = end;
-    //     setState({ ...state, tasks });
-    //     console.log(state)
-    // };
-
-    // const handleDeleteTask = (index) => {
-    //      console.log("this is the task object")
-    //      console.log(taskObject)
-    //     setState(prev => {
-    //         prev.labels.splice(index, 1)
-    //         prev.tasks.splice(index, 1)
-    //         return { ...prev }
-    //     })
-    // };
-
     useEffect(() => {
         if (!!state) {
             daysInfo()
             const label = dataLabel()
-            const labels = label?.map?.(e => e.label)
+            const labels = label?.map?.(e => e.mergeLabel)
             const tasks = dataSchedule()
             setState({ ...state, tasks, labels });
         }
@@ -126,7 +96,7 @@ const GlobalStateProvider = ({ children }) => {
 
     return (
         <GlobalContext.Provider
-            value={{ ...state, handleAddTask, setState, handleUpdate }}
+            value={{ ...state, setState }}
         >
             {children}
         </GlobalContext.Provider>

@@ -1,0 +1,17 @@
+.ant-modal-body {
+  display: flex;
+  flex-direction: column;
+
+  .filterBody {
+    display: flex;
+    flex-direction: row;
+  }
+  .filterFooter {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ant-select.ant-select-single.ant-select-show-arrow {
+    width: 150px;
+  }
+}
