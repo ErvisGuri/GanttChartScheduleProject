@@ -1,17 +1,107 @@
-.ant-modal-body {
-  display: flex;
-  flex-direction: column;
+.ant-modal.filerModal {
+  width: 1000px !important;
+  font-family: "Open Sans";
 
-  .filterBody {
-    display: flex;
-    flex-direction: row;
-  }
-  .filterFooter {
-    display: flex;
-    flex-direction: row;
+  .ant-modal-content {
+    border-radius: 10px;
   }
 
-  .ant-select.ant-select-single.ant-select-show-arrow {
-    width: 150px;
+  .ant-modal-header {
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #f5f5f7 0% 0% no-repeat padding-box !important;
+    font-family: "Open Sans";
+
+    .ant-modal-close-x {
+      font-size: 24px !important;
+      padding: 16px !important;
+      color: #000000;
+    }
+  }
+
+  .ant-modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px;
+    font-family: "Open Sans";
+
+    .filterBody {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      .labelFilter {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        gap: 2px;
+      }
+      .elevationLabelFilter {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .pliFilter {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .typeFilter {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+
+    .filterFooter {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 5px;
+
+      .ganttFilterBtn {
+        width: 80px;
+        background-color: #1264a3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      .ganttClearFilterBtn {
+        width: 100px;
+        background-color: #f5f5f7;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+
+    .ant-select.ant-select-single.ant-select-show-arrow {
+      width: 190px;
+    }
+  }
+  span.ant-select-arrow {
+    display: none;
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background: #f5f5f7 0% 0% no-repeat padding-box !important;
+    border: none !important;
+    border-radius: 5px !important;
+  }
+  .ant-row,
+  .ant-row:after,
+  .ant-row:before {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-weight: 500;
+  }
+  .ant-form-item-label > label {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+  }
+
+  .ant-form-item-label > label:after {
+    content: none !important;
   }
 }

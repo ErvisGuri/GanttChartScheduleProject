@@ -1,102 +1,77 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { Button, Modal, Select } from "antd";
+import { Form } from "antd";
 import "./FilterModal.scss";
 import { GlobalContext } from "../../../stateManagement/Contexts/GlobalStateProvider";
 import { label, elevationLabel, type, pliId } from "../../../dummy-data";
+import { intersection } from "lodash";
 const { Option } = Select;
+const { Item } = Form;
 
-export const FilterModal = ({ setVisibleFilter, visibleFilter }) => {
+export const FilterModal = ({
+  filterTask,
+  setFilterTask,
+  setVisibleFilter,
+  visibleFilter,
+}) => {
   const globalCTX = useContext(GlobalContext);
-  const [selectedLabel, setSelectedLabel] = useState(null);
-  const [selectedElLabel, setSelectedElLabel] = useState(null);
-  const [selectedPLI, setSelectedPLI] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
-  const [filterTask, setFilterTask] = useState(globalCTX);
+  const [form] = Form.useForm();
 
-  const handleChangeLabel = (event) => {
-    setSelectedLabel(event);
+  const clearInputSelected = () => {
+    form.resetFields();
   };
-  const handleChangeElLabel = (event) => {
-    setSelectedElLabel(event);
-  };
-  const handleChangePLI = (event) => {
-    setSelectedPLI(event);
-  };
-  const handleChangeType = (event) => {
-    setSelectedType(event);
-  };
-
-  console.log(globalCTX);
 
   const handleChangeFilter = () => {
-    const labelFilter = globalCTX?.tasks?.filter?.((el) => {
-      if (
-        !!selectedLabel &&
-        !!selectedElLabel &&
-        !!selectedPLI &&
-        !!selectedType
-      ) {
-        return (
-          el?.label === selectedLabel &&
-          el?.elevationLabel === selectedElLabel &&
-          el?.pliId === selectedPLI &&
-          selectedType === el?.type
-        );
-      } else if (!!selectedElLabel && !!selectedPLI && !!selectedType) {
-        return (
-          el?.elevationLabel === selectedElLabel &&
-          el?.pliId === selectedPLI &&
-          selectedType === el?.type
-        );
-      } else if (!!selectedPLI && !!selectedType) {
-        return el?.pliId === selectedPLI && selectedType === el?.type;
-      } else if (!!selectedType) {
-        return selectedType === el?.type;
-      }
+    const values = form.getFieldsValue();
+    const labelFilterOne = globalCTX?.tasks?.filter?.(
+      (el) => el.label === values.labelSelect
+    );
+    const labelFilterTwo = globalCTX?.tasks?.filter?.(
+      (el) => el.pliId === parseInt(values.pliSelect)
+    );
+    const labelFilterThree = globalCTX?.tasks?.filter?.(
+      (el) => el.type === values.typeSelect
+    );
+    const labelFilterFour = globalCTX?.tasks?.filter?.(
+      (el) => el.elevationLabel === values.elevationLabel
+    );
+    const intersectOne =
+      labelFilterOne.length && labelFilterThree.length
+        ? intersection(labelFilterOne, labelFilterThree)
+        : labelFilterOne.length
+        ? labelFilterOne
+        : labelFilterThree.length
+        ? labelFilterThree
+        : [];
+    const intersectTwo =
+      labelFilterTwo.length && labelFilterFour.length
+        ? intersection(labelFilterTwo, labelFilterFour)
+        : labelFilterTwo.length
+        ? labelFilterTwo
+        : labelFilterFour.length
+        ? labelFilterFour
+        : [];
+    setFilterTask(() => {
+      return intersectOne.length && intersectTwo.length
+        ? intersection(intersectOne, intersectTwo)
+        : intersectOne.length
+        ? intersectOne
+        : intersectTwo.length
+        ? intersectTwo
+        : [];
     });
-
-    // const ElLabelFilter = globalCTX?.tasks?.filter?.(
-    //   (el) => el?.elevationLabel === selectedElLabel
-    // );
-    // const typeFilter = globalCTX?.tasks?.filter?.(
-    //   (el) => el?.type === selectedType
-    // );
-    // const pliIdFilter = globalCTX?.tasks?.filter?.(
-    //   (el) => el?.pliId === selectedPLI
-    // );
-
-    let search = {
-      deleted: globalCTX.deleted,
-      labels: globalCTX.labels,
-      mode: globalCTX.mode,
-      setState: globalCTX.setState,
-      state: globalCTX.state,
-      tasks: {},
-    };
-    console.log(labelFilter);
-    // console.log(ElLabelFilter);
-    // console.log(typeFilter);
-    // console.log(pliIdFilter);
-
-    const filter = () => {
-      const de = globalCTX.setState({});
-    };
-
-    selectedLabel !== undefined ||
-    selectedLabel !== "" ||
-    selectedLabel !== null
-      ? setFilterTask(filter)
-      : setFilterTask(globalCTX.state);
   };
 
-  // console.log(globalCTX);
-  // console.log(selectedLabel, selectedElLabel, selectedPLI, selectedType);
+  console.log(filterTask);
 
   const handleOnclick = () => {
+    console.log("asfasf", form.getFieldsValue());
     handleChangeFilter();
     setVisibleFilter(false);
   };
+
+  console.log("form", form.getFieldsValue());
 
   return (
     <>
@@ -106,53 +81,81 @@ export const FilterModal = ({ setVisibleFilter, visibleFilter }) => {
         className="filerModal"
         visible={visibleFilter}
         footer={null}
-        destroyOnClose
+        title="Gantt Filters"
         width="680px"
       >
-        <div className="filterBody">
-          <div className="labelFilter">
-            <Select onChange={handleChangeLabel} placeholder="Label">
-              {label?.map?.((x, i) => (
-                <Option key={i} value={x}>
-                  {x}
+        <Form form={form} onFinish={handleOnclick} className="filterBody">
+          <Item name="labelSelect" label="Label">
+            <Select
+              allowClear
+              className="labelSelect"
+              placeholder="
+                Choose options..."
+            >
+              {label?.map?.((label, i) => (
+                <Option key={label + i} value={label}>
+                  {label}
                 </Option>
               ))}
             </Select>
-          </div>
-          <div className="elevationLabelFilter">
-            <Select onChange={handleChangeElLabel} placeholder="ElevationLabel">
-              {elevationLabel?.map?.((x, i) => (
-                <Option key={i} value={x}>
-                  {x}
+            {/* </div> */}
+          </Item>
+          <Item name={"elevationLabel"} label="Elevation Label">
+            <Select
+              allowClear
+              className="elevationSelect"
+              placeholder="
+              Choose options..."
+            >
+              {elevationLabel?.map?.((elLabel, i) => (
+                <Option key={elLabel + i} value={elLabel}>
+                  {elLabel}
                 </Option>
               ))}
             </Select>
-          </div>
-          <div className="pliFilter">
-            <Select onChange={handleChangePLI} placeholder="PLI">
-              {pliId?.map?.((x, i) => (
-                <Option key={i} value={x}>
-                  {x}
+          </Item>
+          <Item name={"pliSelect"} label="PLI Number">
+            <Select
+              allowClear
+              className="pliSelect"
+              placeholder="
+              Choose options..."
+            >
+              {pliId?.map?.((pli, i) => (
+                <Option key={pli + i} value={pli}>
+                  {pli}
                 </Option>
               ))}
             </Select>
-          </div>
-          <div className="typeFilter">
-            <Select onChange={handleChangeType} placeholder="type">
-              {type?.map?.((x, i) => (
-                <Option key={i} value={x}>
-                  {x}
+          </Item>
+          <Item name={"typeSelect"} label="Type">
+            <Select
+              allowClear
+              className="typeSelect"
+              placeholder="
+              Choose options..."
+            >
+              {type?.map?.((type, i) => (
+                <Option key={type + i} value={type}>
+                  {type}
                 </Option>
               ))}
             </Select>
-          </div>
-        </div>
+          </Item>
+        </Form>
         <div className="filterFooter">
           <div>
-            <Button>Clear</Button>
+            <Button
+              className="ganttClearFilterBtn"
+              onClick={clearInputSelected}
+            >
+              Clear Filter
+            </Button>
           </div>
           <div>
-            <Button onClick={handleOnclick}>Submit</Button>
+            <Button className="ganttFilterBtn" onClick={handleOnclick}>
+              Filter
+            </Button>
           </div>
         </div>
       </Modal>

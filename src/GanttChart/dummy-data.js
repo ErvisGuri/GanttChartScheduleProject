@@ -8,7 +8,7 @@ export const elevationLabel =
 
 export const pliId = ["1", "2", '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 
-export const type = ['Repair', 'Removal', 'Installation', 'dual', 'single']
+export const type = ['Repair', 'Removal', 'Installation']
 
 export const crews =
 {
@@ -4069,7 +4069,7 @@ export const dummyData =
                                     "to": 12,
                                     "totalHeight": 130,
                                     "totalPrice": 311520,
-                                    "type": "dual",
+                                    "type": "Repair",
                                     "undergroundHeight": "0",
                                     "width": "8"
                                 }
@@ -5722,7 +5722,7 @@ export const dummyData =
                                     "to": 9,
                                     "totalHeight": 90,
                                     "totalPrice": 255500,
-                                    "type": "dual",
+                                    "type": "Repair",
                                     "undergroundHeight": "0",
                                     "width": "7.5"
                                 }
@@ -13183,7 +13183,7 @@ export const dummyData =
                                     "to": 10,
                                     "totalHeight": 90,
                                     "totalPrice": 179500,
-                                    "type": "single",
+                                    "type": "Removal",
                                     "undergroundHeight": "0",
                                     "width": "4.91"
                                 }

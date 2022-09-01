@@ -42,7 +42,6 @@ const GlobalStateProvider = ({ children }) => {
                 pliId: el.pliId,
                 type: el.type,
                 elevationLabel: el.elevationLabel,
-
             })
         });
         return tasksTemp;
