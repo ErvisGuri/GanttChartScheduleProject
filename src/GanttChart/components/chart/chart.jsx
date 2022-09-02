@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useState, useEffect } from "react";
-import { GlobalContext } from "../../stateManagement/Contexts/GlobalStateProvider";
+import { GlobalContext } from "../../stateManagement/GlobalStateProvider";
 import { FrappeGantt } from "frappe-gantt-react";
 import { FilterModal } from "./FilterModal/FilterModal";
 
@@ -9,7 +9,7 @@ import "antd/dist/antd.min.css";
 
 // importing antd components
 import { FilterFilled, SearchOutlined } from "@ant-design/icons";
-import { Card, Input } from "antd";
+import { Card, Input, Button } from "antd";
 import { Stepper } from "../Stepper";
 import { statusTitle } from "../Stepper/utils/statusTitle";
 import ScheduleDetailsModal from "../Schedule/MainModal";
@@ -79,16 +79,15 @@ function Chart() {
     }
   };
 
-  console.log(searchTasks);
+  // console.log(searchTasks);
 
   useEffect(() => {
-    // console.log("here");
     if (!!globalCTX) {
       setSearchTasks(globalCTX?.tasks);
     }
   }, [globalCTX.tasks]);
 
-  console.log("sfasf", filterTask);
+  // console.log("sfasf", filterTask);
 
   return (
     <div className="chart">
@@ -101,10 +100,18 @@ function Chart() {
             <Search
               allowClear
               prefix={<SearchOutlined />}
-              placeholder="search"
+              placeholder="Search"
               onChange={(e) => handleChangeSearch(e)}
             />
-            <FilterFilled onClick={() => onClickFilter()} />
+            <div>
+              <Button
+                className="ganttFilterBtn"
+                onClick={() => onClickFilter()}
+                icon={<FilterFilled />}
+              >
+                Apply Data
+              </Button>
+            </div>
           </div>
         </div>
         <div className="stepperDiv">

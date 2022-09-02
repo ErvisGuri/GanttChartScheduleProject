@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "antd": "^4.19.0",
     "frappe-gantt-react": "^0.2.2",
     "install": "^0.13.0",

@@ -1,5 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { dummyData } from '../../dummy-data'
+import { dummyData } from '../dummy-data'
+import { crews } from "../dummy-data";
+
+import moment from "moment"
 
 export const GlobalContext = createContext({});
 
@@ -16,7 +19,6 @@ const GlobalStateProvider = ({ children }) => {
         dummyData?.map(e => e.scheduleDays.map(day => {
             temp[day.id] = day
         }))
-        console.log(temp)
         return temp;
     }
 
@@ -28,20 +30,20 @@ const GlobalStateProvider = ({ children }) => {
             tasksTemp.push({
                 start: allDays[el?.dayId?.[0]]?.startDate,
                 end: allDays[el?.dayId?.[el?.dayId?.length - 1]]?.endDate,
-                progress: el.progress,
-                scheduleDays: el.scheduleDays,
-                name: el.mergeLabel,
-                label: el.label,
-                dependencies: el.dependencies,
-                dayId: el.dayId,
-                id: el.id,
+                progress: el?.progress,
+                scheduleDays: el?.scheduleDays,
+                name: el?.mergeLabel,
+                label: el?.label,
+                dependencies: el?.dependencies,
+                dayId: el?.dayId,
+                id: el?.id,
                 custom_class: el?.customClass,
                 dispatches: el?.dispatches,
                 scheduleId: el?.scheduleId,
                 crews: el?.crews,
-                pliId: el.pliId,
-                type: el.type,
-                elevationLabel: el.elevationLabel,
+                pliId: el?.pliId,
+                type: el?.type,
+                elevationLabel: el?.elevationLabel,
             })
         });
         return tasksTemp;
@@ -57,19 +59,19 @@ const GlobalStateProvider = ({ children }) => {
                             s?.items?.map(item => {
                                 obj.push({
                                     id: `${x?.label} ${s?.elevationLabel} PLI ${item.id}`,
-                                    dependencies: item.id === 1 ? "" : `${x?.label} ${s?.elevationLabel} PLI ${item.id - 1},`,
+                                    dependencies: item?.id === 1 ? "" : `${x?.label} ${s?.elevationLabel} PLI ${item.id - 1},`,
                                     mergeLabel: `${x?.label} - ${s?.elevationLabel} - PLI ${item?.id}`,
                                     dayId: item?.days,
-                                    scheduleDays: v?.scheduleDays,
-                                    label: x.label,
-                                    elevationLabel: s.elevationLabel,
+                                    pliId: item?.id,
                                     progress: item?.totalProgress,
+                                    label: x?.label,
+                                    elevationLabel: s?.elevationLabel,
                                     customClass: s?.type,
+                                    type: s?.type,
                                     dispatches: v?.dispatches,
-                                    scheduleId: v.scheduleId,
+                                    scheduleId: v?.scheduleId,
                                     crews: v?.crews,
-                                    pliId: item.id,
-                                    type: s.type
+                                    scheduleDays: v?.scheduleDays,
                                 })
                             })
                         })
@@ -77,18 +79,14 @@ const GlobalStateProvider = ({ children }) => {
                 })
             })
         })
-        console.log(obj)
         return obj;
     }
-
-    console.log(state)
 
     useEffect(() => {
         if (!!state) {
             daysInfo()
-            const label = dataLabel()
-            const labels = label?.map?.(e => e.mergeLabel)
             const tasks = dataSchedule()
+            const labels = tasks?.map(e => e?.name)
             setState({ ...state, tasks, labels });
         }
     }, [state.mode, state.deleted]);

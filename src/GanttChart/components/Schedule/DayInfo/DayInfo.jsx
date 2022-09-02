@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../MainModal/modal.scss";
 import moment from "moment";
 import { Card, Badge } from "antd";
+import { Driver, Truck } from "../../../../assets/DispatchIcons";
 import {
   BigRain,
   ChanceRain,
@@ -15,6 +16,7 @@ import {
 import _ from "lodash";
 import { crews } from "../../../dummy-data";
 import { dummyData } from "../../../dummy-data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DayInfo = ({ selectedTask }) => {
   const [data, setData] = useState("");
@@ -73,7 +75,6 @@ const DayInfo = ({ selectedTask }) => {
     dummyData.map((el) => {
       el?.crews?.map((td) => {
         if (td.crewId === crews?.crewId) {
-          console.log("td", td);
           sr.push({
             ...td,
             members: crews.members,
@@ -95,7 +96,10 @@ const DayInfo = ({ selectedTask }) => {
     setData(crew);
   }, [selectedTask]);
 
-  console.log(selectedTask);
+  // console.log("selectedTask", selectedTask);
+
+  const cre = selectedTask?.crews?.map((el) => el.startDate);
+  console.log(cre);
 
   return (
     <div className="dayInfo-container">
@@ -106,7 +110,6 @@ const DayInfo = ({ selectedTask }) => {
           });
         })
         ?.map?.((el, i) => {
-          console.log(el);
           return (
             <div className="cardContent" key={i}>
               <Card
@@ -134,12 +137,12 @@ const DayInfo = ({ selectedTask }) => {
                     <b>Notes: </b>
                     {el.notes}
                   </div>
-                  <div>
+                  <div className="dayCardProgress">
                     <b>Progress: </b>
                     {`${selectedTask?.progress}%`}
                   </div>
                   <div className="dayCardTime">
-                    New York: {""}
+                    <b>New York: </b>
                     <time className="dayTime">
                       {moment(el.weather[1].endTime).format("HH:mm")}
                     </time>
@@ -148,25 +151,39 @@ const DayInfo = ({ selectedTask }) => {
                     <div className="weatherIcon">
                       {weatherIcon(el.weather[1].shortForecast)}
                     </div>
-                    <span className="weatherTemp">{`${
-                      el.weather[1].temperature
-                    } ℉ ${""} `}</span>
+                    <span className="weatherTemp">{`${el.weather[1].temperature} ℉`}</span>
                     <span> {` Wind Speed: ${el.weather[1].windSpeed}`}</span>
                   </div>
-                  {selectedTask?.dispatches?.map?.((el, i) => {
-                    console.log(el);
+                  {selectedTask?.dispatches
+                    ?.filter(
+                      (ds) =>
+                        moment(ds.dispatchDate).format("MM/DD/YYYY") ===
+                        moment(el?.startDate).format("MM/DD/YYYY")
+                    )
+                    ?.map?.((dispac, i) => {
+                      return (
+                        <div className="dispatchDiv" key={i}>
+                          <div className="driverDiv">
+                            <Driver />
+                            <div className="driverName">
+                              {dispac.driverName}
+                            </div>
+                          </div>
+                          <div className="fleetDiv">
+                            <Truck />
+                            <div className="fleetName">{dispac.fleetName}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  {data.crews?.filter((cr, i) => {
                     return (
                       <div key={i}>
-                        <div className="driverName">{el.driverName}</div>
-                        <div className="fleetName">{el.fleetName}</div>
-                      </div>
-                    );
-                  })}
-                  {data.map?.((el, i) => {
-                    return (
-                      <div key={i}>
-                        <div>{el?.foreman}</div>
-                        <div>{el?.members}</div>
+                        <div className="foremanDiv">
+                          <span className="foremanIcon">Supervisor</span>
+                          <div>{cr?.foreman}</div>
+                        </div>
+                        <div className="memebersDiv">{cr?.members}</div>
                       </div>
                     );
                   })}

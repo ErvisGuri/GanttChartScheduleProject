@@ -3,14 +3,13 @@ import React, { useContext } from "react";
 import { Button, Modal, Select } from "antd";
 import { Form } from "antd";
 import "./FilterModal.scss";
-import { GlobalContext } from "../../../stateManagement/Contexts/GlobalStateProvider";
+import { GlobalContext } from "../../../stateManagement/GlobalStateProvider";
 import { label, elevationLabel, type, pliId } from "../../../dummy-data";
 import { intersection } from "lodash";
 const { Option } = Select;
 const { Item } = Form;
 
 export const FilterModal = ({
-  filterTask,
   setFilterTask,
   setVisibleFilter,
   visibleFilter,
@@ -22,6 +21,7 @@ export const FilterModal = ({
     form.resetFields();
   };
 
+  // Filter function
   const handleChangeFilter = () => {
     const values = form.getFieldsValue();
     const labelFilterOne = globalCTX?.tasks?.filter?.(
@@ -63,15 +63,10 @@ export const FilterModal = ({
     });
   };
 
-  console.log(filterTask);
-
   const handleOnclick = () => {
-    console.log("asfasf", form.getFieldsValue());
     handleChangeFilter();
     setVisibleFilter(false);
   };
-
-  console.log("form", form.getFieldsValue());
 
   return (
     <>
@@ -85,63 +80,70 @@ export const FilterModal = ({
         width="680px"
       >
         <Form form={form} onFinish={handleOnclick} className="filterBody">
-          <Item name="labelSelect" label="Label">
-            <Select
-              allowClear
-              className="labelSelect"
-              placeholder="
-                Choose options..."
+          <div className="columBodyFilter">
+            <Item name="labelSelect" label="Label" labelAlign="left">
+              <Select
+                allowClear
+                className="labelSelect"
+                placeholder="
+                Choose label"
+              >
+                {label?.map?.((label, i) => (
+                  <Option key={label + i} value={label}>
+                    {label}
+                  </Option>
+                ))}
+              </Select>
+            </Item>
+            <Item name={"pliSelect"} label="PLI Number" labelAlign="left">
+              <Select
+                allowClear
+                className="pliSelect"
+                placeholder="
+              Choose PLI number"
+              >
+                {pliId?.map?.((pli, i) => (
+                  <Option key={pli + i} value={pli}>
+                    {pli}
+                  </Option>
+                ))}
+              </Select>
+            </Item>
+          </div>
+          <div className="columBodyFilter">
+            <Item
+              name={"elevationLabel"}
+              label="Elevation Label"
+              labelAlign="left"
             >
-              {label?.map?.((label, i) => (
-                <Option key={label + i} value={label}>
-                  {label}
-                </Option>
-              ))}
-            </Select>
-            {/* </div> */}
-          </Item>
-          <Item name={"elevationLabel"} label="Elevation Label">
-            <Select
-              allowClear
-              className="elevationSelect"
-              placeholder="
-              Choose options..."
-            >
-              {elevationLabel?.map?.((elLabel, i) => (
-                <Option key={elLabel + i} value={elLabel}>
-                  {elLabel}
-                </Option>
-              ))}
-            </Select>
-          </Item>
-          <Item name={"pliSelect"} label="PLI Number">
-            <Select
-              allowClear
-              className="pliSelect"
-              placeholder="
-              Choose options..."
-            >
-              {pliId?.map?.((pli, i) => (
-                <Option key={pli + i} value={pli}>
-                  {pli}
-                </Option>
-              ))}
-            </Select>
-          </Item>
-          <Item name={"typeSelect"} label="Type">
-            <Select
-              allowClear
-              className="typeSelect"
-              placeholder="
-              Choose options..."
-            >
-              {type?.map?.((type, i) => (
-                <Option key={type + i} value={type}>
-                  {type}
-                </Option>
-              ))}
-            </Select>
-          </Item>
+              <Select
+                allowClear
+                className="elevationSelect"
+                placeholder="
+              Choose elevation label"
+              >
+                {elevationLabel?.map?.((elLabel, i) => (
+                  <Option key={elLabel + i} value={elLabel}>
+                    {elLabel}
+                  </Option>
+                ))}
+              </Select>
+            </Item>
+            <Item name={"typeSelect"} label="Type" labelAlign="left">
+              <Select
+                allowClear
+                className="typeSelect"
+                placeholder="
+              Choose type"
+              >
+                {type?.map?.((type, i) => (
+                  <Option key={type + i} value={type}>
+                    {type}
+                  </Option>
+                ))}
+              </Select>
+            </Item>
+          </div>
         </Form>
         <div className="filterFooter">
           <div>
@@ -154,7 +156,7 @@ export const FilterModal = ({
           </div>
           <div>
             <Button className="ganttFilterBtn" onClick={handleOnclick}>
-              Filter
+              Apply Filters
             </Button>
           </div>
         </div>

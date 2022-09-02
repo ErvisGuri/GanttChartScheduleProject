@@ -148,7 +148,7 @@ export const dummyData =
             }],
             "dispatches": [{
                 "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
-                "dispatchDate": 1661749200000,
+                "dispatchDate": 1656673200492,
                 "driverId": "47a081f0-174f-11ed-ae73-55fa3280f089",
                 "driverName": "MATTHEW CHADHA",
                 "fleetId": "08838610-17ff-11ed-a268-bf71c53aa781",
@@ -171,7 +171,7 @@ export const dummyData =
             },
             {
                 "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
-                "dispatchDate": 1661749200000,
+                "dispatchDate": 1656759600492,
                 "driverId": "2f5c17a0-17d9-11ed-85af-a1ff9e51a50b",
                 "driverName": "ELDRIDGE T. MITCHELL",
                 "fleetId": "08e0db90-17ef-11ed-bfa7-63371644bf2e",
@@ -194,7 +194,7 @@ export const dummyData =
             },
             {
                 "scheduleId": "257d97f0-f7b2-11ec-9d6d-7f1a8973f0fd",
-                "dispatchDate": 1661749200000,
+                "dispatchDate": 1656846000492,
                 "driverId": "60805a80-17d9-11ed-85af-a1ff9e51a50b",
                 "driverName": "SAUL E. TINOCO",
                 "fleetId": "0b857940-17f0-11ed-bfa7-63371644bf2e",
@@ -4155,7 +4155,7 @@ export const dummyData =
                     "image": "/static/media/PartlyCloudy.74c9c322315923093177.webp",
                     "linkedDays": {},
                     "notes": [],
-                    "startDate": "2022-07-05T11:00:00.554Z",
+                    "startDate": "2022-07-01T11:00:00.554Z",
                     "status": "Confirmed",
                     "weather": [
                         {
