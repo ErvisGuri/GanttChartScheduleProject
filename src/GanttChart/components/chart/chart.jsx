@@ -1,21 +1,18 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import { GlobalContext } from "../../stateManagement/GlobalStateProvider";
 import { FrappeGantt } from "frappe-gantt-react";
-import { FilterModal } from "./FilterModal/FilterModal";
-
+import { FilterModal } from "../FilterModal/FilterModal";
+import CustomSlider from "../Slider/Slider";
 import "./chart.scss";
 import "antd/dist/antd.min.css";
 
 // importing antd components
 import { FilterFilled, SearchOutlined } from "@ant-design/icons";
 import { Card, Input, Button } from "antd";
-import { Stepper } from "../Stepper";
-import { statusTitle } from "../Stepper/utils/statusTitle";
-import ScheduleDetailsModal from "../Schedule/MainModal";
+import ScheduleDetailsModal from "../ScheduleModal";
 
 const { Search } = Input;
-const initials = statusTitle;
 
 function Chart() {
   const globalCTX = useContext(GlobalContext);
@@ -23,8 +20,6 @@ function Chart() {
   const [visibleTask, setVisibleTask] = useState(false);
   const [visibleFilter, setVisibleFilter] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [currentStep, setCurrentStep] = useState(3);
-  const [stepperTitle, setStepperTitle] = useState(initials);
   const [searchTasks, setSearchTasks] = useState(globalCTX?.tasks);
   const [filterTask, setFilterTask] = useState([]);
 
@@ -50,34 +45,10 @@ function Chart() {
     setVisibleTask({ ...visibleTask, show: !visibleTask.show });
   };
 
-  const click = React.useCallback((task) => {
+  const click = useCallback((task) => {
     setSelectedTask(task);
     handleModalTask();
   }, []);
-
-  const handleChange = (value) => {
-    let temp;
-
-    if (value === 0) {
-      temp = "Quarter Day";
-    }
-    if (value === 1) {
-      temp = "Half Day";
-    }
-    if (value === 2) {
-      temp = "Day";
-    }
-    if (value === 3) {
-      temp = "Week";
-    }
-    if (value === 4) {
-      temp = "Month";
-    }
-
-    if (globalCTX !== undefined) {
-      globalCTX.setState({ ...globalCTX, mode: temp });
-    }
-  };
 
   // console.log(searchTasks);
 
@@ -115,14 +86,7 @@ function Chart() {
           </div>
         </div>
         <div className="stepperDiv">
-          <Stepper
-            stepRenderer={false}
-            setCurrentStep={setCurrentStep}
-            onChange={(e) => handleChange(e)}
-            currentStep={currentStep}
-            stepperClassName="formStepper"
-            steps={stepperTitle}
-          />
+          <CustomSlider />
         </div>
       </div>
       <div className="chartLabel">

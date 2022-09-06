@@ -1,6 +1,5 @@
 .ant-modal.filerModal {
   width: 570px !important;
-  font-family: "Open Sans";
 
   .ant-modal-content {
     border-radius: 10px;
@@ -17,13 +16,16 @@
     .ant-modal-title {
       font-weight: 600;
     }
+    .customTitleFilter {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .closeSvgIcon {
+        cursor: pointer;
+      }
+    }
   }
-  .ant-modal-close-x {
-    width: 50px !important;
-    height: 35px !important;
-    font-size: 20px !important;
-    color: #000000 !important;
-  }
+
   .ant-modal-body {
     display: flex;
     flex-direction: column;
@@ -51,16 +53,16 @@
         flex-direction: column;
         gap: 2px;
       }
-      .pliFilter {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
       .typeFilter {
         display: flex;
         flex-direction: column;
         gap: 2px;
       }
+    }
+    .ant-picker-focused,
+    .ant-picker:hover {
+      border-color: none;
+      border-right-width: 1px;
     }
 
     .filterFooter {
@@ -90,7 +92,9 @@
       width: 255px;
     }
   }
-
+  .ant-picker.ant-picker-range.ant-picker-status-success.RangeDateFilter {
+    background: #f5f5f7 0% 0% no-repeat padding-box !important;
+  }
   .ant-modal.filerModal .ant-row,
   .ant-modal.filerModal .ant-row:after,
   .ant-modal.filerModal .ant-row:before {
@@ -120,10 +124,28 @@
     font-size: 16px !important;
     font-weight: 600 !important;
     font-family: "Open Sans";
-    margin-left: 15px;
+    margin-left: 10px;
   }
 
   .ant-form-item-label > label:after {
     content: none !important;
   }
+}
+
+// RangeDate Design
+.ant-picker.ant-picker-range.RangeDateFilter {
+  background: #f5f5f7 0% 0% no-repeat padding-box !important;
+  border: none !important;
+  span.anticon.anticon-swap-right {
+    color: black;
+  }
+  span.anticon.anticon-calendar {
+    color: black;
+  }
+  .ant-picker-active-bar {
+    background: #f5f5f7 !important;
+  }
+}
+.ant-picker.ant-picker-range.RangeDateFilter.ant-picker-focused {
+  box-shadow: none !important;
 }

@@ -1,14 +1,7 @@
-export const label = [
+export const labelOption = [
     "Sidewalk Shed", "Stair Tower", "Plywood Enclosure", "Debris Chute", "Scaffold", "Hoist", "Barriers", "Overhead Protection", "Needle Beam ", "Roof Protection",
 ]
 
-export const elevationLabel =
-    ['Along East', 'Along West', 'Along North', 'Along South', 'Along West 29th Street (South)', 'Along Weeks Avenue (Front Elevation -West)', 'Along Weeks Avenue - West', 'Along Right Elevation – South', 'Along Left Elevation - North', 'Along Right Elevation - South', 'Along Rear Elevation - East', 'Around Bulkhead', 'Along Grand Concourse (East)', 'Along Bush Street (South)', 'Along West Elevation (165 Bush Street)', 'Along Right-Side Façade (East)', 'Along West Elevation', 'Along North Elevation', 'Along North Elevation (2021 Grand Concourse)', 'Along Test'
-    ]
-
-export const pliId = ["1", "2", '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-
-export const type = ['Repair', 'Removal', 'Installation']
 
 export const crews =
 {
