@@ -1,0 +1,82 @@
+.ant-slider.SliderView.ant-slider-horizontal.ant-slider-with-marks {
+  height: 28px;
+  //   background: #e3e3e3 !important;
+
+  border-radius: 20px;
+  .ant-slider-rail {
+    background: #e3e3e3 !important;
+    height: 120px;
+    margin-top: -47px;
+    border-bottom-left-radius: 78%;
+    border-top-left-radius: 80%;
+    border-top-right-radius: 73%;
+    border-bottom-right-radius: 86%;
+    clip-path: polygon(0% 46.5%, 100% 33%, 100% 59.75%, 0% 54%) !important;
+  }
+  .ant-slider-track {
+    display: none !important;
+    background: #e3e3e3 !important;
+    clip-path: polygon(0% 42.25%, 100% 30%, 100% 67.25%, 0% 54%);
+  }
+  .ant-slider-handle {
+    margin-top: -3px !important;
+    background-color: black;
+    border: none;
+    width: 26px !important;
+    height: 26px !important;
+    box-shadow: none !important;
+  }
+  .ant-slider-mark {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    font-size: 16px;
+    font-family: "Open Sans";
+  }
+  .ant-slider-step {
+    display: none !important;
+    background: transparent;
+  }
+  //   span.ant-slider-mark-text.ant-slider-mark-text-active {
+  //     margin-left: 37px;
+  //   }
+}
+
+.ant-slider.SliderView.ant-slider-horizontal.ant-slider-with-marks
+  .ant-slider-handle {
+  margin-left: -10px;
+}
+
+.ant-slider.SliderView.ant-slider-horizontal.ant-slider-with-marks
+  .ant-slider-mark {
+  :first-child {
+    left: 1.2% !important;
+  }
+  :nth-child(2) {
+    left: 24% !important;
+  }
+  :nth-child(3) {
+    left: 49.2% !important;
+  }
+  :nth-child(4) {
+    left: 74% !important;
+  }
+  :last-child {
+    left: 99% !important;
+  }
+}
+
+.ant-slider.SliderView.ant-slider-horizontal.ant-slider-with-marks
+  .ant-slider-handle {
+  :last-child {
+    left: 90% !important;
+  }
+}
+
+.slider-test {
+  width: 97%;
+  margin-left: 25px;
+  //   display: flex;
+  //   justify-content: center;
+}

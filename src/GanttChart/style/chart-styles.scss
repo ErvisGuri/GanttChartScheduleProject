@@ -1,7 +1,5 @@
-@import "./styles.scss";
-//
-$bar-color: #c0eaae !default;
-$bar-stroke: #71cf48 !default;
+$bar-color: #c0eaae;
+$bar-stroke: #71cf48;
 $border-color: #f8fafa !default;
 $light-bg: #f8fafa !default;
 $light-border-color: white !default;
@@ -14,14 +12,15 @@ $handle-color: #f8fafa !default;
 $arrowWidth: 2px;
 
 .gantt {
+  font-family: "Open Sans";
   .grid-background {
     fill: none;
   }
   .grid-header {
-    fill: #f8f8fa;
+    fill: #e3e3e3;
     stroke: $border-color;
     stroke-width: 1.4;
-    // font-family: sans-serif !important;
+    font-family: "Open Sans";
   }
   .grid-row {
     fill: #ffffff;
@@ -34,7 +33,7 @@ $arrowWidth: 2px;
     stroke: $light-border-color;
   }
   .tick {
-    stroke: $border-color;
+    stroke: #bfbfbf;
     stroke-width: 0.2;
     &.thick {
       stroke-width: 0.4;
@@ -72,10 +71,11 @@ $arrowWidth: 2px;
     }
   }
   .bar-label {
+    display: flex;
     fill: #fff;
     dominant-baseline: central;
     text-anchor: middle;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: lighter;
 
     &.big {
@@ -99,36 +99,11 @@ $arrowWidth: 2px;
     .bar-group {
       border-radius: 2px;
     }
-
-    &:hover {
-      .bar {
-        fill: darken($bar-color, 5);
-      }
-      .bar-progress {
-        fill: darken($bar-stroke, 5);
-      }
-
-      .handle {
-        width: 10px;
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-
-    &.active {
-      .bar {
-        fill: darken($bar-color, 5);
-      }
-
-      .bar-progress {
-        fill: darken($primary-dark, 5);
-      }
-    }
   }
 
   .lower-text,
   .upper-text {
-    font-size: 12px;
+    font-size: 15px;
     font-family: "Open Sans";
     text-anchor: middle;
   }
@@ -177,4 +152,68 @@ $arrowWidth: 2px;
       border-top-color: rgba(0, 0, 0, 0.1);
     }
   }
+}
+
+// Custom_class
+.Installation .bar {
+  fill: #c1ebaf !important;
+  &:hover {
+    fill: #c1ebaf !important;
+  }
+}
+
+.Installation .bar-progress {
+  fill: #71cf48 !important;
+
+  &:hover {
+    fill: #71cf48 !important;
+  }
+}
+
+.Repair .bar {
+  fill: #fce6ad !important;
+
+  &:hover {
+    fill: #fce6ad !important;
+  }
+}
+
+.Repair .bar-progress {
+  fill: #fcc94a !important;
+
+  &:hover {
+    fill: #fcc94a !important;
+  }
+}
+.Removal .bar {
+  fill: #ff9f9e !important;
+
+  &:hover {
+    fill: #ff9f9e !important;
+  }
+}
+
+.Removal .bar-progress {
+  fill: #fe4c4a !important;
+
+  &:hover {
+    fill: #fe4c4a !important;
+  }
+}
+
+// ScrollBar Global Style
+*::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+*::-webkit-scrollbar-thumb {
+  background: #142735 !important;
+  border-radius: 4px !important;
+}
+*::-webkit-scrollbar-thumb:hover {
+  cursor: pointer !important;
 }
