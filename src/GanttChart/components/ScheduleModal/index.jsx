@@ -20,28 +20,13 @@ import {
   Sunny,
 } from "../../../assets/weatherIcons";
 import { Close } from "../../../assets/OtherIcons";
-const initials = {
-  id: "",
-  ids: "",
-  name: "",
-  start: null,
-  end: null,
-  status: "",
-  progress: "",
-  dependencies: "",
-};
 
 function ScheduleDetailsModal(props) {
-  const { open, handleClose, selectedTask, isEdit, setIsEdit } = props;
+  const { open, handleClose, selectedTask } = props;
 
-  const [state, setState] = useState(isEdit ? selectedTask : initials);
-  const [data, setData] = useState([]);
-  const close = () => {
-    setIsEdit(false);
-    setState(initials);
-    handleClose();
-  };
+  const [crewsData, setCrewsData] = useState([]);
 
+  // Status Badge Style Function
   const styleBadge = (e) => {
     switch (e) {
       case "Confirmed":
@@ -57,6 +42,7 @@ function ScheduleDetailsModal(props) {
     }
   };
 
+  //WeatherIcon
   const weatherIcon = (e) => {
     switch (e) {
       case "Chance Rain Showers":
@@ -92,37 +78,36 @@ function ScheduleDetailsModal(props) {
     }
   };
 
+  //Manipulate crews on main schedule object
   const dataMerge = () => {
-    let sr = [];
+    let tempMerge = [];
     selectedTask?.crews?.forEach((td) => {
       if (td.crewId === crews?.crewId) {
-        sr.push({
+        tempMerge.push({
           ...td,
           members: crews.members,
           foreman: crews.foreman,
         });
       }
     });
-    return sr;
+    return tempMerge;
   };
 
   useEffect(() => {
     const crew = dataMerge();
-    // console.log(crew);
-    setData(crew);
+    setCrewsData(crew);
   }, [selectedTask]);
 
-  // console.log("selectedTask", selectedTask);
   return (
     <div className="modal">
       <Modal
-        onCancel={close}
+        onCancel={handleClose}
         centered
         className="task-modal"
         title={
           <div className="customTitleModal">
             <span>{selectedTask?.name}</span>
-            <div onClick={close} className="closeSvgIcon">
+            <div onClick={handleClose} className="closeSvgIcon">
               <Close />
             </div>
           </div>
@@ -212,7 +197,7 @@ function ScheduleDetailsModal(props) {
                             </div>
                           );
                         })}
-                      {data.map((crew, i) => {
+                      {crewsData.map((crew, i) => {
                         return (
                           <div key={crew + i}>
                             <div className="foremanDiv">

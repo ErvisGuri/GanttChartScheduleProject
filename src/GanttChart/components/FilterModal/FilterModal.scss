@@ -30,24 +30,31 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 234px;
+    height: 100%;
     font-family: "Open Sans";
-    padding: 5px 19px 5px 20px;
+    padding: 0 19px 18px 21px;
 
+    .ant-form-item {
+      margin: 0 0 21px !important;
+    }
     .columBodyFilter {
       gap: 20px !important;
     }
 
+    .labelSelect {
+      width: 250px !important;
+      max-height: 58px !important;
+      overflow: auto;
+    }
+    .elevationSelect {
+      width: 250px !important;
+      max-height: 58px !important;
+      overflow: auto;
+    }
     .filterBody {
       display: flex;
       flex-direction: row;
       gap: 20px;
-      .labelFilter {
-        display: flex;
-        flex-direction: column;
-        border: none;
-        gap: 2px;
-      }
       .elevationLabelFilter {
         display: flex;
         flex-direction: column;

@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Modal, Select } from "antd";
-import { Form, DatePicker } from "antd";
+import { Button, Modal, Select, Form, DatePicker } from "antd";
 import "./FilterModal.scss";
 import { GlobalContext } from "../../stateManagement/GlobalStateProvider";
 import { dummyData, labelOption, type } from "../../dummy-data";
-import { intersection } from "lodash";
+import { intersection, isArray, uniq, uniqBy, values } from "lodash";
 import { Close, DropdownIcon } from "../../../assets/OtherIcons";
 import moment from "moment";
-import _ from "lodash";
+
 const { Option } = Select;
 const { Item } = Form;
 const { RangePicker } = DatePicker;
@@ -17,91 +16,157 @@ export const FilterModal = ({
   setFilterTask,
   setVisibleFilter,
   visibleFilter,
+  setActiveFilters,
 }) => {
-  const formatDate = moment().format();
+  const formatDate = "YYYY-MM-DD";
   const globalCTX = useContext(GlobalContext);
   const [form] = Form.useForm();
-  const values = form.getFieldsValue();
+  const [elevationName, setElevationName] = useState([]);
+  const [typeName, setTypeName] = useState([]);
+  const [labelName, setLabelName] = useState([]);
   const [labelItem, setLabelItem] = useState(null);
+  const [typeValue, setTypeValue] = useState(null);
+  const [elevationValue, setElevationValue] = useState(null);
+  const [serviceEnabled, setServiceEnabled] = useState(false);
+  const [elevationEnabled, setElevationEnabled] = useState(false);
+  const [typeEnabled, setTypeEnabled] = useState(false);
   const [rangeDate, setRangeDate] = useState({
     start: null,
     end: null,
   });
 
-  const elevationName = function () {
+  const elevationData = () => {
+    const values = form.getFieldsValue();
     let temp = [];
     dummyData?.map((v) => {
       Object.values(v?.toBeScheduled).flatMap((el) => {
-        el.flatMap?.((x) => {
-          x?.serviceOptions?.map((e) => {
-            e.map((d) => {
-              temp.push({
-                label: x?.label,
-                elevationLabel: d?.elevationLabel,
-                type: d?.type,
+        serviceEnabled
+          ? el
+              .filter((filt) => values.labelSelect.includes(filt.label))
+              .flatMap((x) => {
+                return x?.serviceOptions.map((e) => {
+                  typeEnabled
+                    ? e
+                        .filter((elevationFilt) =>
+                          values.typeSelect.includes(elevationFilt.type)
+                        )
+                        .map((d) => temp.push(d?.elevationLabel))
+                    : e.map((d) => {
+                        temp.push(d?.elevationLabel);
+                      });
+                });
+              })
+          : el.flatMap((x) => {
+              x?.serviceOptions?.map((e) => {
+                e.map((d) => {
+                  temp.push(d?.elevationLabel);
+                });
               });
             });
-          });
+      });
+    });
+    // console.log(temp);
+    return temp;
+  };
+  const typeData = () => {
+    const values = form.getFieldsValue();
+    let typeTemp = [];
+    dummyData?.map((v) => {
+      Object.values(v?.toBeScheduled).flatMap((el) => {
+        serviceEnabled
+          ? el
+              .filter((filt) => values.labelSelect.includes(filt.label))
+              .flatMap((x) => {
+                return x?.serviceOptions?.map((e) => {
+                  elevationEnabled
+                    ? e
+                        .filter((typeFilt) =>
+                          values.elevationName.includes(typeFilt.elevationLabel)
+                        )
+                        .map((d) => typeTemp.push(d?.type))
+                    : e.map((d) => {
+                        typeTemp.push(d?.type);
+                      });
+                });
+              })
+          : el.flatMap?.((x) => {
+              x?.serviceOptions?.map((e) => {
+                e.map((d) => {
+                  typeTemp.push(d?.type);
+                });
+              });
+            });
+      });
+    });
+    // console.log(typeTemp);
+    return typeTemp;
+  };
+  const labelData = () => {
+    let labelTemp = [];
+    dummyData?.map((v) => {
+      Object.values(v?.toBeScheduled).flatMap((el) => {
+        el.flatMap?.((x) => {
+          labelTemp.push(x.label);
         });
       });
     });
-    console.log(temp);
-    return temp;
+    // console.log(labelTemp);
+    return labelTemp;
   };
 
-  const elevationNameData = elevationName();
-  _.uniqBy(elevationNameData, function (e) {
-    return e.label || e.elevationLabel || e.type;
-  });
-
-  useEffect(() => {
-    elevationName();
-  }, [values.labelSelect]);
-
   const clearInputSelected = () => {
-    form.resetFields();
+    // form.resetFields();
+    setRangeDate({});
+    setFilterTask([]);
+    setActiveFilters([]);
+    setVisibleFilter(false);
   };
 
   // Gantt Filter function
   const handleChangeFilter = () => {
-    const dateRangePicker = rangeData();
-    console.log(values);
+    const momentSelectedStartDate = moment(rangeDate.start, "YYYY-MM-DD");
+    const momentSelectedEndDate = moment(rangeDate.end, "YYYY-MM-DD");
+    const values = form.getFieldsValue();
 
-    const dateFilter = dateRangePicker?.filter?.((el) =>
-      !values.RangeDateLabel
-        ? el.start === rangeDate.start && el.end === rangeDate.end
-        : ""
+    const labelFilterRecords = globalCTX?.tasks?.filter?.((el) => {
+      return typeof values.labelSelect !== "undefined" &&
+        isArray(values.labelSelect)
+        ? values.labelSelect.includes(el.label)
+        : el;
+    });
+    const dateFilterRecords = globalCTX?.tasks?.filter?.(
+      (el) =>
+        moment(el.start, "YYYY-MM-DD").isSameOrAfter(momentSelectedStartDate) &&
+        moment(el.end, "YYYY-MM-DD").isSameOrBefore(momentSelectedEndDate)
+    );
+    const typeFilterRecords = globalCTX?.tasks?.filter?.((el) =>
+      typeof values.typeSelect !== "undefined" && isArray(values.typeSelect)
+        ? values.typeSelect.includes(el.type)
+        : el
+    );
+    const elevationFilterRecords = globalCTX?.tasks?.filter((el) =>
+      typeof values.elevationName !== "undefined" &&
+      isArray(values.elevationName)
+        ? values.elevationName.includes(el.elevationLabel)
+        : el
     );
 
-    console.log(dateFilter);
-
-    const labelFilterOne = globalCTX?.tasks?.filter?.(
-      (el) => el.label === values.labelSelect
-    );
-    const labelFilterTwo = globalCTX?.tasks?.filter?.(
-      (el) => el.pliId === parseInt(values.pliSelect)
-    );
-    const labelFilterThree = globalCTX?.tasks?.filter?.(
-      (el) => el.type === values.typeSelect
-    );
-    const labelFilterFour = globalCTX?.tasks?.filter?.(
-      (el) => el.elevationLabel === values.elevationLabel
-    );
+    //Using lodash function to create an array of unique values and filter only selected one
     const intersectOne =
-      labelFilterOne.length && labelFilterThree.length
-        ? intersection(labelFilterOne, labelFilterThree)
-        : labelFilterOne.length
-        ? labelFilterOne
-        : labelFilterThree.length
-        ? labelFilterThree
+      labelFilterRecords.length && typeFilterRecords.length
+        ? intersection(labelFilterRecords, typeFilterRecords)
+        : labelFilterRecords.length
+        ? labelFilterRecords
+        : typeFilterRecords.length
+        ? typeFilterRecords
         : [];
     const intersectTwo =
-      labelFilterTwo.length && labelFilterFour.length
-        ? intersection(labelFilterTwo, labelFilterFour)
-        : labelFilterTwo.length
-        ? labelFilterTwo
-        : labelFilterFour.length
-        ? labelFilterFour
+      dateFilterRecords.length && elevationFilterRecords.length
+        ? intersection(dateFilterRecords, elevationFilterRecords)
+        : dateFilterRecords.length
+        ? dateFilterRecords
+        : elevationFilterRecords.length
+        ? elevationFilterRecords
         : [];
     setFilterTask(() => {
       return intersectOne.length && intersectTwo.length
@@ -112,6 +177,10 @@ export const FilterModal = ({
         ? intersectTwo
         : [];
     });
+    setActiveFilters(
+      Object.values(values).filter((el) => typeof el !== "undefined")
+    );
+    // console.log("ervis", labelFilterRecords);
   };
 
   const handleOnclick = () => {
@@ -120,33 +189,29 @@ export const FilterModal = ({
     setVisibleFilter(false);
   };
 
-  const handleChangeRange = (dates, dateStrings) => {
+  const handleChangeRange = (dates) => {
     if (dates) {
-      setRangeDate({ start: dateStrings[0], end: dateStrings[1] });
+      const startString = dates[0].toISOString();
+      const endString = dates[1].toISOString();
+      setRangeDate({ start: startString, end: endString });
     }
   };
 
   const serviceLabelItem = (e) => {
     setLabelItem(e);
   };
-
-  console.log(labelItem);
-
-  const rangeData = function () {
-    let tempDate = [];
-    globalCTX.tasks.map((e) => {
-      tempDate.push({
-        start: e?.start,
-        end: e?.end,
-      });
-    });
-    console.log(tempDate);
-    return tempDate;
+  const typeItem = (e) => {
+    setTypeValue(e);
+  };
+  const elevationItem = (e) => {
+    setElevationValue(e);
   };
 
   useEffect(() => {
-    rangeData();
-  }, [visibleFilter]);
+    setElevationName(uniq(elevationData()));
+    setLabelName(uniq(labelData()));
+    setTypeName(uniq(typeData()));
+  }, [labelItem, elevationValue, typeValue]);
 
   return (
     <>
@@ -178,8 +243,18 @@ export const FilterModal = ({
                 className="labelSelect"
                 placeholder="
                 Choose service"
+                mode="multiple"
                 suffixIcon={<DropdownIcon />}
                 onChange={(e) => serviceLabelItem(e)}
+                onSelect={() => {
+                  setServiceEnabled(true);
+                }}
+                onClear={() => {
+                  setServiceEnabled(false);
+                }}
+                onBlur={() => {
+                  setServiceEnabled(false);
+                }}
               >
                 {labelOption.map?.((label, i) => (
                   <Option key={label + i} value={label}>
@@ -188,21 +263,32 @@ export const FilterModal = ({
                 ))}
               </Select>
             </Item>
-            <Item name={"typeSelect"} label="Type" labelAlign="left">
+            <Item name="typeSelect" label="Type" labelAlign="left">
               <Select
                 allowClear
                 className="typeSelect"
                 placeholder="
               Choose type"
+                mode="multiple"
                 suffixIcon={<DropdownIcon />}
+                onChange={(e) => typeItem(e)}
+                onSelect={() => {
+                  setTypeEnabled(true);
+                }}
+                onClear={() => {
+                  setTypeEnabled(false);
+                }}
+                onBlur={() => {
+                  setTypeEnabled(false);
+                }}
               >
-                {elevationNameData
-                  ?.filter((el) => el.label === labelItem)
-                  .map?.((e, i) => (
-                    <Option key={e + i} value={e.type}>
-                      {e.type}
+                {typeName?.map((type) => {
+                  return (
+                    <Option key={type} value={type}>
+                      {type}
                     </Option>
-                  ))}
+                  );
+                })}
               </Select>
             </Item>
           </div>
@@ -213,26 +299,33 @@ export const FilterModal = ({
                 className="elevationSelect"
                 placeholder="
               Choose elevation name"
+                mode="multiple"
                 suffixIcon={<DropdownIcon />}
+                onChange={(e) => elevationItem(e)}
+                onSelect={() => {
+                  setElevationEnabled(true);
+                }}
+                onClear={() => {
+                  setElevationEnabled(false);
+                }}
+                onBlur={() => {
+                  setElevationEnabled(false);
+                }}
               >
-                {elevationNameData
-                  ?.filter((td) => td?.label === labelItem)
-                  .map?.((e, i) => (
-                    <Option key={e + i} value={e.elevationLabel}>
-                      {e.elevationLabel}
-                    </Option>
-                  ))}
+                {elevationName?.map((elevation) => (
+                  <Option key={elevation} value={elevation}>
+                    {elevation}
+                  </Option>
+                ))}
               </Select>
             </Item>
             <Item name="RangeDateLabel" label="Range Date" labelAlign="left">
               <RangePicker
                 allowClear
                 className="RangeDateFilter"
-                placeholder="
-                Choose Range Date"
-                defalutValue={rangeDate}
+                value={rangeDate}
                 format={formatDate}
-                onChange={handleChangeRange}
+                onChange={(dates) => handleChangeRange(dates)}
               />
             </Item>
           </div>

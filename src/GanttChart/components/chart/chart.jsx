@@ -4,12 +4,13 @@ import { GlobalContext } from "../../stateManagement/GlobalStateProvider";
 import { FrappeGantt } from "frappe-gantt-react";
 import { FilterModal } from "../FilterModal/FilterModal";
 import CustomSlider from "../Slider/Slider";
+import moment from "moment";
 import "./chart.scss";
 import "antd/dist/antd.min.css";
 
 // importing antd components
 import { FilterFilled, SearchOutlined } from "@ant-design/icons";
-import { Card, Input, Button } from "antd";
+import { Card, Input, Button, Form } from "antd";
 import ScheduleDetailsModal from "../ScheduleModal";
 
 const { Search } = Input;
@@ -22,6 +23,7 @@ function Chart() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [searchTasks, setSearchTasks] = useState(globalCTX?.tasks);
   const [filterTask, setFilterTask] = useState([]);
+  const [activeFilters, setActiveFilters] = useState([]);
 
   const handleChangeSearch = (e) => {
     let substring = e.target.value;
@@ -50,15 +52,11 @@ function Chart() {
     handleModalTask();
   }, []);
 
-  // console.log(searchTasks);
-
   useEffect(() => {
     if (!!globalCTX) {
       setSearchTasks(globalCTX?.tasks);
     }
   }, [globalCTX.tasks]);
-
-  // console.log("sfasf", filterTask);
 
   return (
     <div className="chart">
@@ -83,6 +81,18 @@ function Chart() {
                 Apply Data
               </Button>
             </div>
+          </div>
+          <div className="activeFilters">
+            {/* {activeFilters.map((filter) => {
+              console.log(filter);
+              return (
+                <>
+                  <p className="activeLabel">{filter}</p>
+                  <p className="activeElevation">{filter}</p>
+                  <p className="activeType">{filter}</p>
+                </>
+              );
+            })} */}
           </div>
         </div>
         <div className="stepperDiv">
@@ -140,6 +150,7 @@ function Chart() {
             setFilterTask={setFilterTask}
             visibleFilter={visibleFilter}
             setVisibleFilter={setVisibleFilter}
+            setActiveFilters={setActiveFilters}
           />
         )}
       </div>
