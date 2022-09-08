@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Modal, Select, Form, DatePicker } from "antd";
-import "./FilterModal.scss";
 import { GlobalContext } from "../../stateManagement/GlobalStateProvider";
-import { dummyData, labelOption, type } from "../../dummy-data";
-import { intersection, isArray, uniq, uniqBy, values } from "lodash";
+import { intersection, isArray, uniq } from "lodash";
 import { Close, DropdownIcon } from "../../../assets/OtherIcons";
 import moment from "moment";
+
+//antd components
+import { Button, Modal, Select, Form, DatePicker } from "antd";
+import "./FilterModal.scss";
+
+import { dummyData, labelOption } from "../../dummy-data";
 
 const { Option } = Select;
 const { Item } = Form;
@@ -22,9 +25,9 @@ export const FilterModal = ({
   const globalCTX = useContext(GlobalContext);
   const [form] = Form.useForm();
   const [elevationName, setElevationName] = useState([]);
-  const [typeName, setTypeName] = useState([]);
-  const [labelName, setLabelName] = useState([]);
-  const [labelItem, setLabelItem] = useState(null);
+  const [typeName, setTypeName] = useState([]); // store all type
+  const [labelName, setLabelName] = useState([]); // store all service
+  const [labelItem, setLabelItem] = useState(null); //get selectedServiceLabel array
   const [typeValue, setTypeValue] = useState(null);
   const [elevationValue, setElevationValue] = useState(null);
   const [serviceEnabled, setServiceEnabled] = useState(false);
@@ -34,6 +37,10 @@ export const FilterModal = ({
     start: null,
     end: null,
   });
+
+  console.log(typeName);
+  console.log(labelName);
+  console.log(typeName);
 
   const elevationData = () => {
     const values = form.getFieldsValue();
@@ -68,6 +75,8 @@ export const FilterModal = ({
     // console.log(temp);
     return temp;
   };
+
+  //function get all task type and return only type that selected Service has
   const typeData = () => {
     const values = form.getFieldsValue();
     let typeTemp = [];
@@ -101,7 +110,9 @@ export const FilterModal = ({
     // console.log(typeTemp);
     return typeTemp;
   };
-  const labelData = () => {
+
+  // get all service data
+  const serviceData = () => {
     let labelTemp = [];
     dummyData?.map((v) => {
       Object.values(v?.toBeScheduled).flatMap((el) => {
@@ -110,10 +121,11 @@ export const FilterModal = ({
         });
       });
     });
-    // console.log(labelTemp);
+    console.log(labelTemp);
     return labelTemp;
   };
 
+  //clear input field selected
   const clearInputSelected = () => {
     // form.resetFields();
     setRangeDate({});
@@ -127,23 +139,28 @@ export const FilterModal = ({
     const momentSelectedStartDate = moment(rangeDate.start, "YYYY-MM-DD");
     const momentSelectedEndDate = moment(rangeDate.end, "YYYY-MM-DD");
     const values = form.getFieldsValue();
-
+    //returns array that is filtered by selectedService
     const labelFilterRecords = globalCTX?.tasks?.filter?.((el) => {
       return typeof values.labelSelect !== "undefined" &&
         isArray(values.labelSelect)
         ? values.labelSelect.includes(el.label)
         : el;
     });
+    console.log(labelFilterRecords);
+    //returns array that is filtered by selectedRangeDate
     const dateFilterRecords = globalCTX?.tasks?.filter?.(
       (el) =>
         moment(el.start, "YYYY-MM-DD").isSameOrAfter(momentSelectedStartDate) &&
         moment(el.end, "YYYY-MM-DD").isSameOrBefore(momentSelectedEndDate)
     );
+    //returns array that is filtered by selectedType
     const typeFilterRecords = globalCTX?.tasks?.filter?.((el) =>
       typeof values.typeSelect !== "undefined" && isArray(values.typeSelect)
         ? values.typeSelect.includes(el.type)
         : el
     );
+    console.log(typeFilterRecords);
+    //returns array that is filtered by selectedElevation
     const elevationFilterRecords = globalCTX?.tasks?.filter((el) =>
       typeof values.elevationName !== "undefined" &&
       isArray(values.elevationName)
@@ -180,13 +197,6 @@ export const FilterModal = ({
     setActiveFilters(
       Object.values(values).filter((el) => typeof el !== "undefined")
     );
-    // console.log("ervis", labelFilterRecords);
-  };
-
-  const handleOnclick = () => {
-    handleChangeRange();
-    handleChangeFilter();
-    setVisibleFilter(false);
   };
 
   const handleChangeRange = (dates) => {
@@ -197,6 +207,11 @@ export const FilterModal = ({
     }
   };
 
+  const handleOnclick = () => {
+    handleChangeRange();
+    handleChangeFilter();
+    setVisibleFilter(false);
+  };
   const serviceLabelItem = (e) => {
     setLabelItem(e);
   };
@@ -209,9 +224,15 @@ export const FilterModal = ({
 
   useEffect(() => {
     setElevationName(uniq(elevationData()));
-    setLabelName(uniq(labelData()));
+    setLabelName(uniq(serviceData()));
     setTypeName(uniq(typeData()));
-  }, [labelItem, elevationValue, typeValue]);
+  }, [labelItem, elevationEnabled, typeEnabled]);
+
+  const content = (
+    <div>
+      <p>Select service if you want to make a deep filter</p>
+    </div>
+  );
 
   return (
     <>
@@ -237,7 +258,21 @@ export const FilterModal = ({
       >
         <Form form={form} onFinish={handleOnclick} className="filterBody">
           <div className="columBodyFilter">
-            <Item name="labelSelect" label="Service" labelAlign="left">
+            <Item
+              name="labelSelect"
+              label="Service"
+              // label={
+              //   <div className="serviceHeader">
+              //     <>Service</>
+              //     <div className="InfoIcon">
+              //       <Popover trigger="hover" content={content}>
+              //         <InfoIcon />
+              //       </Popover>
+              //     </div>
+              //   </div>
+              // }
+              labelAlign="left"
+            >
               <Select
                 allowClear
                 className="labelSelect"
@@ -250,9 +285,6 @@ export const FilterModal = ({
                   setServiceEnabled(true);
                 }}
                 onClear={() => {
-                  setServiceEnabled(false);
-                }}
-                onBlur={() => {
                   setServiceEnabled(false);
                 }}
               >
@@ -276,9 +308,6 @@ export const FilterModal = ({
                   setTypeEnabled(true);
                 }}
                 onClear={() => {
-                  setTypeEnabled(false);
-                }}
-                onBlur={() => {
                   setTypeEnabled(false);
                 }}
               >
@@ -306,9 +335,6 @@ export const FilterModal = ({
                   setElevationEnabled(true);
                 }}
                 onClear={() => {
-                  setElevationEnabled(false);
-                }}
-                onBlur={() => {
                   setElevationEnabled(false);
                 }}
               >

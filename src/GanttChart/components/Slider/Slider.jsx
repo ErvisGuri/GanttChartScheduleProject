@@ -24,7 +24,6 @@ const marks = {
 };
 
 export default function CustomSlider() {
-  //   const classes = useStyles();
   const globalCTX = React.useContext(GlobalContext);
 
   const handleChange = (value) => {
@@ -46,7 +45,6 @@ export default function CustomSlider() {
       temp = "Month";
     }
 
-    // console.log(temp, value);
     if (globalCTX !== undefined) {
       globalCTX.setState({ ...globalCTX, mode: temp });
     }

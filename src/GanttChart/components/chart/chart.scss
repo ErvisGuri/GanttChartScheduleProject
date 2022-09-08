@@ -25,17 +25,43 @@ $backgroundColor: whiteSmoke;
       background-color: transparent;
     }
     .chartLabel ::-webkit-scrollbar-thumb {
-      background: #142735 !important;
+      background: #323338 !important;
       border-radius: 4px;
     }
   }
   .headerChart {
+    width: 100%;
     display: flex;
     flex-direction: row;
     height: 80px;
     .header-div {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+      .activeFilters {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5px;
+        width: 100%;
+        .activeLabel {
+          font-size: 14px;
+          color: #323338;
+          .actFiltersPopOver {
+            color: #1264a3;
+            cursor: pointer !important;
+            font-weight: 600;
+          }
+        }
+        .appliedFiltersText {
+          font-size: 14px;
+          font-weight: 600;
+        }
+        .info-cont {
+          display: flex;
+          // justify-content: center;
+          // text-align: center;
+          // width: 100%;
+        }
+      }
       .labelsHeader {
         width: 283px;
         height: 3px;
@@ -53,47 +79,50 @@ $backgroundColor: whiteSmoke;
         width: 50% !important;
       }
     }
-
-    .ganttFilterBtn {
+    .ganttFilters {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
-      width: 150px;
-      height: 32px;
-      font-size: 16px;
-      border-radius: 5px;
-      background: #1264a3;
-      margin-bottom: 10px;
-      color: white;
-      gap: 5px;
-      padding: 1px;
-    }
-    .ant-btn .anticon {
-      margin-top: 7px;
-    }
-
-    .searchBar {
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 20px;
-      span.ant-input-affix-wrapper {
-        border-radius: 5px !important;
-        width: 183px;
+      align-items: start;
+      font-size: 12px;
+      .ganttFilterBtn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 150px;
         height: 32px;
-        background: #fcfcfc 0% 0% no-repeat padding-box;
+        font-size: 16px;
+        border-radius: 5px;
+        background: #1264a3;
+        margin-bottom: 10px;
+        color: white;
+        gap: 5px;
+        padding: 1px;
       }
-      span.ant-input-prefix {
-        color: #bfbaba;
+      .ant-btn .anticon {
+        margin-top: 7px;
       }
-      input.ant-input {
-        background: #fcfcfc 0% 0% no-repeat padding-box;
+      .searchBar {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 20px;
+        span.ant-input-affix-wrapper {
+          border-radius: 5px !important;
+          width: 183px;
+          height: 32px;
+          background: #fcfcfc 0% 0% no-repeat padding-box;
+        }
+        span.ant-input-prefix {
+          color: #bfbaba;
+        }
+        input.ant-input {
+          background: #fcfcfc 0% 0% no-repeat padding-box;
+        }
+      }
+      span.ant-input-group-addon {
+        display: none;
       }
     }
-
-    span.ant-input-group-addon {
-      display: none;
-    }
-
     .stepperDiv {
       background: #f8f8fa;
       width: 1212px !important;
@@ -124,7 +153,7 @@ $backgroundColor: whiteSmoke;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
-          font-family: "Open Sans";
+          color: #323338;
           margin-left: 10px;
         }
         &:nth-child(odd) {
