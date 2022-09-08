@@ -1,7 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import { dummyData } from '../dummy-data'
-import moment from "moment"
-import { message } from "antd";
 
 export const GlobalContext = createContext({});
 
@@ -10,17 +8,20 @@ const GlobalStateProvider = ({ children }) => {
         tasks: [],
         mode: "Week",
         labels: [],
-        deleted: [],
-    });
+    });  // Main state
 
+
+    //brings all days and used to get date at dataSchedule to get all tasks day
     const daysInfo = () => {
         let temp = {}
         dummyData?.map(e => e.scheduleDays.map(day => {
             temp[day.id] = day
         }))
+        // console.log(temp)
         return temp;
     }
 
+    // dataSchedule includes all properties that needs ganttChart
     const dataSchedule = function () {
         let allDays = daysInfo();
         let objTask = dataLabel();
@@ -45,9 +46,12 @@ const GlobalStateProvider = ({ children }) => {
                 elevationLabel: el?.elevationLabel,
             })
         });
+        // console.log(tasksTemp)
         return tasksTemp;
     };
 
+
+    //Manipulation data in different levels to get properties that we pass at obj dataSchedule
     const dataLabel = () => {
         let obj = []
         dummyData?.map(v => {
@@ -85,7 +89,7 @@ const GlobalStateProvider = ({ children }) => {
         if (!!state) {
             daysInfo()
             const tasks = dataSchedule()
-            const labels = tasks?.map(e => e?.name)
+            const labels = tasks?.map(e => e?.name)  // get all Labels and display in UI 
             setState({ ...state, tasks, labels });
         }
     }, [state.mode, state.deleted]);

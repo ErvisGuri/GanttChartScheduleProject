@@ -25,6 +25,7 @@ function ScheduleDetailsModal(props) {
   const { open, handleClose, selectedTask } = props;
 
   const [crewsData, setCrewsData] = useState([]);
+  const [progressTask, setProgressTask] = useState("");
 
   // Status Badge Style Function
   const styleBadge = (e) => {
@@ -42,7 +43,7 @@ function ScheduleDetailsModal(props) {
     }
   };
 
-  //WeatherIcon
+  //condition to match weatherIcon with cases
   const weatherIcon = (e) => {
     switch (e) {
       case "Chance Rain Showers":
@@ -91,6 +92,10 @@ function ScheduleDetailsModal(props) {
       }
     });
     return tempMerge;
+  };
+
+  const handleChangeProgress = (e) => {
+    setProgressTask(e.value.target);
   };
 
   useEffect(() => {
