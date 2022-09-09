@@ -8,7 +8,7 @@ import { Driver, Truck } from "../../../assets/DispatchIcons";
 import { crews } from "../../dummy-data";
 
 /*importing AntComponents*/
-import { Modal, Card, Badge } from "antd";
+import { Modal, Card, Badge, InputNumber } from "antd";
 import {
   BigRain,
   ChanceRain,
@@ -19,13 +19,23 @@ import {
   Snow,
   Sunny,
 } from "../../../assets/weatherIcons";
-import { Close } from "../../../assets/OtherIcons";
+import { Close, EditProgressIcon } from "../../../assets/OtherIcons";
+import { Button } from "antd/lib/radio";
 
 function ScheduleDetailsModal(props) {
-  const { open, handleClose, selectedTask } = props;
+  const {
+    open,
+    handleClose,
+    selectedTask,
+    isEdit,
+    onChangeContent,
+    setIsEdit,
+  } = props;
 
   const [crewsData, setCrewsData] = useState([]);
-  const [progressTask, setProgressTask] = useState("");
+  const [progressTask, setProgressTask] = useState(isEdit ? selectedTask : "");
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  const [toBeEdited, setToBeEdited] = useState(null);
 
   // Status Badge Style Function
   const styleBadge = (e) => {
@@ -79,6 +89,8 @@ function ScheduleDetailsModal(props) {
     }
   };
 
+  console.log(progressTask);
+
   //Manipulate crews on main schedule object
   const dataMerge = () => {
     let tempMerge = [];
@@ -94,8 +106,40 @@ function ScheduleDetailsModal(props) {
     return tempMerge;
   };
 
+  const handleCloseModal = () => {
+    handleClose();
+    setIsEdit(false);
+    // setProgressTask(progressTask);
+  };
+
+  const handleUpdate = (e) => {
+    // e.preventDefault();
+    setIsEdit(true);
+    onChangeContent(progressTask);
+    handleCloseModal();
+  };
+
   const handleChangeProgress = (e) => {
-    setProgressTask(e.value.target);
+    setProgressTask(e.target.value);
+  };
+
+  console.log(onChangeContent(progressTask));
+
+  const disableUpdateBtn = () => {
+    setDisabledBtn(!disabledBtn);
+  };
+
+  const openEditingCard = (id) => {
+    setIsEdit(false);
+    setToBeEdited(id);
+  };
+
+  // close the edit card view
+  const handleHideEditView = (id) => {
+    // setShowViewEditCard(false);
+    if (id === toBeEdited) {
+      setToBeEdited(null);
+    }
   };
 
   useEffect(() => {
@@ -103,16 +147,24 @@ function ScheduleDetailsModal(props) {
     setCrewsData(crew);
   }, [selectedTask]);
 
+  useEffect(() => {
+    if (!!selectedTask) {
+      setProgressTask(selectedTask?.progress);
+    }
+  }, [selectedTask]);
+
+  console.log(isEdit);
+
   return (
     <div className="modal">
       <Modal
-        onCancel={handleClose}
+        onCancel={handleCloseModal}
         centered
         className="task-modal"
         title={
           <div className="customTitleModal">
             <span>{selectedTask?.name}</span>
-            <div onClick={handleClose} className="closeSvgIcon">
+            <div onClick={handleCloseModal} className="closeSvgIcon">
               <Close />
             </div>
           </div>
@@ -161,10 +213,52 @@ function ScheduleDetailsModal(props) {
                         <b>Notes: </b>
                         {el.notes}
                       </div>
-                      <div className="dayCardProgress">
-                        <b>Progress: </b>
-                        {`${selectedTask?.progress}%`}
-                      </div>
+                      {el.id === toBeEdited ? (
+                        <div className="dayCardProgress">
+                          <div className="progressUpdate-div">
+                            <b>Progress:</b>
+                            <InputNumber
+                              className="inputProgress"
+                              bordered={false}
+                              type="number"
+                              name="progress"
+                              defaultValue={progressTask}
+                              onChange={(e) => handleChangeProgress(e)}
+                              onClick={disableUpdateBtn}
+                            />
+                          </div>
+                          <div className="btnVisible">
+                            <Button
+                              onClick={() => handleHideEditView(el.id)}
+                              className="progressBtnUpdate"
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              onClick={handleUpdate}
+                              className="progressBtnUpdate"
+                            >
+                              Update
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="dayCardProgress">
+                          <div className="progressUpdate-div">
+                            <b>Progress:</b>
+                            <>{` ${progressTask} %`}</>
+                          </div>
+                          <div onClick={() => openEditingCard(el?.id)}>
+                            <>Edit</>
+                            <EditProgressIcon
+                              style={{
+                                cursor: "pointer",
+                                fill: "#323338",
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
                       <div className="dayCardTime">
                         <b>New York: </b>
                         <time className="dayTime">
