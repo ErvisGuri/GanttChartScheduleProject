@@ -85,6 +85,11 @@ const GlobalStateProvider = ({ children }) => {
         return obj;
     }
 
+    const handleUpdate = (taskObject) => {
+        state.tasks[state.tasks.findIndex(el => el.id === taskObject.id)] = taskObject;
+        setState(state);
+    };
+
     useEffect(() => {
         if (!!state) {
             daysInfo()
@@ -96,7 +101,7 @@ const GlobalStateProvider = ({ children }) => {
 
     return (
         <GlobalContext.Provider
-            value={{ ...state, setState }}
+            value={{ ...state, setState, handleUpdate }}
         >
             {children}
         </GlobalContext.Provider>

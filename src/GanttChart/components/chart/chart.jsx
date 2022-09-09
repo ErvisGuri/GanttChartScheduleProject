@@ -24,6 +24,8 @@ function Chart() {
   const [filterTask, setFilterTask] = useState([]); //same as searchTask
   const [activeFilters, setActiveFilters] = useState([]); // get selected input filters in filterModal and store in state
   const [popover, setPopover] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+
   //searchFilter function
   const handleChangeSearch = (e) => {
     let substring = e.target.value;
@@ -49,6 +51,7 @@ function Chart() {
 
   //Open ModalTask
   const click = (task) => {
+    setIsEdit(true);
     setSelectedTask(task);
     handleModalTask();
   };
@@ -69,8 +72,6 @@ function Chart() {
       );
     });
   };
-
-  console.log(activeFilters.flatMap((el) => el));
 
   return (
     <div className="chart">
@@ -97,7 +98,10 @@ function Chart() {
                 </Button>
               </>
             </div>
-            <div className="activeFilters">
+            <div
+              className="activeFilters"
+              style={{ zIndex: "100", background: "#fff" }}
+            >
               <>
                 {activeFilters?.length > 0 && (
                   <div className="info-cont">
@@ -141,6 +145,9 @@ function Chart() {
                 })}
           </div>
           <ScheduleDetailsModal
+            setIsEdit={setIsEdit}
+            onChangeContent={globalCTX.handleUpdate}
+            isEdit={isEdit}
             selectedTask={selectedTask}
             handleClose={handleModalTask}
             open={visibleTask.show}
